@@ -11,13 +11,10 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Header />}>
-          <Route element={<MainPage />}>
-            <Route path="search">
-              <Route index element={<SearchPage />} />
-              <Route path=":id" element={<Detail />} />
-            </Route>
-            <Route path="board" element={<Board />} />
-          </Route>
+          <Route index element={<MainPage />} />
+          <Route path="search" element={<SearchPage />} />
+          <Route path="search/:id" element={<Detail />} />
+          <Route path="board" element={<Board />} />
         </Route>
         <Outlet />
       </Routes>

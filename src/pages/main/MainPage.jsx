@@ -5,7 +5,6 @@ import WeatherDessertSlide from "./components/WeatherDessertSlide/WeatherDessert
 const MainPage = () => {
   return (
     <div>
-      Main
       <CloseDessertSlide />
       <WeatherDessertSlide />
     </div>

@@ -1,10 +1,10 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import Header from "./layout/Header";
-import MainPage from "./pages/main/MainPage";
-import SearchPage from "./pages/search/SearchPage";
-import Detail from "./pages/detail/Detail";
-import Board from "./pages/board/Board";
+import { Outlet, Route, Routes } from 'react-router-dom';
+import './App.css';
+import Header from './layout/Header';
+import MainPage from './pages/main/MainPage';
+import SearchPage from './pages/search/SearchPage';
+import Detail from './pages/detail/Detail';
+import Board from './pages/board/Board';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
           <Route path="search/:id" element={<Detail />} />
           <Route path="board" element={<Board />} />
         </Route>
+        <Outlet />
       </Routes>
     </div>
   );

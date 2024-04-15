@@ -1,14 +1,20 @@
 import { Route, Routes } from "react-router-dom";
-import AppLayout from "./layout/AppLayout/AppLayout";
-import Hompage from "./pages/Homepage/Hompage";
 import "./App.css";
+import Header from "./layout/Header";
+import MainPage from "./pages/main/MainPage";
+import SearchPage from "./pages/search/SearchPage";
+import Detail from "./pages/detail/Detail";
+import Board from "./pages/board/Board";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<AppLayout />}>
-          <Route index element={<Hompage />} />
+        <Route path="/" element={<Header />}>
+          <Route index element={<MainPage />} />
+          <Route path="search" element={<SearchPage />} />
+          <Route path="search/:id" element={<Detail />} />
+          <Route path="board" element={<Board />} />
         </Route>
       </Routes>
     </div>

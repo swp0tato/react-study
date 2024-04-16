@@ -34,13 +34,15 @@ const BoardWrite = () => {
 
   return (
     <div className="board-write-wrap">
-      <h3 className="board-write-title">디저트 추천서 쓰기🧀</h3>
       <form onSubmit={handleSubmit}>
+        <h3 className="board-write-title">디저트 추천서 쓰기🧀</h3>
         <div className="form-group">
-          <label htmlFor="name">이름</label>
+          <label htmlFor="name">카페명</label>
           <input
             type="text"
             id="name"
+            className="board-cafe-name"
+            placeholder="antique__coffee"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -50,6 +52,8 @@ const BoardWrite = () => {
           <input
             type="text"
             id="location"
+            className="board-location"
+            placeholder="https://www.instagram.com/antique__coffee/"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
@@ -57,8 +61,10 @@ const BoardWrite = () => {
         <div className="form-group">
           <label htmlFor="description">설명</label>
           <textarea
+            className="board-description"
             id="description"
             value={description}
+            placeholder="⭐⭐⭐ 커피가 맛있어요 !"
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
@@ -71,7 +77,9 @@ const BoardWrite = () => {
             onChange={handleImageChange}
           />
         </div>
-        <button type="submit">저장</button>
+        <button type="submit" className="board-submit-btn">
+          저장
+        </button>
       </form>
     </div>
   );

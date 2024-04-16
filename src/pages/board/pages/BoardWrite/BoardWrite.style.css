@@ -3,10 +3,42 @@
 .board-write-wrap {
   font-family: 'Noto Sans KR', sans-serif;
   background-color: #fbf8f0;
-  height: 100vh;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
 }
 
 .board-write-title {
   text-align: center;
-  margin-top: 40px;
+}
+
+.board-write-form {
+  width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.board-cafe-name,
+.board-description,
+.board-location {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.board-submit-btn {
+  background-color: #bbab8c !important;
+  cursor: pointer;
+  border: 2px solid white !important;
+  margin: 10px auto;
+}
+.board-submit-btn:hover {
+  background-color: #bbab8c !important;
 }

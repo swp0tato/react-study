@@ -13,7 +13,7 @@ const Board = () => {
 
   return (
     <div className="board-wrap">
-      <h3 className="board-title">디저트 추천 🧀</h3>
+      <h3 className="board-title">디저트 추천 리뷰🧀</h3>
       <div className="add-btn-wrap">
         <svg
           xmlns="http://www.w3.org/2000/svg"

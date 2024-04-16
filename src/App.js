@@ -16,7 +16,6 @@ function App() {
           <Route path="search/:id" element={<Detail />} />
           <Route path="board" element={<Board />} />
         </Route>
-        <Outlet />
       </Routes>
     </div>
   );

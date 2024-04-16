@@ -2,13 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
   width: 100%;
+  flex-wrap: wrap; /* 요소를 여러 줄에 걸쳐 정렬 */
 }
 
 .board-card {
   margin: 25px 15px;
-  width: 220px;
+  width: 240px;
   height: 220px;
   border-radius: 6px;
 }

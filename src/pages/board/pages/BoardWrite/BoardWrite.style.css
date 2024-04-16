@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+.board-write-wrap {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #fbf8f0;
+  height: 100vh;
+}
+
+.board-write-title {
+  text-align: center;
+  margin-top: 40px;
+}

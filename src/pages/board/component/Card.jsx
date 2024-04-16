@@ -11,7 +11,13 @@ const Card = ({ item }) => {
     <div className="card-wrap">
       <img className="board-card" onClick={goToDetail} src={item?.img} alt="" />
       <div>{item?.user}</div>
-      <div>{item?.hashtag}</div>
+      <div>
+        {item?.hashtag.map((tag) => (
+          <span className="hashtag" key={tag}>
+            #{tag}{' '}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };

@@ -17,3 +17,12 @@
 .card-wrap div {
   margin: 0 15px;
 }
+
+.hashtag {
+  background-color: rgb(238, 228, 206);
+  margin-right: 5px;
+  border-radius: 4px;
+  padding: 0 5px;
+  font-size: 14px;
+  color: rgb(57, 57, 58);
+}

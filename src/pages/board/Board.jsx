@@ -80,7 +80,7 @@ const Board = () => {
       </div>
       <div className="board-card-wrap">
         {boardList.map((item) => (
-          <Card item={item} />
+          <Card key={item.id} item={item} />
         ))}
       </div>
     </div>

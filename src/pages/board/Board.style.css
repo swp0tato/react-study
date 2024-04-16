@@ -8,7 +8,7 @@
 
 .board-title {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 .add-btn-wrap {
@@ -25,6 +25,8 @@
   font-family: 'Noto Sans KR', sans-serif;
   padding: 6px 12px;
   background-color: #ded0b6;
+  font-weight: bold;
+  color: rgb(68, 67, 67);
 }
 
 .add-btn:hover {

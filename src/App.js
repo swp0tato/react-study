@@ -1,11 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import Header from "./layout/Header";
-import MainPage from "./pages/main/MainPage";
-import SearchPage from "./pages/search/SearchPage";
-import Detail from "./pages/detail/Detail";
-import Board from "./pages/board/Board";
-import Authenticate from "./pages/Authenticate/Authenticate";
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import Header from './layout/Header';
+import MainPage from './pages/main/MainPage';
+import SearchPage from './pages/search/SearchPage';
+import Detail from './pages/detail/Detail';
+import Board from './pages/board/Board';
+import Authenticate from './pages/Authenticate/Authenticate';
+import BoardWrite from './pages/board/pages/BoardWrite/BoardWrite';
 
 function App() {
   return (
@@ -16,7 +17,10 @@ function App() {
           <Route path="auth" element={<Authenticate />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="search/:id" element={<Detail />} />
-          <Route path="board" element={<Board />} />
+          <Route path="board">
+            <Route index element={<Board />} />
+            <Route path="write" element={<BoardWrite />} />
+          </Route>
         </Route>
       </Routes>
     </div>

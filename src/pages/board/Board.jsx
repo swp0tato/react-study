@@ -8,7 +8,6 @@ const Board = () => {
 
   const addBoard = () => {
     navigate('write');
-    console.log('board write 가고싶어');
   };
   // console.log('board page!');
 

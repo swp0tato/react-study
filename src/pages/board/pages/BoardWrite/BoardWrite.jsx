@@ -1,4 +1,5 @@
 import React from 'react';
+import './BoardWrite.style.css';
 
 const BoardWrite = () => {
   console.log('board write !');

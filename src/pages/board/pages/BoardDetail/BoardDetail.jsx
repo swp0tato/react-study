@@ -1,4 +1,5 @@
 import React from 'react';
+import './BoardDetail.style.css';
 
 const BoardDetail = () => {
   return (

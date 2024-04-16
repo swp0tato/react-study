@@ -1,14 +1,14 @@
-.img-wrap {
+.board-card-wrap {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
-.img-area {
-  position: absolute;
-  top: 30%;
-  display: flex;
-}
-
-.img-card {
+.board-card {
   margin: 25px 15px;
+  width: 220px;
+  height: 220px;
+  border-radius: 6px;
 }

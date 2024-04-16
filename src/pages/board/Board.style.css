@@ -30,5 +30,9 @@
 }
 
 .add-btn:hover {
-  background-color: #d4b780;
+  background-color: #bbab8c;
+}
+
+.focus-icon {
+  transform: rotateY(180deg);
 }

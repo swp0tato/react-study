@@ -1,14 +1,24 @@
 import React from 'react';
 import './Board.style.css';
-import Card from './Card';
+import Card from './component/Card';
+import { useNavigate } from 'react-router-dom';
 
 const Board = () => {
-  console.log('board page!');
+  const navigate = useNavigate();
+
+  const addBoard = () => {
+    navigate('write');
+    console.log('board write 가고싶어');
+  };
+  // console.log('board page!');
+
   return (
-    <div>
-      <h3>맛집 추천 등록 페이지🧀</h3>
-      <div className="add-btn">
-        <button>등록하러 가기</button>{' '}
+    <div className="board-wrap">
+      <h3 className="board-title">디저트 추천 🧀</h3>
+      <div className="add-btn-wrap">
+        <button onClick={addBoard} className="add-btn">
+          추천하러 가기
+        </button>{' '}
       </div>
       <Card />
     </div>

@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Board.style.css';
 import Card from './component/Card';
 import { useNavigate } from 'react-router-dom';
 
 const Board = () => {
   const navigate = useNavigate();
+  const [restaurantData, setRestaurantData] = useState([]);
+
+  useEffect(() => {
+    // Retrieve restaurant data from localStorage
+    const storedData = localStorage.getItem('restaurantData');
+    if (storedData) {
+      setRestaurantData(JSON.parse(storedData));
+    }
+  }, []);
 
   const addBoard = () => {
     navigate('write');
@@ -13,14 +22,14 @@ const Board = () => {
 
   return (
     <div className="board-wrap">
-      <h3 className="board-title">디저트 추천 리뷰🧀</h3>
+      <h3 className="board-title">오늘의 디저트 🧀</h3>
       <div className="add-btn-wrap">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 20 20"
-          height={20}
-          width={20}
+          height={25}
+          width={25}
           id="Finger-Snapping--Streamline-Flex"
           className="focus-icon"
         >
@@ -42,8 +51,8 @@ const Board = () => {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 20 20"
-          height={20}
-          width={20}
+          height={25}
+          width={25}
           id="Finger-Snapping--Streamline-Flex"
           className="focus-icon"
         >

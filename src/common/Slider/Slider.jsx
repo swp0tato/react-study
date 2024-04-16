@@ -14,7 +14,7 @@ const Slider = ({ responsive }) => {
         responsive={responsive}
         containerClass="carousel-container"
         itemClass="carousel-item"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
+        removeArrowOnDeviceType={["mobile"]}
       >
         <Card />
         <Card />

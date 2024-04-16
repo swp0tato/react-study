@@ -7,6 +7,7 @@ import Detail from './pages/detail/Detail';
 import Board from './pages/board/Board';
 import Authenticate from './pages/Authenticate/Authenticate';
 import BoardWrite from './pages/board/pages/BoardWrite/BoardWrite';
+import BoardDetail from './pages/board/pages/BoardDetail/BoardDetail';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="board">
             <Route index element={<Board />} />
             <Route path="write" element={<BoardWrite />} />
+            <Route path="detail" element={<BoardDetail />} />
           </Route>
         </Route>
       </Routes>

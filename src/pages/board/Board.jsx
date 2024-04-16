@@ -6,7 +6,7 @@ const Board = () => {
   console.log('board page!');
   return (
     <div>
-      <h3>맛집 추천 등록 페이지🧀</h3>
+      <h3>디저트 추천 🧀</h3>
       <div className="add-btn">
         <button>등록하러 가기</button>{' '}
       </div>

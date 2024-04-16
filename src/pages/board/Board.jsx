@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 import './Board.style.css';
 import Card from './component/Card';
 import { useNavigate } from 'react-router-dom';
 
 const Board = () => {
+  const [boardList, setBoardList] = useState([]);
   const navigate = useNavigate();
-  const [restaurantData, setRestaurantData] = useState([]);
 
-  useEffect(() => {
-    // Retrieve restaurant data from localStorage
-    const storedData = localStorage.getItem('restaurantData');
-    if (storedData) {
-      setRestaurantData(JSON.parse(storedData));
-    }
-  }, []);
+  const getBoards = async () => {
+    let url = `http://localhost:3003/products`;
+    let response = await fetch(url);
+    let data = await response.json();
+    // console.log('data', data);
+    setBoardList(data);
+  };
 
   const addBoard = () => {
     navigate('write');
   };
-  // console.log('board page!');
+
+  useEffect(() => {
+    getBoards();
+  }, []);
 
   return (
     <div className="board-wrap">
@@ -74,7 +78,11 @@ const Board = () => {
           피드 작성 GO !
         </button>{' '}
       </div>
-      <Card />
+      <div className="board-card-wrap">
+        {boardList.map((item) => (
+          <Card item={item} />
+        ))}
+      </div>
     </div>
   );
 };

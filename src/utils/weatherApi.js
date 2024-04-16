@@ -1,13 +1,14 @@
 import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-console.log("weather api 키??", API_KEY);
 
 const weatherApi = axios.create({
   baseURL: "https://api.openweathermap.org/data/2.5/weather",
   headers: {
     Accept: "application/json",
-    Authorization: API_KEY,
+  },
+  params: {
+    appid: API_KEY,
   },
 });
 

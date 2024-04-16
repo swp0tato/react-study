@@ -27,7 +27,7 @@ const BoardWrite = () => {
     setDescription('');
     setImage(null);
 
-    alert('맛집 정보가 저장되었습니다!');
+    alert('게시물이 등록되었습니다 !');
     navigate('/board');
   };
 

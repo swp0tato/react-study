@@ -71,7 +71,7 @@ const Board = () => {
           </g>
         </svg>
         <button onClick={addBoard} className="add-btn">
-          추천하러 가기
+          피드 작성 GO !
         </button>{' '}
       </div>
       <Card />

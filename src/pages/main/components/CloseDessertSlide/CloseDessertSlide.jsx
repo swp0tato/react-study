@@ -15,16 +15,6 @@ const CloseDessertSlide = () => {
           <Card />
         </div>
       </div>
-
-      {/* <div className="close_dessert_wrapper">
-        <div className="slide">
-          <div className="close_img"></div>
-          <div className="close_name">스타벅스 남이섬점</div>
-          <div className="close_address">
-            경기 가평군 가평읍 북한강변로 1054
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

@@ -10,7 +10,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
     lat,
     lon,
   });
-  // console.log(data);
+  console.log(data);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -23,31 +23,33 @@ const WeatherDessertSlide = ({ lat, lon }) => {
     //날씨에 따라 백그라운드 이미지 변경
     let backgroundClass = "clear"; //기본값
 
-    switch (data.main) {
-      case "Thunderstorm":
+    switch (Math.floor(data.id / 100)) {
+      case 2:
         backgroundClass = "thunderstorm";
         break;
-      case "Drizzle":
+      case 3:
         backgroundClass = "drizzle";
         break;
-      case "Rain":
+      case 5:
         backgroundClass = "rain";
         break;
-      case "Snow":
+      case 6:
         backgroundClass = "snow";
         break;
-      case "Atmosphere":
+      case 7:
         backgroundClass = "atmosphere";
         break;
-      case "Clear":
-        backgroundClass = "clear";
-        break;
-      case "Clouds":
-        backgroundClass = "clouds";
+      case 8:
+        if (data.weather[0].id === 800) {
+          backgroundClass = "clear";
+        } else {
+          backgroundClass = "clouds";
+        }
         break;
       default:
         backgroundClass = "clear"; // 기본값
     }
+
     return (
       <div className={`weather_dessert_section ${backgroundClass}`}>
         <div className="weather_dessert_wrapper">

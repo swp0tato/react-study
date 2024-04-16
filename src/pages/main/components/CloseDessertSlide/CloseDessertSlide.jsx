@@ -1,5 +1,7 @@
 import React from "react";
-import Card from "./../../../../common/Card/Card";
+import Slider from "../../../../common/Slider/Slider";
+import { responsive } from "./../../../../constans/responsive";
+import "react-multi-carousel/lib/styles.css";
 import "./CloseDessertSlide.style.css";
 
 const CloseDessertSlide = () => {
@@ -7,13 +9,14 @@ const CloseDessertSlide = () => {
     <div className="close_dessert_section">
       <div className="close_dessert_wrapper">
         <h2>가까운 디저트 맛집 Top5</h2>
-        <div className="slider">
+        <Slider responsive={responsive} />
+        {/* <div className="slider">
           <Card />
           <Card />
           <Card />
           <Card />
           <Card />
-        </div>
+        </div> */}
       </div>
     </div>
   );

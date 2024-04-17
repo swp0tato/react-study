@@ -52,7 +52,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
   }
 
   // console.log("newDessert", newDessert);
-  const { data: weatherDessert } = useSearchWeatherDessertQuery({
+  const { data: weatherDessert, refetch } = useSearchWeatherDessertQuery({
     lat,
     lon,
     newDessert,
@@ -71,11 +71,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
       <div className="weather_dessert_wrapper">
         <div className="weather_dessert_title">
           <h2>지금 날씨엔 이 디저트 어떠세요? ({data.main})</h2>
-          <p>
-            {newDessert.map((dessert, index) => (
-              <span key={index}>#{dessert} </span>
-            ))}
-          </p>
+          <button onClick={refetch}>새로고침</button>
         </div>
 
         <Slider cafe={weatherDessert} responsive={responsive} />

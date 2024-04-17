@@ -95,8 +95,8 @@ const SearchPage = () => {
   }
   if (isError) {
     return (
-      <div class="search_map_error_box">
-        <div class="search_map_error_text">{error.message}</div>
+      <div className="search_map_error_box">
+        <div className="search_map_error_text">{error.message}</div>
       </div>
     );
   }

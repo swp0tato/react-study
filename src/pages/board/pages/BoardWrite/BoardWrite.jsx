@@ -1,90 +1,94 @@
 import React, { useState } from 'react';
 import './BoardWrite.style.css';
-// import { useNavigate } from 'react-router-dom';
+import { storage, db } from '../../../../firebase';
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const BoardWrite = () => {
-  const [formData, setFormData] = useState({
-    imageFile: null,
-    user: '',
-    title: '',
-    content: '',
-    hashtag: [],
-    date: '',
-  });
+  const [user, setUser] = useState('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [hashtags, setHashtags] = useState('');
+  const [image, setImage] = useState(null);
 
-  const handleChange = (e) => {
-    if (e.target.name === 'imageFile') {
-      setFormData({ ...formData, imageFile: e.target.files[0] });
-    } else {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('image', formData.imageFile);
-      formDataToSend.append('user', formData.user);
-      formDataToSend.append('title', formData.title);
-      formDataToSend.append('content', formData.content);
-      formDataToSend.append('date', formData.date);
 
-      const response = await fetch('http://localhost:3003/products', {
-        method: 'POST',
-        body: formDataToSend,
+    if (!user || !title || !content || !image) {
+      alert('사용자, 제목, 내용, 이미지를 모두 입력해주세요.');
+      return;
+    }
+
+    try {
+      // 이미지를 Firebase Storage에 업로드
+      const storageRef = ref(storage, `images/${image.name}`);
+      await uploadBytes(storageRef, image);
+
+      // 이미지 URL을 가져옴
+      const imageUrl = await getDownloadURL(storageRef);
+
+      // 해시태그를 배열로 분할
+      const hashtagsArray = hashtags.split(',');
+
+      // Firestore에 게시물 추가
+      await addDoc(collection(db, 'items'), {
+        user,
+        title,
+        content,
+        hashtags: hashtagsArray,
+        date: Timestamp.fromDate(new Date()),
+        imageUrl,
       });
 
-      if (response.ok) {
-        console.log('New feed created successfully!');
-        // 성공적으로 피드가 생성되었을 때 실행할 코드 작성
-      } else {
-        console.error('Failed to create new feed');
-        // 피드 생성에 실패했을 때 실행할 코드 작성
-      }
+      // 폼 초기화
+      setUser('');
+      setTitle('');
+      setContent('');
+      setHashtags('');
+      setImage(null);
+      alert('게시물이 성공적으로 추가되었습니다.');
     } catch (error) {
-      console.error('Error creating new feed:', error);
+      console.error('게시물 추가 오류:', error);
+      alert('게시물을 추가하는 중에 오류가 발생했습니다.');
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
-        type="file"
-        name="imageFile"
-        onChange={handleChange}
-        accept="image/*"
+        type="text"
+        value={user}
+        onChange={(e) => setUser(e.target.value)}
+        placeholder="사용자"
+        required
       />
       <input
         type="text"
-        name="user"
-        value={formData.user}
-        onChange={handleChange}
-        placeholder="사용자명"
-      />
-      <input
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
         placeholder="제목"
+        required
       />
-      <input
-        type="text"
-        name="content"
-        value={formData.content}
-        onChange={handleChange}
+      <textarea
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
         placeholder="내용"
+        required
       />
       <input
         type="text"
-        name="date"
-        value={formData.date}
-        onChange={handleChange}
-        placeholder="날짜"
+        value={hashtags}
+        onChange={(e) => setHashtags(e.target.value)}
+        placeholder="해시태그 (쉼표로 구분)"
       />
-      <button type="submit">피드 생성</button>
+      <input type="file" onChange={handleImageChange} required />
+      <button type="submit">게시물 추가</button>
     </form>
   );
 };

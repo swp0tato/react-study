@@ -16,7 +16,7 @@ const SearchPage = () => {
     );
   }
   return (
-    <div className="search_map_page">
+    <div>
       <div className="search_map_wrapper">
         <section className="search_box">
           <div className="search_input_area">{/* <SearchBar/> */}</div>
@@ -26,8 +26,8 @@ const SearchPage = () => {
               <h1>'스타벅스' 검색 결과</h1>
             </div>
             <div className="search_filter_box">
-              <button>거리 순</button>
-              <button>이름 순</button>
+              <button className="search_filter_button">거리 순</button>
+              <button className="search_filter_button">이름 순</button>
             </div>
             <div>{/* <Card/> */}</div>
           </div>

@@ -1,11 +1,3 @@
-.board-card-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  flex-wrap: wrap; /* 요소를 여러 줄에 걸쳐 정렬 */
-}
-
 .board-card {
   margin: 25px 15px;
   width: 240px;
@@ -17,4 +9,20 @@
 
 .board-card:hover {
   transform: scale(1.1);
+}
+
+.card-wrap {
+  margin: 20px 0;
+}
+.card-wrap div {
+  margin: 0 15px;
+}
+
+.hashtag {
+  background-color: rgb(238, 228, 206);
+  margin-right: 5px;
+  border-radius: 4px;
+  padding: 0 5px;
+  font-size: 14px;
+  color: rgb(57, 57, 58);
 }

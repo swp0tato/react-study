@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSearchMapQuery } from "../../hooks/useSearchMap";
 import { useSelector } from "react-redux";
 import SearchBar from "../../common/SearchBar/SearchBar";
-import SearchCard from "./components/SearchCard";
 import "./SearchPage.style.css";
 
 const SearchPage = () => {
@@ -15,12 +14,15 @@ const SearchPage = () => {
   const searchBarProps = { width: "500px", height: "50px" };
 
   const displayMarker = (data) => {
-    const container = document.getElementById("map");
-    const options = {
-      center: new kakao.maps.LatLng(latitude, longitude),
-      level: 1,
-    };
-    const map = new kakao.maps.Map(container, options);
+    let markers = [];
+
+    const mapContainer = document.getElementById("map"),
+      mapOption = {
+        center: new kakao.maps.LatLng(latitude, longitude),
+        level: 1,
+      };
+
+    const map = new kakao.maps.Map(mapContainer, mapOption);
 
     // 현재 위치 마커 표시
     const markerPosition = new kakao.maps.LatLng(latitude, longitude);
@@ -32,56 +34,111 @@ const SearchPage = () => {
       position: markerPosition,
       image: markerImage,
     });
-    const currentInfo = new kakao.maps.InfoWindow({
-      position: markerPosition,
-      content: `<div style="padding:5px;font-size:12px;">현재 위치</div>`,
-    });
-    currentInfo.open(map, currentMarker);
+    currentMarker.setMap(map);
 
     // 지도 범위 재설정
     const bounds = new kakao.maps.LatLngBounds();
     bounds.extend(markerPosition);
 
-    // 여러개의 마커 표시
-    for (let i = 0; i < data.length; i++) {
+    let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+
+    displayPlaces(data);
+
+    function displayPlaces(places) {
+      let listEl = document.getElementById("placesList"),
+        fragment = document.createDocumentFragment(),
+        bounds = new kakao.maps.LatLngBounds(),
+        listStr = "";
+
+      removeMarker();
+
+      for (let i = 0; i < places.length; i++) {
+        let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
+          marker = addMarker(placePosition, i),
+          itemEl = getListItem(i, places[i]);
+
+        bounds.extend(placePosition);
+
+        (function (marker, title, position) {
+          kakao.maps.event.addListener(marker, "mouseover", function () {
+            displayInfowindow(marker, title);
+          });
+
+          kakao.maps.event.addListener(marker, "mouseout", function () {
+            infowindow.close();
+          });
+
+          itemEl.onmouseover = function () {
+            displayInfowindow(marker, title, position);
+          };
+
+          itemEl.onmouseout = function () {
+            infowindow.close();
+          };
+        })(marker, places[i].place_name, placePosition);
+
+        fragment.appendChild(itemEl);
+      }
+
+      listEl.appendChild(fragment);
+
+      map.setBounds(bounds);
+    }
+
+    function getListItem(index, cafe) {
+      var el = document.createElement("div"),
+        itemStr = `
+        <h3 class="search_card_title">${cafe.place_name}</h3>
+        <div class="search_card_phone">${cafe.phone}</div>
+        <div class="search_card_address">
+          <span>도로명</span>
+          ${cafe.road_address_name}
+        </div>
+        <div class="search_card_address">
+          <span>지번</span>
+          ${cafe.address_name}
+        </div>
+        <div class="search_card_distance">
+          ${cafe.distance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} m
+        </div>`;
+
+      el.innerHTML = itemStr;
+      el.className = "search_card_box";
+
+      return el;
+    }
+
+    function addMarker(position) {
       const marker = new kakao.maps.Marker({
         map: map,
-        position: new kakao.maps.LatLng(data[i].y, data[i].x),
-        title: data[i].place_name,
+        position: position,
+        clickable: true,
       });
 
-      // 인포윈도우 표시
-      const infowindow = new kakao.maps.InfoWindow({
-        content: `<div style="padding:5px;font-size:12px;">${data[i].place_name}</div>`,
-      });
+      marker.setMap(map);
+      markers.push(marker);
 
-      kakao.maps.event.addListener(
-        marker,
-        "mouseover",
-        makeOverListener(map, marker, infowindow)
-      );
-      kakao.maps.event.addListener(
-        marker,
-        "mouseout",
-        makeOutListener(infowindow)
-      );
-
-      bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+      return marker;
     }
 
-    function makeOverListener(map, marker, infowindow) {
-      return function () {
-        infowindow.open(map, marker);
-      };
-    }
-    function makeOutListener(infowindow) {
-      return function () {
-        infowindow.close();
-      };
+    function removeMarker() {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+      }
+      markers = [];
     }
 
-    map.setBounds(bounds);
-    currentMarker.setMap(map);
+    function displayInfowindow(marker, title, position) {
+      var content =
+        '<div style="width:150px;text-align:center;padding:6px 0;">' +
+        title +
+        "</div>";
+
+      infowindow.setContent(content);
+      infowindow.open(map, marker);
+
+      if (position) map.panTo(position);
+    }
   };
 
   useEffect(() => {
@@ -116,11 +173,7 @@ const SearchPage = () => {
               <option>가나다 순</option>
             </select>
           </div>
-          <div className="search_box_results">
-            {data?.map((cafe, i) => (
-              <SearchCard cafe={cafe} key={i} />
-            ))}
-          </div>
+          <div id="placesList" className="search_box_results"></div>
         </div>
       </section>
       <section className="search_map_section">

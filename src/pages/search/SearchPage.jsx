@@ -1,10 +1,15 @@
 import React from "react";
 import "./SearchPage.style.css";
 import { useSearchMapQuery } from "../../hooks/useSearchMap";
+import { useSelector } from "react-redux";
 
 const SearchPage = () => {
+  const { latitude, longitude } = useSelector(
+    (state) => state.search?.location
+  );
   const { data, isLoading, isError, error } = useSearchMapQuery();
   console.log("data!!", data);
+
   if (isLoading) {
     return <div className="search_map_spinner"></div>;
   }
@@ -15,6 +20,7 @@ const SearchPage = () => {
       </div>
     );
   }
+
   return (
     <div>
       <div className="search_map_wrapper">

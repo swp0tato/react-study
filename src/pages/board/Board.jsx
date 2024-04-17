@@ -12,7 +12,7 @@ const Board = () => {
     let url = `http://localhost:3003/products`;
     let response = await fetch(url);
     let data = await response.json();
-    // console.log('data', data);
+    console.log('board data', data);
     setBoardList(data);
   };
 

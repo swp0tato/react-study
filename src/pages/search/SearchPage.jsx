@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import "./SearchPage.style.css";
 import { useSearchMapQuery } from "../../hooks/useSearchMap";
 import { useSelector } from "react-redux";
+import SearchBar from "../../common/SearchBar/SearchBar";
+import SearchCard from "./components/SearchCard";
+import "./SearchPage.style.css";
 
 const SearchPage = () => {
   const { kakao } = window;
@@ -9,7 +11,8 @@ const SearchPage = () => {
     (state) => state.search?.location
   );
   const { data, isLoading, isError, error } = useSearchMapQuery();
-  console.log("data!!", data);
+  // console.log("data!!", data);
+  const searchBarProps = { width: "500px", height: "50px" };
 
   const displayMarker = (data) => {
     const container = document.getElementById("map");
@@ -99,24 +102,30 @@ const SearchPage = () => {
   }
 
   return (
-    <div>
-      <div className="search_map_wrapper">
-        <section className="search_box">
-          <div className="search_input_area">{/* <SearchBar/> */}</div>
-          <div>
-            <div className="search_result_title">
-              <h3>경기도 양주시 주변</h3>
-              <h1>'스타벅스' 검색 결과</h1>
-            </div>
-            <div className="search_filter_box">
-              <button className="search_filter_button">거리 순</button>
-              <button className="search_filter_button">이름 순</button>
-            </div>
-            <div>{/* <Card/> */}</div>
+    <div className="search_page_area">
+      <section className="search_box_section">
+        <div className="search_box_area">
+          <div className="search_box_area_bar">
+            <SearchBar searchBarProps={searchBarProps} />
           </div>
-        </section>
-        <section id="map" className="search_map"></section>
-      </div>
+          <div className="search_info_area">
+            <div className="search_info_title">내 주변 카페 보기</div>
+            <select className="search_sort_box">
+              <option>정확도 순</option>
+              <option>가까운 순</option>
+              <option>가나다 순</option>
+            </select>
+          </div>
+          <div className="search_box_results">
+            {data?.map((cafe, i) => (
+              <SearchCard cafe={cafe} key={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="search_map_section">
+        <div id="map" className="search_map"></div>
+      </section>
     </div>
   );
 };

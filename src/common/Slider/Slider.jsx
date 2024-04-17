@@ -14,7 +14,6 @@ const Slider = ({ cafe, responsive }) => {
         swipeable={true}
         draggable={true}
         centerMode={true}
-        infinite={true}
         responsive={responsive}
         containerClass="carousel-container"
         itemClass="carousel-item"

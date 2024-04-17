@@ -7,14 +7,13 @@ const weatherApi = axios.create({
   headers: {
     Accept: "application/json",
   },
+  params: {
+    appid: API_KEY,
+  },
 });
 
 axios.interceptors.request.use(
   function (config) {
-    config.params = {
-      ...config.params,
-      appid: API_KEY,
-    };
     return config;
   },
   function (error) {

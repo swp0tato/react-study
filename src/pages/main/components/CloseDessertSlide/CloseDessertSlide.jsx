@@ -10,13 +10,6 @@ const CloseDessertSlide = () => {
       <div className="close_dessert_wrapper">
         <h2>가까운 디저트 맛집 Top5</h2>
         <Slider responsive={responsive} />
-        {/* <div className="slider">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div> */}
       </div>
     </div>
   );

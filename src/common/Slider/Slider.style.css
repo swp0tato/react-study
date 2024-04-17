@@ -1,8 +1,7 @@
 .carousel-container {
   overflow: hidden;
-  width: 1920px;
+  max-width: 1920px;
   height: 500px;
-  border: 1px solid red;
 }
 
 .carousel-item {

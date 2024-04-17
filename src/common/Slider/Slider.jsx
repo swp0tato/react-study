@@ -3,7 +3,11 @@ import Carousel from "react-multi-carousel";
 import Card from "./../Card/Card";
 import "./Slider.style.css";
 
-const Slider = ({ responsive }) => {
+const Slider = ({ cafe, responsive }) => {
+  if (!cafe || cafe.length === 0) {
+    return <div>No cafes available</div>;
+  }
+
   return (
     <div>
       <Carousel
@@ -16,11 +20,9 @@ const Slider = ({ responsive }) => {
         itemClass="carousel-item"
         removeArrowOnDeviceType={["mobile"]}
       >
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {cafe.map((cafe, index) => (
+          <Card cafe={cafe} key={index} />
+        ))}
       </Carousel>
     </div>
   );

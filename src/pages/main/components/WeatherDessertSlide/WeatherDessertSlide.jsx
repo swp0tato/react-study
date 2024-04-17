@@ -4,13 +4,19 @@ import Slider from "../../../../common/Slider/Slider";
 import { responsive } from "./../../../../constans/responsive";
 import "react-multi-carousel/lib/styles.css";
 import "./WeatherDessertSlide.style.css";
+import { useSearchCloseDessertQuery } from "../../../../hooks/useSearchCloseDessert";
 
 const WeatherDessertSlide = ({ lat, lon }) => {
   const { data, isLoading, isError, error } = useCurrentWeatherQuery({
     lat,
     lon,
   });
-  console.log(data);
+
+  const { data: cafe } = useSearchCloseDessertQuery({
+    lat,
+    lon,
+  });
+  console.log("cafe", cafe);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -74,7 +80,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
           </p>
         </div>
 
-        <Slider responsive={responsive} />
+        <Slider cafe={cafe} responsive={responsive} />
       </div>
     </div>
   );

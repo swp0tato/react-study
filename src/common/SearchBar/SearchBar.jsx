@@ -1,9 +1,13 @@
 import React from "react";
 import "./SearchBar.style.css";
 
-const SearchBar = () => {
+const SearchBar = ({ children, ...rest }) => {
+  const { width } = rest.searchBarProps;
   return (
-    <div className="search-group">
+    <div
+      className="search-group"
+      style={{ width: width, height: rest.searchBarProps.height }}
+    >
       <form>
         <div className="search-input-box">
           <input type="text" placeholder="검색어를 입력해 주세요." />

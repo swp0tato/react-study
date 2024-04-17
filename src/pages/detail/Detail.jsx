@@ -1,13 +1,14 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import './Detail.style.css';
-import { useDetail } from '../../hooks/useDetail';
+import React from "react";
+import { useParams } from "react-router-dom";
+import "./Detail.style.css";
+import { useDetail } from "../../hooks/useDetail";
+import SearchBar from "../../common/SearchBar/SearchBar";
 
 const Detail = () => {
   const { id } = useParams();
-  console.log('검색어 페이지 주소 : ', id);
+  console.log("검색어 페이지 주소 : ", id);
   const { data, isLoading, isError, error } = useDetail(id);
-  console.log('검색 데이터', data);
+  console.log("검색 데이터", data);
   if (isLoading) {
     // return <isLoading />;
   }

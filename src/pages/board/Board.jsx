@@ -1,14 +1,14 @@
-import React from 'react';
-import './Board.style.css';
-import Card from './component/Card';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import "./Board.style.css";
+import Card from "./component/Card";
+import { useNavigate } from "react-router-dom";
 
 const Board = () => {
   const navigate = useNavigate();
 
   const addBoard = () => {
-    navigate('write');
-    console.log('board write 가고싶어');
+    navigate("write");
+    console.log("board write 가고싶어");
   };
   // console.log('board page!');
 
@@ -18,7 +18,7 @@ const Board = () => {
       <div className="add-btn-wrap">
         <button onClick={addBoard} className="add-btn">
           추천하러 가기
-        </button>{' '}
+        </button>
       </div>
       <Card />
     </div>

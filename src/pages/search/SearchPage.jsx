@@ -29,6 +29,11 @@ const SearchPage = () => {
       position: markerPosition,
       image: markerImage,
     });
+    const currentInfo = new kakao.maps.InfoWindow({
+      position: markerPosition,
+      content: `<div style="padding:5px;font-size:12px;">현재 위치</div>`,
+    });
+    currentInfo.open(map, currentMarker);
 
     // 지도 범위 재설정
     const bounds = new kakao.maps.LatLngBounds();
@@ -41,7 +46,35 @@ const SearchPage = () => {
         position: new kakao.maps.LatLng(data[i].y, data[i].x),
         title: data[i].place_name,
       });
+
+      // 인포윈도우 표시
+      const infowindow = new kakao.maps.InfoWindow({
+        content: `<div style="padding:5px;font-size:12px;">${data[i].place_name}</div>`,
+      });
+
+      kakao.maps.event.addListener(
+        marker,
+        "mouseover",
+        makeOverListener(map, marker, infowindow)
+      );
+      kakao.maps.event.addListener(
+        marker,
+        "mouseout",
+        makeOutListener(infowindow)
+      );
+
       bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+    }
+
+    function makeOverListener(map, marker, infowindow) {
+      return function () {
+        infowindow.open(map, marker);
+      };
+    }
+    function makeOutListener(infowindow) {
+      return function () {
+        infowindow.close();
+      };
     }
 
     map.setBounds(bounds);

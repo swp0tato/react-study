@@ -1,9 +1,6 @@
-* {
+.card-item {
   margin: 0;
   padding: 0;
-}
-
-.card-item {
   border: 1px solid #dbdbdb;
   width: 420px;
   height: 100px;

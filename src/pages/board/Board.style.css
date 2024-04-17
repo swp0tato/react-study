@@ -1,13 +1,62 @@
-h3 {
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+@font-face {
+  font-family: 'TTLaundryGothicB';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2')
+    format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.board-wrap {
+  font-family: 'Noto Sans KR', sans-serif;
+  height: 100vh;
+}
+
+.board-title {
   text-align: center;
+  margin-top: 40px;
+  font-family: 'TTLaundryGothicB';
+  font-size: 30px;
+  color: #33312c;
+}
+
+.add-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-btn {
-  display: flex;
-  justify-content: center;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  padding: 15px 35px;
+  background-color: #ded0b6;
+  font-weight: bold;
+  color: rgb(68, 67, 67);
+  transition: 0.3s;
+  margin-right: 7px;
 }
 
-.add-btn button {
-  border-radius: 6px;
-  border: 3px solid ghostwhite;
+.add-btn:hover {
+  background-color: #bbab8c;
+  transform: scale(1.05);
+}
+
+.focus-icon {
+  transform: rotateY(180deg);
+  margin: auto 5px;
+}
+
+.board-card-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+}
+
+@media screen and (max-width: 768px) {
 }

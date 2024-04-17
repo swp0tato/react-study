@@ -3,8 +3,18 @@ import "./SearchPage.style.css";
 import { useSearchMapQuery } from "../../hooks/useSearchMap";
 
 const SearchPage = () => {
-  const { data } = useSearchMapQuery();
+  const { data, isLoading, isError, error } = useSearchMapQuery();
   console.log("data!!", data);
+  if (isLoading) {
+    return <div className="search_map_spinner"></div>;
+  }
+  if (isError) {
+    return (
+      <div class="search_map_error_box">
+        <div class="search_map_error_text">{error.message}</div>
+      </div>
+    );
+  }
   return (
     <div className="search_map_page">
       <div className="search_map_wrapper">

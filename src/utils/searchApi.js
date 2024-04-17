@@ -19,7 +19,6 @@ axios.interceptors.request.use(
   }
 );
 
-// 응답 인터셉터 추가하기
 axios.interceptors.response.use(
   function (response) {
     return response;

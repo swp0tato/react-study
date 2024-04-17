@@ -1,7 +1,10 @@
 import React from "react";
 import "./SearchPage.style.css";
+import { useSearchMapQuery } from "../../hooks/useSearchMap";
 
 const SearchPage = () => {
+  const { data } = useSearchMapQuery();
+  console.log("data!!", data);
   return (
     <div className="search_map_page">
       <div className="search_map_wrapper">

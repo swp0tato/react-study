@@ -1,6 +1,6 @@
 .auth_page_wrapper {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 75px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,9 @@
   justify-content: center;
   align-items: center;
   width: 450px;
-  height: 35%;
+  /* height: 35%;
+   */
+  height: 350px;
   flex-direction: column;
 }
 
@@ -23,18 +25,7 @@
   justify-content: center;
   border-bottom: 1px dotted #bbab8c;
 }
-@media screen and (max-width: 767px) {
-  .auth {
-    width: 300px;
-  }
-  .auth_title > h1 {
-    font-size: 1rem;
-  }
-  .auth_title > div {
-    font-size: 0.725rem;
-    word-break: break-all;
-  }
-}
+
 .auth_btn {
   display: flex;
   width: 100%;
@@ -74,4 +65,26 @@ button[type="submit"] > img {
   height: 1rem;
   margin-right: 1rem;
   background-color: transparent;
+}
+
+@media screen and (max-width: 767px) {
+  .auth {
+    width: 300px;
+  }
+  .auth_title > h1 {
+    font-size: 1rem;
+  }
+  .auth_title > div {
+    font-size: 0.725rem;
+    word-break: break-all;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .auth {
+    height: 250px;
+  }
+  .auth_title {
+    border: none;
+  }
 }

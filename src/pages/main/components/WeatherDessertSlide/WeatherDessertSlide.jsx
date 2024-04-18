@@ -1,10 +1,13 @@
 import React from "react";
 import Slider from "../../../../common/Slider/Slider";
 import { responsive } from "./../../../../constans/responsive";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "react-multi-carousel/lib/styles.css";
 import "./WeatherDessertSlide.style.css";
 import { useCurrentWeatherQuery } from "../../../../hooks/useCurrentWeather";
 import { useSearchWeatherDessertQuery } from "../../../../hooks/useSearchWeatherDessert";
+import { useSearchImageQuery } from "../../../../hooks/useSearchImage";
 
 const WeatherDessertSlide = ({ lat, lon }) => {
   const { data, isLoading, isError, error } = useCurrentWeatherQuery({
@@ -57,7 +60,12 @@ const WeatherDessertSlide = ({ lat, lon }) => {
     lon,
     newDessert,
   });
-  console.log("weatherDessert", weatherDessert);
+  // console.log("weatherDessert", weatherDessert);
+
+  let imageKeyword = "카페온리즈";
+
+  const { data: keywordImage } = useSearchImageQuery(imageKeyword);
+  // console.log("keywordImage data : ", keywordImage);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -71,10 +79,16 @@ const WeatherDessertSlide = ({ lat, lon }) => {
       <div className="weather_dessert_wrapper">
         <div className="weather_dessert_title">
           <h2>지금 날씨엔 이 디저트 어떠세요? ({data.main})</h2>
-          <button onClick={refetch}>새로고침</button>
+          <button onClick={refetch}>
+            <FontAwesomeIcon icon={faRotateRight} />
+          </button>
         </div>
 
-        <Slider cafe={weatherDessert} responsive={responsive} />
+        <Slider
+          cafe={weatherDessert}
+          image={keywordImage}
+          responsive={responsive}
+        />
       </div>
     </div>
   );

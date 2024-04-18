@@ -1,11 +1,12 @@
 import React from "react";
 import "./Card.style.css";
 
-const Card = ({ cafe }) => {
+const Card = ({ cafe, image }) => {
+  console.log("imageUrl : ", image?.image_url);
   return (
     <div className="card-item">
       <div className="card-image">
-        <img src="https://via.placeholder.com/88" alt="카페 이미지" />
+        <img src={image?.image_url} alt="카페 이미지" />
       </div>
       <div className="card-detail">
         <h3 className="card-title">{cafe.place_name}</h3>

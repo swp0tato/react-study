@@ -41,3 +41,7 @@
 .hashtags span {
   margin-right: 4px;
 }
+
+.card img {
+  cursor: pointer;
+}

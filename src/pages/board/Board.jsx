@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Board.style.css';
 import Card from './component/Card';
 import { useNavigate } from 'react-router-dom';
 
 const Board = () => {
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(true);
   const goToWrite = () => {
     navigate('write');
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="board-wrap">
       <h3 className="board-title">오늘의 디저트 🧀</h3>
@@ -63,9 +72,13 @@ const Board = () => {
           피드 작성 GO !
         </button>
       </div>
-      <div>
-        <Card />
-      </div>
+      {isLoading ? (
+        <div className="loading-spinner">Loading...</div>
+      ) : (
+        <div>
+          <Card />
+        </div>
+      )}
     </div>
   );
 };

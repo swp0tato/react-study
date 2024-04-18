@@ -51,5 +51,10 @@
   margin: auto 7px;
 }
 
-@media screen and (max-width: 768px) {
+.loading-spinner {
+  text-align: center;
+  z-index: 1000;
+  font-size: 30px;
+  color: #918369;
+  font-family: 'Noto Sans KR', sans-serif;
 }

@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 
 import { login } from './redux/reducer/authenciate/authenciateSlice';
 import { useDispatch } from 'react-redux';
+import BoardUpdate from './pages/board/pages/BoardUpdate/BoardUpdate';
 
 function App() {
   /**
@@ -48,6 +49,7 @@ function App() {
             <Route index element={<Board />} />
             <Route path="write" element={<BoardWrite />} />
             <Route path="detail/:id" element={<BoardDetail />} />
+            <Route path="edit/:id" element={<BoardUpdate />} />
           </Route>
         </Route>
       </Routes>

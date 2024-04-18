@@ -80,6 +80,7 @@
   background: transparent;
   border: 2px solid #ded0b6;
   border-radius: 6px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 .modify-btn-box > button:hover {
@@ -111,6 +112,9 @@
 .cafe-title {
   font-size: 15px;
   color: #bbab8c;
+}
+.cafe-title-text {
+  color: #4b4436;
 }
 
 .comment-user-img-box > img {

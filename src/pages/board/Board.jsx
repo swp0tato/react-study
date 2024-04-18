@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import './Board.style.css';
-import Card from './component/Card';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useEffect } from "react";
+import "./Board.style.css";
+import Card from "./component/Card";
+import { useNavigate } from "react-router-dom";
 
 const Board = () => {
   const [boardList, setBoardList] = useState([]);
@@ -12,12 +12,12 @@ const Board = () => {
     let url = `http://localhost:3003/products`;
     let response = await fetch(url);
     let data = await response.json();
-    console.log('board data', data);
+    console.log("board data", data);
     setBoardList(data);
   };
 
   const addBoard = () => {
-    navigate('write');
+    navigate("write");
   };
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Board = () => {
           className="focus-icon"
         >
           <desc>
-            {'Finger Snapping Streamline Icon: https://streamlinehq.com'}
+            {"Finger Snapping Streamline Icon: https://streamlinehq.com"}
           </desc>
           <g id="finger-snapping">
             <path
@@ -61,7 +61,7 @@ const Board = () => {
           className="focus-icon"
         >
           <desc>
-            {'Finger Snapping Streamline Icon: https://streamlinehq.com'}
+            {"Finger Snapping Streamline Icon: https://streamlinehq.com"}
           </desc>
           <g id="finger-snapping">
             <path
@@ -76,7 +76,7 @@ const Board = () => {
         </svg>
         <button onClick={addBoard} className="add-btn">
           피드 작성 GO !
-        </button>{' '}
+        </button>{" "}
       </div>
       <div className="board-card-wrap">
         {boardList.map((item) => (

@@ -1,0 +1,33 @@
+.login_form {
+  width: 80%;
+  height: 50px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.login_form_btn {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: var(--skin-deep-color);
+  color: var(--ivory-color);
+}
+
+.login_form_btn:hover {
+  background-color: var(--ivory-color);
+  color: var(--skin-deep-color);
+  cursor: pointer;
+}
+
+#general {
+  background-color: var(--deep-color);
+}
+
+#general:hover {
+  color: var(--skin-deep-color);
+  background-color: var(--ivory-color);
+}

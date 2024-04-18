@@ -11,6 +11,7 @@
     height: 75%;
     z-index: 100;
     background-color: var(--skin-deep-color);
+
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
@@ -32,13 +33,13 @@
     height: 100px;
   }
 
-  .user_icon {
+  .user_photo {
     width: 30%;
     height: 50%;
+
     display: flex;
     align-items: center;
     margin-left: 0.725rem;
-    border: 1px solid black;
   }
   .user_info {
     margin-left: 0.725rem;

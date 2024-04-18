@@ -1,0 +1,22 @@
+.auth_page_wrapper {
+  width: 100%;
+  height: calc(100vh - 75px);
+  min-height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth {
+  display: flex;
+  width: 450px;
+  height: 55vh;
+  min-height: 400px;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 767px) {
+  .auth {
+    width: 300px;
+  }
+}

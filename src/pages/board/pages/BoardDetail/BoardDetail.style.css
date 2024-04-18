@@ -3,7 +3,6 @@
 .board-detail-wrap {
   font-family: "Noto Sans KR", sans-serif;
   width: 1100px;
-  height: 100vh;
   margin: 4rem auto;
 }
 
@@ -74,6 +73,10 @@
 .modify-btn-box > .delete-btn:hover {
   background-color: #ff7676;
   color: #fff;
+}
+
+.board-comment-area {
+  margin-bottom: 8rem;
 }
 
 .board-comment-area > p:first-child {

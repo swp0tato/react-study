@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./BoardDetail.style.css";
 import Comment from "./componenet/Comment";
 
 const BoardDetail = () => {
-  let [comment, setComment] = useState("");
   let [isValid, setIsValid] = useState(false);
 
-  let post = (e) => {
-    setComment("");
+  const savedCmts = JSON.parse(localStorage.getItem("cmts")) || [];
+  //댓글 목록관리
+  const [cmts, setCmts] = useState(savedCmts);
+  //새로운 댓글 입력
+  const [newCmt, setNewCmt] = useState("");
+  //페이지가 로딩될 때 댓글이 업데이트 될 때 로컬 스토리지에 저장
+  useEffect(() => {
+    localStorage.setItem("cmts", JSON.stringify(cmts));
+  }, [cmts]);
+
+  //새로운 댓글 추가함수
+  const addCmt = () => {
+    setCmts([...cmts, newCmt]);
+    setNewCmt("");
+    //'cmts'키에 현재 댓글 목록과 새로운 댓글을 추가한 배열을 JSON 문자열로 변환해서 저장
+    localStorage.setItem("cmts", JSON.stringify([...cmts, newCmt]));
   };
 
   return (
@@ -47,31 +60,31 @@ const BoardDetail = () => {
             type="text"
             className="comment-textarea"
             placeholder="내용을 입력해 주세요."
+            value={newCmt}
             onChange={(e) => {
-              setComment(e.target.value);
+              setNewCmt(e.target.value);
             }}
             onKeyUp={(e) => {
               e.target.value.length > 0 ? setIsValid(true) : setIsValid(false);
             }}
-            value={comment}
           />
         </div>
         <div className="comment-btn-box">
           <button
             type="button"
             className={
-              comment.length > 0 ? "commentBtnActive" : "commentBtnInactive"
+              newCmt.length > 0 ? "commentBtnActive" : "commentBtnInactive"
             }
-            onClick={post}
+            onClick={addCmt}
             disabled={isValid ? false : true}
           >
             등록
           </button>
         </div>
         <div>
-          <Comment />
-          <Comment />
-          <Comment />
+          {cmts.map((cmt, index) => (
+            <Comment key={index} cmt={cmt} />
+          ))}
         </div>
       </div>
     </div>

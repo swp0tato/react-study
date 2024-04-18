@@ -1,17 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchMapQuery } from "../../hooks/useSearchMap";
 import { useSelector } from "react-redux";
 import SearchBar from "../../common/SearchBar/SearchBar";
 import "./SearchPage.style.css";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const SearchPage = () => {
   const { kakao } = window;
   const { latitude, longitude } = useSelector(
     (state) => state.search?.location
   );
-  const { data, isLoading, isError, error } = useSearchMapQuery();
+  const navigate = useNavigate();
+  const [query, setQuery] = useSearchParams();
+  const searchQuery = query.get("q") || "";
+  const [keyword, setKeyword] = useState("");
+  const { data, isLoading, isError, error } = useSearchMapQuery({
+    searchQuery,
+  });
   // console.log("data!!", data);
-  const searchBarProps = { width: "500px", height: "50px" };
+  // console.log("searchQuery", searchQuery);
+
+  const searchBarProps = {
+    width: "500px",
+    height: "50px",
+    keyword,
+    onchange: (event) => setKeyword(event),
+    onsubmit: (event) => {
+      event.preventDefault();
+      moveSearchMap();
+    },
+    onkeydown: (event) => {
+      event.preventDefault();
+      moveSearchMap();
+    },
+  };
+
+  const moveSearchMap = () => {
+    navigate(`/search?q=${keyword}`);
+    setKeyword("");
+  };
 
   const displayMarker = (data) => {
     let markers = [];
@@ -97,10 +124,13 @@ const SearchPage = () => {
         <div class="search_card_address">
           <span>지번</span>
           ${cafe.address_name}
-        </div>
-        <div class="search_card_distance">
-          ${cafe.distance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} m
         </div>`;
+
+      if (cafe.distance !== "") {
+        itemStr += `<div class="search_card_distance">
+          ${cafe.distance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} m
+          </div>`;
+      }
 
       el.innerHTML = itemStr;
       el.className = "search_card_box";
@@ -166,7 +196,11 @@ const SearchPage = () => {
             <SearchBar searchBarProps={searchBarProps} />
           </div>
           <div className="search_info_area">
-            <div className="search_info_title">내 주변 카페 보기</div>
+            <div className="search_info_title">
+              {searchQuery
+                ? "'" + searchQuery + "' 관련 카페 보기"
+                : "내 주변 카페 보기"}
+            </div>
             <select className="search_sort_box">
               <option>정확도 순</option>
               <option>가까운 순</option>

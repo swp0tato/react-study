@@ -43,7 +43,17 @@ const WeatherDessertSlide = ({ lat, lon }) => {
       case 8:
         if (data.id === 800) {
           backgroundClass = "clear";
-          newDessert = ["케이크", "아이스크림", "빙수", "마카롱"];
+          newDessert = [
+            "케이크",
+            "아이스크림",
+            "빙수",
+            "마카롱",
+            "쿠키",
+            "마들렌",
+            "바닐라라떼",
+            "아인슈페너",
+            "샌드위치",
+          ];
         } else {
           backgroundClass = "clouds";
           newDessert = ["브라우니", "아이스크림", "빙수", "크로플"];
@@ -73,7 +83,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
   const { imageUrlData } = useSearchImageQueries(
     weatherDessert?.map((item) => item.place_name) || []
   );
-  console.log("imageUrlData-weather?? ", imageUrlData);
+  // console.log("imageUrlData-weather?? ", imageUrlData);
 
   const newData = useMemo(() => {
     if (!weatherDessert || !imageUrlData) return [];
@@ -85,7 +95,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
     }));
   }, [weatherDessert, imageUrlData]);
 
-  console.log("New Data: ", newData);
+  // console.log("New Data: ", newData);
 
   if (isLoading) {
     return <div>Loading...</div>;

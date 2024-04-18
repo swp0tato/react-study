@@ -9,7 +9,7 @@ const fetchSearchImage = (keywords) => {
 export const useSearchImageQueries = (keywords) => {
   return useQueries({
     queries: keywords.map((keywords) => {
-      console.log("keywords???", keywords);
+      // console.log("keywords???", keywords);
       return {
         queryKey: ["search-image", keywords],
         queryFn: () => fetchSearchImage(keywords),
@@ -17,7 +17,7 @@ export const useSearchImageQueries = (keywords) => {
     }),
 
     combine: (results) => {
-      console.log("results???", results);
+      // console.log("results???", results);
       const imageUrlData = results
         .filter(
           (result) =>

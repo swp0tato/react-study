@@ -21,7 +21,7 @@ const SearchPage = () => {
   // console.log("searchQuery", searchQuery);
 
   const searchBarProps = {
-    width: "500px",
+    width: "350px",
     height: "50px",
     keyword,
     onchange: (event) => setKeyword(event),
@@ -192,6 +192,9 @@ const SearchPage = () => {
 
   return (
     <div className="search_page_area">
+      <section className="search_map_section">
+        <div id="map" className="search_map"></div>
+      </section>
       <section className="search_box_section">
         <div className="search_box_area">
           <div className="search_box_area_bar">
@@ -215,9 +218,6 @@ const SearchPage = () => {
             )}
           </div>
         </div>
-      </section>
-      <section className="search_map_section">
-        <div id="map" className="search_map"></div>
       </section>
     </div>
   );

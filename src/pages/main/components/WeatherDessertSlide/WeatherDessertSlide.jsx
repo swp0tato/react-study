@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Slider from "../../../../common/Slider/Slider";
 import { responsive } from "./../../../../constans/responsive";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
@@ -7,7 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 import "./WeatherDessertSlide.style.css";
 import { useCurrentWeatherQuery } from "../../../../hooks/useCurrentWeather";
 import { useSearchWeatherDessertQuery } from "../../../../hooks/useSearchWeatherDessert";
-import { useSearchImageQuery } from "../../../../hooks/useSearchImage";
+import { useSearchImageQueries } from "../../../../hooks/useSearchImage";
 
 const WeatherDessertSlide = ({ lat, lon }) => {
   const { data, isLoading, isError, error } = useCurrentWeatherQuery({
@@ -62,10 +62,30 @@ const WeatherDessertSlide = ({ lat, lon }) => {
   });
   // console.log("weatherDessert", weatherDessert);
 
-  let imageKeyword = "카페온리즈";
+  let placeNames = [];
 
-  const { data: keywordImage } = useSearchImageQuery(imageKeyword);
-  // console.log("keywordImage data : ", keywordImage);
+  if (weatherDessert) {
+    placeNames = weatherDessert.map((item) => item.place_name);
+  }
+
+  // console.log("placeNames? : ", placeNames);
+
+  const { imageUrlData } = useSearchImageQueries(
+    weatherDessert?.map((item) => item.place_name) || []
+  );
+  console.log("imageUrlData-weather?? ", imageUrlData);
+
+  const newData = useMemo(() => {
+    if (!weatherDessert || !imageUrlData) return [];
+
+    return weatherDessert.map((item, index) => ({
+      place_name: item.place_name,
+      address_name: item.address_name,
+      imageUrl: imageUrlData[index] || null,
+    }));
+  }, [weatherDessert, imageUrlData]);
+
+  console.log("New Data: ", newData);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -84,11 +104,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
           </button>
         </div>
 
-        <Slider
-          cafe={weatherDessert}
-          image={keywordImage}
-          responsive={responsive}
-        />
+        <Slider cafe={newData} responsive={responsive} />
       </div>
     </div>
   );

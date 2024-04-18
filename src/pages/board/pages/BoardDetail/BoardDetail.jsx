@@ -8,7 +8,6 @@ import { doc, getDoc } from 'firebase/firestore';
 const BoardDetail = () => {
   let [comment, setComment] = useState('');
   let [isValid, setIsValid] = useState(false);
-  // ! 민솔 추가한 부분 =============================
   const { id } = useParams();
   const [board, setBoard] = useState(null);
 
@@ -28,7 +27,6 @@ const BoardDetail = () => {
   if (!board) {
     return <div>Loading...</div>;
   }
-  // ! ======================================================
   let post = (e) => {
     setComment('');
   };
@@ -36,8 +34,6 @@ const BoardDetail = () => {
   return (
     <div className="board-detail-wrap">
       <div className="board-post-area">
-        // ! 확인용으로 3줄 잠시 넣었습니다 ! 확인하시구 지우시면 됩니닷
-        //!이런식으로 요소들 원하시는 위치에서 가져다 쓰시면 돼요 !!
         <h1>{board?.title}</h1>
         <p>{board?.content}</p>
         <img width={100} height={100} src={board?.imageUrl} alt="" />

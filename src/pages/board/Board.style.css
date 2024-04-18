@@ -38,6 +38,7 @@
   color: rgb(68, 67, 67);
   transition: 0.3s;
   margin-right: 7px;
+  margin-top: 20px;
 }
 
 .add-btn:hover {
@@ -55,7 +56,6 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  /* flex-direction: column; */
 }
 
 @media screen and (max-width: 768px) {

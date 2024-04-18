@@ -1,0 +1,9 @@
+.comment {
+  display: flex;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.comment-content {
+  margin-left: 1rem;
+}

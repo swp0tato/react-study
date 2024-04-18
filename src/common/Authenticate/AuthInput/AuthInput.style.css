@@ -1,0 +1,25 @@
+label {
+  width: 100%;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--skin-deep-color);
+  background-color: var(--skin-color);
+}
+input {
+  width: 85%;
+  height: 100%;
+  font-size: 1.25rem;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  background-color: var(--skin-color);
+}
+
+input::placeholder {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+}

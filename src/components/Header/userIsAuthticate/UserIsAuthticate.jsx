@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getAuth, signOut } from "firebase/auth";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../redux/reducer/authenciateSlice";
+import { logout } from "../../../redux/reducer/authenciate/authenciateSlice";
 import { useNavigate } from "react-router-dom";
 import "./UserIsAuthticate.style.css";
 

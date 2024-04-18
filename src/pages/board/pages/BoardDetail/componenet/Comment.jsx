@@ -1,7 +1,7 @@
 import React from "react";
 import "./Comment.style.css";
 
-const Comment = () => {
+const Comment = ({ cmt }) => {
   return (
     <div className="comment">
       <div className="comment-user-img-box">
@@ -11,8 +11,8 @@ const Comment = () => {
         />
       </div>
       <div className="comment-content">
-        <h4>user28</h4>
-        <p>리뷰 감사합니다</p>
+        <h4>user</h4>
+        <p>{cmt}</p>
       </div>
     </div>
   );

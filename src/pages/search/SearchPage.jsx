@@ -73,8 +73,6 @@ const SearchPage = () => {
     const bounds = new kakao.maps.LatLngBounds();
     bounds.extend(markerPosition);
 
-    let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-
     if (data.length > 0) {
       displayPlaces(data);
     }
@@ -82,8 +80,7 @@ const SearchPage = () => {
     function displayPlaces(places) {
       let listEl = document.getElementById("placesList"),
         fragment = document.createDocumentFragment(),
-        bounds = new kakao.maps.LatLngBounds(),
-        listStr = "";
+        bounds = new kakao.maps.LatLngBounds();
 
       removeMarker();
 
@@ -94,34 +91,27 @@ const SearchPage = () => {
 
         bounds.extend(placePosition);
 
-        (function (marker, title, position, roadAddressName) {
-          kakao.maps.event.addListener(marker, "mouseover", function () {
-            displayInfowindow(marker, title);
-          });
+        (function (marker, position, place) {
+          let overlay;
 
-          kakao.maps.event.addListener(marker, "mouseout", function () {
-            infowindow.close();
+          kakao.maps.event.addListener(marker, "click", function () {
+            displayInfowindow(marker, place, position);
           });
 
           itemEl.onmouseover = function () {
-            displayInfowindow(marker, title, position);
+            return (overlay = displayInfowindow(marker, place, position));
           };
 
           itemEl.onmouseout = function () {
-            infowindow.close();
+            overlay.setMap(null);
           };
 
           itemEl.onclick = function () {
-            navigate(`/search/${title}`, {
-              state: { address: roadAddressName },
+            navigate(`/search/${place.place_name}`, {
+              state: { address: places.road_address_name },
             });
           };
-        })(
-          marker,
-          places[i].place_name,
-          placePosition,
-          places[i].road_address_name
-        );
+        })(marker, placePosition, places[i]);
 
         fragment.appendChild(itemEl);
       }
@@ -132,7 +122,7 @@ const SearchPage = () => {
     }
 
     function getListItem(index, cafe) {
-      var el = document.createElement("div"),
+      let el = document.createElement("div"),
         itemStr = `
         <h3 class="search_card_title">${cafe.place_name}</h3>
         <div class="search_card_phone">${cafe.phone}</div>
@@ -171,22 +161,77 @@ const SearchPage = () => {
     }
 
     function removeMarker() {
-      for (var i = 0; i < markers.length; i++) {
+      for (let i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
       }
       markers = [];
     }
 
-    function displayInfowindow(marker, title, position) {
-      var content =
-        '<div style="width:150px;text-align:center;padding:6px 0;">' +
-        title +
-        "</div>";
+    function displayInfowindow(marker, place, position) {
+      const overlay = new kakao.maps.CustomOverlay({
+        position: marker.getPosition(),
+        clickable: true,
+      });
 
-      infowindow.setContent(content);
-      infowindow.open(map, marker);
+      const infowindowWrap = document.createElement("div");
+      infowindowWrap.className = "infowindow_wrap";
+
+      const infowindowInfo = document.createElement("div");
+      infowindowInfo.className = "infowindow_info";
+
+      const infowindowTitle = document.createElement("div");
+      infowindowTitle.className = "infowindow_title";
+      infowindowTitle.innerHTML = place.place_name;
+      const infowindowClose = document.createElement("div");
+      infowindowClose.className = "infowindow_close";
+
+      const infowindowBody = document.createElement("div");
+      infowindowBody.className = "infowindow_body";
+
+      const infowindowDesc = document.createElement("div");
+      infowindowDesc.className = "infowindow_desc";
+
+      const infowindowRoadAddress = document.createElement("div");
+      infowindowRoadAddress.innerHTML = "(도로명) " + place.road_address_name;
+      const infowindowAddress = document.createElement("div");
+      infowindowAddress.innerHTML = "(지번) " + place.address_name;
+      const infowindowPhone = document.createElement("div");
+      infowindowPhone.innerHTML = place.phone;
+
+      const infowindowLinkDiv = document.createElement("div");
+      const infowindowLink = document.createElement("a");
+      infowindowLink.className = "infowindow_link";
+      infowindowLink.href = place.place_url;
+      infowindowLink.innerHTML = "홈페이지";
+      infowindowLink.target = "_blank";
+
+      infowindowWrap.append(infowindowInfo);
+      infowindowInfo.append(infowindowTitle, infowindowBody);
+      infowindowTitle.append(infowindowClose);
+      infowindowBody.append(infowindowDesc);
+      infowindowDesc.append(
+        infowindowRoadAddress,
+        infowindowAddress,
+        infowindowPhone,
+        infowindowLinkDiv
+      );
+      infowindowLinkDiv.append(infowindowLink);
+
+      overlay.setContent(infowindowWrap);
+
+      overlay.setMap(map);
 
       if (position) map.panTo(position);
+
+      infowindowClose.addEventListener("click", () => {
+        overlay.setMap(null);
+      });
+
+      kakao.maps.event.addListener(map, "click", function () {
+        overlay.setMap(null);
+      });
+
+      return overlay;
     }
   };
 

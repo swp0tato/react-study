@@ -49,15 +49,18 @@
   align-items: center;
   background-color: var(--ivory-color);
   height: 6rem;
+  border: 1px solid #dbdbdb;
 }
 .search_box_area_bar input {
   height: 48px;
 }
 .search_info_area {
-  margin: 1.3rem;
+  padding: 1.3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid #dbdbdb;
+  border-top: 0;
 }
 .search_info_title {
   font-size: 1.5rem;
@@ -143,6 +146,79 @@
 }
 .search_results_empty {
   text-align: center;
+}
+.infowindow_wrap {
+  position: absolute;
+  left: 0;
+  bottom: 40px;
+  width: 288px;
+  height: 132px;
+  margin-left: -144px;
+  text-align: left;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.infowindow_wrap * {
+  padding: 0;
+  margin: 0;
+}
+.infowindow_wrap .infowindow_info {
+  width: 286px;
+  height: 120px;
+  border-radius: 5px;
+  border-bottom: 2px solid #ccc;
+  border-right: 1px solid #ccc;
+  overflow: hidden;
+  background: #fff;
+}
+.infowindow_wrap .infowindow_info:nth-child(1) {
+  border: 0;
+  box-shadow: 0px 1px 2px #888;
+}
+.infowindow_info .infowindow_title {
+  padding-left: 10px;
+  height: 30px;
+  line-height: 30px;
+  background: var(--ivory-color);
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+  font-weight: bold;
+}
+.infowindow_info .infowindow_close {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  color: #888;
+  width: 17px;
+  height: 17px;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png");
+}
+.infowindow_info .infowindow_close:hover {
+  cursor: pointer;
+}
+.infowindow_info .infowindow_body {
+  position: relative;
+  overflow: hidden;
+}
+.infowindow_info .infowindow_desc {
+  position: relative;
+  height: 75px;
+  margin-top: 8px;
+  margin-left: 13px;
+}
+.infowindow_info:after {
+  content: "";
+  position: absolute;
+  margin-left: -12px;
+  left: 50%;
+  bottom: 0;
+  width: 22px;
+  height: 12px;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png");
+}
+.infowindow_info .infowindow_link {
+  color: #5085bb;
 }
 @media (max-width: 767px) {
   .search-toggle-button.active {

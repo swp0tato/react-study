@@ -23,6 +23,10 @@
   font-style: italic;
 }
 
+.hashtags {
+  margin-top: 10px;
+}
+
 .card-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -43,18 +47,17 @@
 .card-user-info {
   display: flex;
   align-items: center;
-  justify-content: left;
+}
+
+.card-user-info img {
+  border: 2px solid rgb(211, 204, 195);
+  border-radius: 100%;
 }
 
 .card-user-name {
   color: #524f47;
   margin-left: 10px;
   font-size: 16px;
-}
-
-.card-user-info img {
-  border: 2px solid rgb(211, 204, 195);
-  border-radius: 100%;
 }
 
 @media screen and (max-width: 768px) {

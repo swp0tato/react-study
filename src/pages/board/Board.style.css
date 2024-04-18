@@ -19,6 +19,7 @@
   font-family: 'TTLaundryGothicB';
   font-size: 30px;
   color: #33312c;
+  letter-spacing: 3px;
 }
 
 .add-btn-wrap {
@@ -37,9 +38,7 @@
   font-weight: bold;
   color: rgb(68, 67, 67);
   transition: 0.3s;
-  margin-right: 7px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 7px;
 }
 
 .add-btn:hover {
@@ -49,7 +48,7 @@
 
 .focus-icon {
   transform: rotateY(180deg);
-  margin: auto 5px;
+  margin: auto 7px;
 }
 
 @media screen and (max-width: 768px) {

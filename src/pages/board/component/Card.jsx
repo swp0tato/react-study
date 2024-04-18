@@ -3,8 +3,6 @@ import './Card.style.css';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 const Card = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
@@ -40,10 +38,17 @@ const Card = () => {
             alt=""
           />
           <div className="card-user-info">
-            <FontAwesomeIcon icon={faUser} />
-            <span>
-              <h4 className="card-user-name">{post.user}</h4>
-            </span>
+            {post.profileImg ? (
+              <img width={30} height={30} src={post.profileImg} alt="" />
+            ) : (
+              <img
+                width={30}
+                height={30}
+                src="https://i.pinimg.com/736x/e9/ce/91/e9ce91bbb0d18e5555b1bbd3745a0fef.jpg"
+                alt=""
+              />
+            )}
+            <h4 className="card-user-name">{post.user}</h4>
           </div>
           <div className="hashtags">
             {post.hashtags.map((tag, index) => (

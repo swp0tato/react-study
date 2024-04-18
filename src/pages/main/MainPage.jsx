@@ -21,7 +21,7 @@ const MainPage = () => {
 
   return (
     <div>
-      <CloseDessertSlide />
+      <CloseDessertSlide lat={location.lat} lon={location.lon} />
       <WeatherDessertSlide lat={location.lat} lon={location.lon} />
     </div>
   );

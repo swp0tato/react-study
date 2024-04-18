@@ -1,6 +1,6 @@
 .weather_dessert_section {
   width: 100%;
-  height: 660px;
+  height: 640px;
   display: flex;
   justify-content: center;
   position: relative;
@@ -43,7 +43,7 @@
   background: #0000006b;
   position: absolute;
   width: 100%;
-  height: 660px;
+  height: 640px;
   left: 0;
 }
 
@@ -55,17 +55,32 @@
 
 .weather_dessert_title {
   position: absolute;
+  z-index: 100;
   top: 8%;
   color: #ffffff;
+  display: flex;
+  align-items: center;
 }
 
 .weather_dessert_wrapper h2 {
-  margin-bottom: 0.4em;
+  margin: 0 0.4em 0.4em 0;
+}
+
+.weather_dessert_title button {
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.weather_dessert_title button .svg-inline--fa {
+  font-size: 40px;
+  color: #ffffff;
 }
 
 .weather_dessert_wrapper .carousel-container {
   position: absolute;
-  top: 56%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 1920px;

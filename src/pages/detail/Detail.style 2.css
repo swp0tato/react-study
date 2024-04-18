@@ -10,12 +10,11 @@
 
 .detail-subject {
   margin-top: 51px;
-
+  margin-bottom: 65px;
   font-weight: 800;
 }
 
 .detail-title {
-  margin-top: 65px;
   margin-bottom: 28px;
   font-size: 64px;
   color: #bbab8c;

@@ -1,0 +1,33 @@
+.search_map_page button {
+  border: none;
+  background: none;
+  padding: 0;
+  color: black;
+  cursor: pointer;
+}
+.search_map_wrapper {
+  display: flex;
+  height: 100vh;
+}
+.search_box {
+  width: 30%;
+}
+.search_map {
+  width: 70%;
+}
+.search_input_area {
+  background-color: #fdf7e4;
+  height: 20%;
+}
+.search_result_title {
+  margin-left: 20px;
+}
+.search_filter_box {
+  text-align: right;
+}
+.search_filter_box button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  border: 1px solid #bbab8c;
+}

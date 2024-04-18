@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import searchMapApi from "../utils/searchMapApi";
-import { currentLocation } from "../redux/reducer/searchMapSlice";
+import { currentLocation } from "../redux/reducer/search/searchMapSlice";
 import { useDispatch } from "react-redux";
 
 const fetchSearchMap = ({ location }) => {

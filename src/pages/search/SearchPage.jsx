@@ -4,6 +4,11 @@ import { useSelector } from "react-redux";
 import SearchBar from "../../common/SearchBar/SearchBar";
 import "./SearchPage.style.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const SearchPage = () => {
   const { kakao } = window;
@@ -14,6 +19,7 @@ const SearchPage = () => {
   const [query, setQuery] = useSearchParams();
   const searchQuery = query.get("q") || "";
   const [keyword, setKeyword] = useState("");
+  const [btnActive, setBtnActive] = useState(false);
   const { data, isLoading, isError, error } = useSearchMapQuery({
     searchQuery,
   });
@@ -21,7 +27,7 @@ const SearchPage = () => {
   // console.log("searchQuery", searchQuery);
 
   const searchBarProps = {
-    width: "350px",
+    width: "90%",
     height: "50px",
     keyword,
     onchange: (event) => setKeyword(event),
@@ -194,8 +200,18 @@ const SearchPage = () => {
     <div className="search_page_area">
       <section className="search_map_section">
         <div id="map" className="search_map"></div>
+        <button
+          className={`search-toggle-button ${btnActive ? "active" : ""}`}
+          onClick={() => setBtnActive(!btnActive)}
+        >
+          {btnActive ? (
+            <FontAwesomeIcon icon={faChevronLeft} />
+          ) : (
+            <FontAwesomeIcon icon={faChevronRight} />
+          )}
+        </button>
       </section>
-      <section className="search_box_section">
+      <section className={`search_box_section ${btnActive ? "active" : ""}`}>
         <div className="search_box_area">
           <div className="search_box_area_bar">
             <SearchBar searchBarProps={searchBarProps} />

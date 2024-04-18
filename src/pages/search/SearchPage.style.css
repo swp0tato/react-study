@@ -11,7 +11,27 @@
   height: 100%;
   overflow: hidden;
 }
+.search-toggle-button {
+  position: absolute;
+  top: 23px;
+  left: 0;
+  font-size: 1rem;
+  z-index: 1;
+  width: 25px;
+  height: 50px;
+  border-radius: 0px 5px 5px 0px;
+  cursor: pointer;
+  border: 1px solid #dbdbdb;
+  background-color: var(--ivory-color);
+}
+.search-toggle-button.active {
+  left: 400px;
+}
 .search_box_section {
+  display: none;
+}
+.search_box_section.active {
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
@@ -51,7 +71,7 @@
   border-radius: 4px;
 }
 .search_box_results {
-  height: 80%;
+  height: 70%;
   overflow: auto;
 }
 .search_map_spinner {
@@ -101,9 +121,11 @@
 }
 .search_card_title {
   margin-bottom: 10px;
+  font-size: 1.5rem;
 }
 .search_card_phone {
   margin-bottom: 10px;
+  font-size: 1.1rem;
 }
 .search_card_address {
   margin-bottom: 5px;
@@ -121,8 +143,64 @@
 .search_results_empty {
   text-align: center;
 }
-.search_list_button {
-  display: none;
+@media (max-width: 767px) {
+  .search-toggle-button.active {
+    left: 330px;
+  }
+  .search_box_section.active {
+    width: 330px;
+  }
+  .search_card_title {
+    font-size: 1.4rem;
+  }
+  .search_card_address {
+    font-size: 0.9rem;
+    margin-bottom: 7px;
+  }
+  .search_card_distance {
+    font-size: 0.9rem;
+  }
+  .search_box_results {
+    height: 70%;
+  }
 }
 @media (max-width: 464px) {
+  .search-toggle-button.active {
+    left: 250px;
+  }
+  .search_box_section.active {
+    width: 250px;
+  }
+  .search_info_area {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .search_info_title {
+    align-self: flex-start;
+  }
+  .search_sort_box {
+    align-self: flex-end;
+  }
+  .search_card_title {
+    font-size: 1.3rem;
+  }
+  .search_card_phone {
+    font-size: 0.9rem;
+  }
+  .search_card_address {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+  }
+  .search_card_address span {
+    margin-right: 3px;
+    padding: 1px 2px;
+    display: inline-block;
+    margin-bottom: 3px;
+  }
+  .search_card_distance {
+    font-size: 0.8rem;
+  }
+  .search_box_results {
+    height: 63%;
+  }
 }

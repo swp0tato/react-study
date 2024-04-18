@@ -35,6 +35,8 @@ const CloseDessertSlide = ({ lat, lon }) => {
     );
   }, [data, imageUrlData]);
 
+  const newDataSlice = newData.slice(0, 5); // 처음 5개 요소만 가져오기
+
   // console.log("New Data: ", newData);
 
   if (isLoading) {
@@ -48,7 +50,7 @@ const CloseDessertSlide = ({ lat, lon }) => {
     <div className="close_dessert_section">
       <div className="close_dessert_wrapper">
         <h2>가까운 디저트 맛집 Top5</h2>
-        <Slider cafe={newData} responsive={responsive} />
+        <Slider cafe={newDataSlice} responsive={responsive} />
       </div>
     </div>
   );

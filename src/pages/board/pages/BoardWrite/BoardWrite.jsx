@@ -1,141 +1,95 @@
 import React, { useState } from 'react';
 import './BoardWrite.style.css';
-import { useNavigate } from 'react-router-dom';
+import { storage, db } from '../../../../firebase';
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const BoardWrite = () => {
-  const [name, setName] = useState('');
-  const [location, setLocation] = useState('');
-  const [description, setDescription] = useState('');
+  const [user, setUser] = useState('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [hashtags, setHashtags] = useState('');
   const [image, setImage] = useState(null);
 
-  const navigate = useNavigate();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const restaurantData = {
-      name: name,
-      location: location,
-      description: description,
-      image: image,
-    };
-
-    localStorage.setItem('restaurantData', JSON.stringify(restaurantData));
-
-    setName('');
-    setLocation('');
-    setDescription('');
-    setImage(null);
-
-    alert('게시물이 등록되었습니다 !');
-    navigate('/board');
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
   };
 
-  const handleImageChange = (event) => {
-    const selectedImage = event.target.files[0];
-    setImage(selectedImage);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!user || !title || !content || !image) {
+      alert('사용자, 제목, 내용, 이미지를 모두 입력해주세요.');
+      return;
+    }
+
+    try {
+      // 이미지를 Firebase Storage에 업로드
+      const storageRef = ref(storage, `images/${image.name}`);
+      await uploadBytes(storageRef, image);
+
+      // 이미지 URL을 가져옴
+      const imageUrl = await getDownloadURL(storageRef);
+
+      // 해시태그를 배열로 분할
+      const hashtagsArray = hashtags.split(',');
+
+      // Firestore에 게시물 추가
+      await addDoc(collection(db, 'items'), {
+        user,
+        title,
+        content,
+        hashtags: hashtagsArray,
+        date: Timestamp.fromDate(new Date()),
+        imageUrl,
+      });
+
+      // 폼 초기화
+      setUser('');
+      setTitle('');
+      setContent('');
+      setHashtags('');
+      setImage(null);
+      alert('게시물이 성공적으로 추가되었습니다.');
+    } catch (error) {
+      console.error('게시물 추가 오류:', error);
+      alert('게시물을 추가하는 중에 오류가 발생했습니다.');
+    }
   };
 
   return (
-    <div className="board-write-area">
-      <div className="board-write-wrap">
-        <form onSubmit={handleSubmit}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="-1.785 -1.785 50 50"
-            height={50}
-            width={50}
-            className="board-badge-icon"
-            id="Star-Badge--Streamline-Core"
-          >
-            <desc>
-              {'Star Badge Streamline Icon: https://streamlinehq.com'}
-            </desc>
-            <g id="star-badge--ribbon-reward-like-social-rating-media">
-              <path
-                id="Ellipse 19"
-                stroke="#bbab8c"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M39.64259728571429 18.18165635714286c0 9.07776145 -7.359121835714285 16.436883285714288 -16.436916450000002 16.436883285714288 -9.077794614285716 0 -16.436783792857145 -7.359121835714285 -16.436783792857145 -16.436883285714288 0 -9.077794614285716 7.358989178571429 -16.436807007857144 16.436783792857145 -16.436807007857144S39.64259728571429 9.103861742857145 39.64259728571429 18.18165635714286Z"
-                strokeWidth={3.57}
-              />
-              <path
-                id="Vector"
-                stroke="#bbab8c"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m23.878285714285717 9.257346057142858 2.264125785714286 4.554617178571429c0.050641864285714294 0.11517956428571428 0.1309326 0.21487140714285716 0.2326806285714286 0.2888940928571429 0.10174802857142858 0.07398952142857143 0.22133844285714285 0.11965674285714287 0.34653362142857147 0.1323255l5.028501657142858 0.7635081857142858c0.14373401428571428 0.018704657142857146 0.27921012142857143 0.07796923571428573 0.39054262857142863 0.17082923571428574 0.11129934285714287 0.09286000000000001 0.1939115785714286 0.21550152857142857 0.2380864071428572 0.35356445000000003 0.04417482857142858 0.13809608571428575 0.04815454285714286 0.28590930714285717 0.011408514285714287 0.42612790714285714 -0.03671286428571429 0.14025176428571431 -0.1126259142857143 0.26713832142857147 -0.21881795714285715 0.3658352357142858L28.459202171428572 19.840898735714287c-0.055351192857142864 0.10559508571428572 -0.08427045 0.22302982142857147 -0.08427045 0.3422554285714286 0 0.11922560714285717 0.028919257142857147 0.2366603428571429 0.08427045 0.3422554285714286l0.7108433000000001 5.002169214285715c0.030345321428571433 0.14456312142857142 0.018074535714285717 0.2948636642857143 -0.03531996428571429 0.4325949428571429 -0.053394500000000004 0.13776444285714287 -0.1455912142857143 0.2570563785714286 -0.2654137785714286 0.3434493428571429 -0.11985572857142858 0.08639296428571429 -0.2621636785714286 0.13617255714285714 -0.40974475 0.14330287857142857 -0.14754790714285715 0.007097157142857143 -0.2940013928571429 -0.028753435714285718 -0.4215844000000001 -0.10320725714285715l-4.47561985 -2.3694555571428575c-0.11584285000000002 -0.05233324285714286 -0.2415023285714286 -0.0793953 -0.36858787142857147 -0.0793953 -0.12711870714285717 0 -0.25274502142857147 0.027062057142857147 -0.36858787142857147 0.0793953l-4.47561985 2.3694555571428575c-0.12758300714285714 0.07445382142857145 -0.2740696571428572 0.11030441428571429 -0.4216175642857143 0.10320725714285715 -0.14754790714285715 -0.0071303214285714294 -0.2898890214285715 -0.0569099142857143 -0.40971158571428573 -0.14330287857142857 -0.11985572857142858 -0.08639296428571429 -0.21205244285714286 -0.2056849 -0.2654137785714286 -0.3434493428571429 -0.053394500000000004 -0.13773127857142858 -0.06566528571428573 -0.2880318214285714 -0.03531996428571429 -0.4325949428571429l0.84247235 -5.002169214285715c0.0362154 -0.1161081642857143 0.04314673571428572 -0.23937981428571428 0.02019705 -0.35880440714285716 -0.022982850000000003 -0.11942459285714287 -0.07515027142857143 -0.2313208928571429 -0.15185926428571428 -0.32570645000000004L14.216202714285716 16.286715400000002c-0.0984647642857143 -0.09972500714285715 -0.16757913571428573 -0.22465487142857143 -0.19978165714285717 -0.36105957857142856 -0.032169357142857145 -0.13643787142857144 -0.02616662142857143 -0.27907746428571434 0.01734492142857143 -0.4122984 0.043478378571428576 -0.13322093571428573 0.12284051428571428 -0.2519159142857143 0.22929787142857141 -0.34305137142857145 0.10649052142857143 -0.09113545714285716 0.23599705714285718 -0.15119597857142858 0.37435845714285715 -0.17361503571428574l5.028501657142858 -0.7371757428571429c0.1251951785714286 -0.012668757142857144 0.24475242857142862 -0.05833597857142858 0.34653362142857147 -0.1323255 0.10174802857142858 -0.07402268571428572 0.1820387642857143 -0.1737145285714286 0.2326474642857143 -0.2888940928571429L22.509264 9.2836785c0.06059115000000001 -0.12894274285714286 0.15603796428571431 -0.23835172142857147 0.27556205 -0.3158566571428572 0.11949092142857144 -0.07750493571428571 0.2583166214285715 -0.1200547142857143 0.4007572285714286 -0.12280735000000001 0.14244060714285717 -0.0027194714285714286 0.2827918642857143 0.034424528571428574 0.4052012428571429 0.10731962857142859 0.12240937857142857 0.07286193571428572 0.22200172857142858 0.17852335000000003 0.2875011928571429 0.30501193571428575Z"
-                strokeWidth={3.57}
-              />
-              <path
-                id="Vector 2353"
-                stroke="#bbab8c"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.96755652857143 26.24399370714286 1.658074995714286 38.90436028571429l7.8980812757142855 -2.1162130714285716 2.1162794000000003 7.898074642857144L18.01450835714286 33.70154714285715"
-                strokeWidth={3.57}
-              />
-              <path
-                id="Vector 2354"
-                stroke="#bbab8c"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m37.4620455 26.24399370714286 7.309408571428572 12.66036657857143 -7.898074642857144 -2.1162130714285716 -2.1162130714285716 7.898074642857144 -6.342072685714286 -10.984674714285715"
-                strokeWidth={3.57}
-              />
-            </g>
-          </svg>
-          <h3 className="board-write-title">디저트 추천서 쓰기 🧀</h3>
-          <div className="form-group">
-            <label htmlFor="name">카페명</label>
-            <input
-              type="text"
-              id="name"
-              className="board-cafe-name"
-              placeholder="antique__coffee"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="location">카페 링크 추가</label>
-            <input
-              type="text"
-              id="location"
-              className="board-location"
-              placeholder="https://www.instagram.com/antique__coffee/"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="description">추천 한 마디</label>
-            <textarea
-              className="board-description"
-              id="description"
-              value={description}
-              placeholder="⭐⭐⭐ 커피가 맛있어요 !"
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-          <div className="form-group board-img-add">
-            <label htmlFor="image">사진 </label>
-            <input
-              type="file"
-              id="image"
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-          </div>
-          <button type="submit" className="board-submit-btn">
-            등록하기
-          </button>
-        </form>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={user}
+        onChange={(e) => setUser(e.target.value)}
+        placeholder="사용자"
+        required
+      />
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="제목"
+        required
+      />
+      <textarea
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="내용"
+        required
+      />
+      <input
+        type="text"
+        value={hashtags}
+        onChange={(e) => setHashtags(e.target.value)}
+        placeholder="해시태그 (쉼표로 구분)"
+      />
+      <input type="file" onChange={handleImageChange} required />
+      <button type="submit">게시물 추가</button>
+    </form>
   );
 };
-
 export default BoardWrite;

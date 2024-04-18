@@ -12,7 +12,7 @@ const fetchSearchWeatherDessert = ({ newDessert, lon, lat }) => {
 
   prevKeyword = selectedKeyword;
 
-  console.log("selectedKeyword", selectedKeyword);
+  // console.log("selectedKeyword", selectedKeyword);
 
   return searchApi.get(
     `/keyword.json?query=${selectedKeyword}&category_group_code=CE7&x=${lon}&y=${lat}&sort=distance&size=5}`

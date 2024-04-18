@@ -23,7 +23,7 @@ const CloseDessertSlide = ({ lat, lon }) => {
   const { imageUrlData } = useSearchImageQueries(
     data?.map((item) => item.place_name) || []
   );
-  console.log("imageUrlData-close?? ", imageUrlData);
+  // console.log("imageUrlData-close?? ", imageUrlData);
 
   const newData = useMemo(() => {
     return (

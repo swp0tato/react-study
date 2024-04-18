@@ -72,12 +72,6 @@ const WeatherDessertSlide = ({ lat, lon }) => {
   });
   // console.log("weatherDessert", weatherDessert);
 
-  let placeNames = [];
-
-  if (weatherDessert) {
-    placeNames = weatherDessert.map((item) => item.place_name);
-  }
-
   // console.log("placeNames? : ", placeNames);
 
   const { imageUrlData } = useSearchImageQueries(

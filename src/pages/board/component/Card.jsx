@@ -29,27 +29,37 @@ const Card = () => {
   };
 
   return (
-    <div className="card">
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <h3>{post.user}</h3>
-            <h2>{post.title}</h2>
-            <img
-              width={250}
-              height={250}
-              src={post.imageUrl}
-              onClick={() => goToDetail(post.id)}
-              alt=""
-            />
-            <ul className="hashtags">
-              {post.hashtags.map((tag, index) => (
-                <li key={index}>#{tag} </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
+    <div className="card-wrap">
+      {posts.map((post) => (
+        <div className="card-area">
+          <img
+            className="board-card"
+            src={post.imageUrl}
+            onClick={() => goToDetail(post.id)}
+            alt=""
+          />
+          <div className="card-user-info">
+            <span>
+              <img
+                width={30}
+                height={30}
+                src="https://i.pinimg.com/564x/47/6a/0c/476a0ccbf0a953e83013468f7bf302e9.jpg"
+                alt=""
+              />
+            </span>
+            <span>
+              <h4 className="card-user-name">{post.user}</h4>
+            </span>
+          </div>
+          <div className="hashtags">
+            {post.hashtags.map((tag, index) => (
+              <span className="hashtag" key={index}>
+                #{tag}{' '}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

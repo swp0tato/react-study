@@ -112,3 +112,6 @@
 .search_card_distance {
   text-align: right;
 }
+.search_results_empty {
+  text-align: center;
+}

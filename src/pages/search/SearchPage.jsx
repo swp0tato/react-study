@@ -69,7 +69,9 @@ const SearchPage = () => {
 
     let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-    displayPlaces(data);
+    if (data.length > 0) {
+      displayPlaces(data);
+    }
 
     function displayPlaces(places) {
       let listEl = document.getElementById("placesList"),
@@ -207,7 +209,11 @@ const SearchPage = () => {
               <option>가나다 순</option>
             </select>
           </div>
-          <div id="placesList" className="search_box_results"></div>
+          <div id="placesList" className="search_box_results">
+            {data.length === 0 && (
+              <div className="search_results_empty">검색 결과가 없습니다.</div>
+            )}
+          </div>
         </div>
       </section>
       <section className="search_map_section">

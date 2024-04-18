@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authenciateSlice from "./reducer/authenciateSlice";
+import authenciateSlice from "./reducer/authenciate/authenciateSlice";
 import searchMapSlice from "./reducer/searchMapSlice";
 
 export const store = configureStore({

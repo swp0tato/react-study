@@ -1,18 +1,46 @@
-import React, { useState } from "react";
-import "./BoardDetail.style.css";
-import Comment from "./componenet/Comment";
+import React, { useState, useEffect } from 'react';
+import './BoardDetail.style.css';
+import Comment from './componenet/Comment';
+import { useParams } from 'react-router-dom';
+import { db } from '../../../../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 const BoardDetail = () => {
-  let [comment, setComment] = useState("");
+  let [comment, setComment] = useState('');
   let [isValid, setIsValid] = useState(false);
+  // ! 민솔 추가한 부분 =============================
+  const { id } = useParams();
+  const [board, setBoard] = useState(null);
 
+  useEffect(() => {
+    const fetchBoard = async () => {
+      const docRef = doc(db, 'items', id);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setBoard({ id: docSnap.id, ...docSnap.data() });
+      } else {
+        console.log('게시물이 존재하지 않습니다.');
+      }
+    };
+    fetchBoard();
+  }, [id]);
+
+  if (!board) {
+    return <div>Loading...</div>;
+  }
+  // ! ======================================================
   let post = (e) => {
-    setComment("");
+    setComment('');
   };
 
   return (
     <div className="board-detail-wrap">
       <div className="board-post-area">
+        // ! 확인용으로 3줄 잠시 넣었습니다 ! 확인하시구 지우시면 됩니닷
+        //!이런식으로 요소들 원하시는 위치에서 가져다 쓰시면 돼요 !!
+        <h1>{board?.title}</h1>
+        <p>{board?.content}</p>
+        <img width={100} height={100} src={board?.imageUrl} alt="" />
         <div className="board-img-box">
           <img
             src="https://a.cdn-hotels.com/gdcs/production49/d672/dfcca789-023a-490f-8f1a-46bc6a969000.jpg?impolicy=fcrop&w=800&h=533&q=medium"
@@ -60,7 +88,7 @@ const BoardDetail = () => {
           <button
             type="button"
             className={
-              comment.length > 0 ? "commentBtnActive" : "commentBtnInactive"
+              comment.length > 0 ? 'commentBtnActive' : 'commentBtnInactive'
             }
             onClick={post}
             disabled={isValid ? false : true}

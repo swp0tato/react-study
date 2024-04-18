@@ -1,12 +1,177 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
 .board-detail-wrap {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: #fbf8f0;
-  height: 100vh;
+  font-family: "Noto Sans KR", sans-serif;
+  width: 1100px;
+  margin: 4rem auto;
 }
 
-.board-detail-title {
-  text-align: center;
-  margin-top: 40px;
+.board-post-area {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.board-img-box {
+  margin-right: 32px;
+}
+
+.board-img-box > img {
+  width: 500px;
+  height: 340px;
+  border-radius: 8px;
+}
+
+.board-content-box {
+  width: 50%;
+  padding-top: 1rem;
+
+  position: relative;
+}
+
+.board-content-box > p:first-child {
+  color: #bbab8c;
+  font-weight: 600;
+}
+
+.board-content-box > h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.board-content-box .position-box {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.modify-btn-box {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.modify-btn-box > button {
+  cursor: pointer;
+  width: 80px;
+  height: 36px;
+  background: transparent;
+  border: 2px solid #ded0b6;
+  border-radius: 6px;
+}
+
+.modify-btn-box > button:hover {
+  background-color: #ded0b6;
+  font-weight: 600;
+}
+
+.modify-btn-box > .delete-btn {
+  margin-left: 0.6rem;
+  border: 2px solid #ff7676;
+}
+
+.modify-btn-box > .delete-btn:hover {
+  background-color: #ff7676;
+  color: #fff;
+}
+
+.board-comment-area {
+  margin-bottom: 8rem;
+}
+
+.board-comment-area > p:first-child {
+  color: #bbab8c;
+  font-weight: 600;
+  border-bottom: 1px solid #bbab8c;
+  padding-bottom: 8px;
+}
+
+.comment-user-img-box > img {
+  width: 36px;
+}
+
+.comment-textarea-box {
+  display: flex;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.comment-textarea {
+  width: 100%;
+  height: 70px;
+  border: 1px solid #bbab8c;
+  border-radius: 8px;
+  margin-left: 1rem;
+  padding: 0.5rem;
+  resize: none;
+}
+
+.comment-textarea:focus {
+  outline: none;
+}
+
+.comment-btn-box {
+  margin-top: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-btn-box button {
+  width: 80px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid #ded0b6;
+  border-radius: 6px;
+}
+
+.commentBtnActive {
+  cursor: pointer;
+  border: 2px solid #ded0b6 !important;
+}
+
+.commentBtnActive:hover {
+  background-color: #ded0b6;
+}
+
+@media (max-width: 1100px) {
+  .board-detail-wrap {
+    width: 100%;
+    padding: 0 1rem;
+    margin-top: 2rem;
+    margin-bottom: 8rem;
+  }
+
+  .board-img-box > img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .board-img-box {
+    margin: 0 auto;
+  }
+
+  .board-content-box {
+    width: 100%;
+  }
+
+  .board-review-content {
+    margin-bottom: 4rem;
+  }
+
+  .comment-textarea-box {
+    padding: 0 0 0 1rem;
+  }
+
+  .comment-btn-box {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .modify-btn-box > button {
+    width: 64px;
+    height: 32px;
+  }
 }

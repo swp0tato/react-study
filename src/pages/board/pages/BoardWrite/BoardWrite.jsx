@@ -3,8 +3,10 @@ import './BoardWrite.style.css';
 import { storage, db } from '../../../../firebase';
 import { addDoc, collection, Timestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom';
 
 const BoardWrite = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -53,6 +55,8 @@ const BoardWrite = () => {
       setHashtags('');
       setImage(null);
       alert('게시물이 성공적으로 추가되었습니다.');
+
+      navigate('/board');
     } catch (error) {
       console.error('게시물 추가 오류:', error);
       alert('게시물을 추가하는 중에 오류가 발생했습니다.');

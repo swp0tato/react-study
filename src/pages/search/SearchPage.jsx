@@ -94,7 +94,7 @@ const SearchPage = () => {
 
         bounds.extend(placePosition);
 
-        (function (marker, title, position) {
+        (function (marker, title, position, roadAddressName) {
           kakao.maps.event.addListener(marker, "mouseover", function () {
             displayInfowindow(marker, title);
           });
@@ -110,7 +110,18 @@ const SearchPage = () => {
           itemEl.onmouseout = function () {
             infowindow.close();
           };
-        })(marker, places[i].place_name, placePosition);
+
+          itemEl.onclick = function () {
+            navigate(`/search/${title}`, {
+              state: { address: roadAddressName },
+            });
+          };
+        })(
+          marker,
+          places[i].place_name,
+          placePosition,
+          places[i].road_address_name
+        );
 
         fragment.appendChild(itemEl);
       }

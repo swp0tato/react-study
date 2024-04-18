@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import './BoardDetail.style.css';
-import Comment from './componenet/Comment';
-import { useParams } from 'react-router-dom';
-import { db } from '../../../../firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import React, { useState, useEffect } from "react";
+import "./BoardDetail.style.css";
+import Comment from "./componenet/Comment";
+import { useParams } from "react-router-dom";
+import { db } from "../../../../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const BoardDetail = () => {
   let [isValid, setIsValid] = useState(false);
 
-  const savedCmts = JSON.parse(localStorage.getItem('cmts')) || [];
-  //댓글 목록관리
+  const savedCmts = JSON.parse(localStorage.getItem("cmts")) || [];
   const [cmts, setCmts] = useState(savedCmts);
-  //새로운 댓글 입력
-  const [newCmt, setNewCmt] = useState('');
-  //페이지가 로딩될 때 댓글이 업데이트 될 때 로컬 스토리지에 저장
+  const [newCmt, setNewCmt] = useState("");
+
   useEffect(() => {
-    localStorage.setItem('cmts', JSON.stringify(cmts));
+    localStorage.setItem("cmts", JSON.stringify(cmts));
   }, [cmts]);
 
-  //새로운 댓글 추가함수
   const addCmt = () => {
     setCmts([...cmts, newCmt]);
-    setNewCmt('');
-    //'cmts'키에 현재 댓글 목록과 새로운 댓글을 추가한 배열을 JSON 문자열로 변환해서 저장
-    localStorage.setItem('cmts', JSON.stringify([...cmts, newCmt]));
+    setNewCmt("");
+    localStorage.setItem("cmts", JSON.stringify([...cmts, newCmt]));
+  };
+
+  const romoveCmt = () => {
+    setCmts([...cmts, newCmt]);
+    localStorage.removeItem("cmts", JSON.stringify([...cmts, newCmt]));
   };
 
   const { id } = useParams();
@@ -31,12 +32,12 @@ const BoardDetail = () => {
 
   useEffect(() => {
     const fetchBoard = async () => {
-      const docRef = doc(db, 'items', id);
+      const docRef = doc(db, "items", id);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setBoard({ id: docSnap.id, ...docSnap.data() });
       } else {
-        console.log('게시물이 존재하지 않습니다.');
+        console.log("게시물이 존재하지 않습니다.");
       }
     };
     fetchBoard();
@@ -54,8 +55,22 @@ const BoardDetail = () => {
         </div>
         <div className="board-content-box">
           <p>게시물</p>
+          <div className="detail-user-box">
+            <img
+              src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png"
+              alt="사용자 이미지"
+            />
+            <p>{board?.user}</p>
+          </div>
           <h3>{board?.title}</h3>
           <p className="board-review-content">{board?.content}</p>
+
+          <div className="board-detail-hashtags">
+            {board?.hashtags.map((tag, index) => (
+              <span key={index}># {tag}</span>
+            ))}
+          </div>
+
           <div className="position-box">
             <div className="board-date-box">작성일 2024-04-17</div>
             <div className="modify-btn-box">
@@ -91,7 +106,7 @@ const BoardDetail = () => {
           <button
             type="button"
             className={
-              newCmt.length > 0 ? 'commentBtnActive' : 'commentBtnInactive'
+              newCmt.length > 0 ? "commentBtnActive" : "commentBtnInactive"
             }
             onClick={addCmt}
             disabled={isValid ? false : true}

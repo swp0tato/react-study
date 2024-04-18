@@ -1,4 +1,4 @@
-.board-card {
+/* .board-card {
   margin: 25px 15px;
   width: 240px;
   height: 220px;
@@ -25,4 +25,19 @@
   padding: 0 5px;
   font-size: 14px;
   color: rgb(57, 57, 58);
+} */
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.hashtags {
+  margin-top: 8px;
+}
+
+.hashtags span {
+  margin-right: 4px;
 }

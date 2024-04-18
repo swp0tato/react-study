@@ -1,0 +1,13 @@
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: black;
+  font-weight: bold;
+  word-break: keep-all;
+}
+
+button:hover {
+  color: var(--skin-deep-color);
+  cursor: pointer;
+}

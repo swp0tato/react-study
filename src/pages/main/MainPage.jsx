@@ -22,8 +22,6 @@ const MainPage = () => {
 
   return (
     <div>
-      {/* <CloseDessertSlide lat={location.lat} lon={location.lon} />
-      <WeatherDessertSlide lat={location.lat} lon={location.lon} /> */}
       {location.lat !== null && location.lon !== null && (
         <CloseDessertSlide lat={location.lat} lon={location.lon} />
       )}

@@ -1,11 +1,21 @@
 import React from "react";
 import "./Card.style.css";
 
+const imgPath = process.env.REACT_APP_IMGPATH;
+
 const Card = ({ cafe }) => {
+  const handleImageError = (event) => {
+    event.target.src = `${imgPath}/no_image.png`;
+  };
+
   return (
     <div className="card-item">
       <div className="card-image">
-        <img src={cafe?.imageUrl} alt="카페 이미지" />
+        <img
+          src={cafe?.imageUrl ? cafe.imageUrl : `${imgPath}/no_image.png`}
+          alt="카페 이미지"
+          onError={handleImageError}
+        />
       </div>
       <div className="card-detail">
         <h3 className="card-title">{cafe?.place_name}</h3>

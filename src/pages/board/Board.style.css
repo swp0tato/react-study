@@ -44,6 +44,7 @@
 .add-btn:hover {
   background-color: #bbab8c;
   transform: scale(1.05);
+  color: rgb(68, 67, 67);
 }
 
 .focus-icon {

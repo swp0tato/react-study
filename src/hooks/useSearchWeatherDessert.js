@@ -1,20 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import searchApi from "../utils/searchApi";
 
+let prevKeyword = null;
+
 const fetchSearchWeatherDessert = ({ newDessert, lon, lat }) => {
-  let prevIndex = -1;
+  const filteredDesserts = newDessert.filter(
+    (keyword) => keyword !== prevKeyword
+  );
+  const randomIndex = Math.floor(Math.random() * filteredDesserts.length);
+  const selectedKeyword = filteredDesserts[randomIndex];
 
-  const getNewRandomIndex = (length) => {
-    let newIndex;
-    do {
-      newIndex = Math.floor(Math.random() * length);
-    } while (newIndex === prevIndex); // 이전 인덱스와 같은 경우 다시 랜덤 인덱스를 뽑음
-    prevIndex = newIndex; // 이전 인덱스 업데이트
-    return newIndex;
-  };
-
-  const randomIndex = getNewRandomIndex(newDessert.length);
-  const selectedKeyword = newDessert[randomIndex];
+  prevKeyword = selectedKeyword;
+  // console.log("selectedKeyword", selectedKeyword);
 
   return searchApi.get(
     `/keyword.json?query=${selectedKeyword}&category_group_code=CE7&x=${lon}&y=${lat}&sort=distance&size=5}`

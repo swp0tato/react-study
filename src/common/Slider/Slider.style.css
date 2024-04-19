@@ -1,11 +1,24 @@
 .carousel-container {
-  overflow: hidden;
   max-width: 1920px;
   height: 500px;
+  position: relative;
+}
+
+.react-multiple-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
 }
 
 .carousel-item {
-  margin: 0 30px;
+  margin-right: 20px !important;
+  width: calc(100% / 5) !important;
+}
+
+.carousel-item:last-child {
+  margin-right: 0 !important;
 }
 
 /* Card customize */
@@ -58,5 +71,14 @@
   cursor: pointer;
 }
 
-@media (max-width: 464px) {
+@media screen and (min-width: 464px) and (max-width: 1024px) {
+  .carousel-item {
+    width: calc(100% / 3) !important;
+  }
+}
+
+@media screen and (max-width: 464px) {
+  .carousel-item {
+    width: 100% !important;
+  }
 }

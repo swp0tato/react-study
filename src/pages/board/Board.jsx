@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import './Board.style.css';
-import Card from './component/Card';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "./Board.style.css";
+import Card from "./component/Card";
+import { useNavigate } from "react-router-dom";
 
 const Board = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const goToWrite = () => {
-    navigate('write');
+    navigate("write");
   };
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Board = () => {
           className="focus-icon"
         >
           <desc>
-            {'Finger Snapping Streamline Icon: https://streamlinehq.com'}
+            {"Finger Snapping Streamline Icon: https://streamlinehq.com"}
           </desc>
           <g id="finger-snapping">
             <path
@@ -55,7 +55,7 @@ const Board = () => {
           className="focus-icon"
         >
           <desc>
-            {'Finger Snapping Streamline Icon: https://streamlinehq.com'}
+            {"Finger Snapping Streamline Icon: https://streamlinehq.com"}
           </desc>
           <g id="finger-snapping">
             <path

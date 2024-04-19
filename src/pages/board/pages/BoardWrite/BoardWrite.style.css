@@ -74,7 +74,7 @@
   width: 100%;
 }
 
-.write-form-wrap > form > input {
+.write-form-wrap input {
   width: 100%;
   font-family: "Noto Sans KR", sans-serif;
   font-size: 1rem;
@@ -143,11 +143,5 @@
 
   .write-submit-btn {
     width: 100%;
-    height: 36px;
-    font-family: "Noto Sans KR", sans-serif;
-    background-color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
   }
 }

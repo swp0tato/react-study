@@ -10,6 +10,11 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
+const selectList = [
+  { value: "accuracy", name: "정확도 순" },
+  { value: "distance", name: "가까운 순" },
+];
+
 const SearchPage = () => {
   const { kakao } = window;
   const { latitude, longitude } = useSelector(
@@ -20,8 +25,10 @@ const SearchPage = () => {
   const searchQuery = query.get("q") || "";
   const [keyword, setKeyword] = useState("");
   const [btnActive, setBtnActive] = useState(false);
+  const [sortValue, setSortValue] = useState("accuracy");
   const { data, isLoading, isError, error } = useSearchMapQuery({
     searchQuery,
+    sortValue,
   });
   // console.log("data!!", data);
   // console.log("searchQuery", searchQuery);
@@ -44,6 +51,10 @@ const SearchPage = () => {
   const moveSearchMap = () => {
     navigate(`/search?q=${keyword}`);
     setKeyword("");
+  };
+
+  const handleChangeSelect = (event) => {
+    setSortValue(event.target.value);
   };
 
   const displayMarker = (data) => {
@@ -83,6 +94,7 @@ const SearchPage = () => {
         bounds = new kakao.maps.LatLngBounds();
 
       removeMarker();
+      removeList(listEl);
 
       for (let i = 0; i < places.length; i++) {
         let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
@@ -167,6 +179,12 @@ const SearchPage = () => {
       markers = [];
     }
 
+    function removeList(listEl) {
+      while (listEl.hasChildNodes()) {
+        listEl.removeChild(listEl.firstChild);
+      }
+    }
+
     function displayInfowindow(marker, place, position) {
       const overlay = new kakao.maps.CustomOverlay({
         position: marker.getPosition(),
@@ -239,7 +257,7 @@ const SearchPage = () => {
     if (data) {
       kakao.maps.load(() => displayMarker(data));
     }
-  }, [data]);
+  }, [data, sortValue]);
 
   if (isLoading) {
     return <div className="search_map_spinner"></div>;
@@ -278,10 +296,18 @@ const SearchPage = () => {
                 ? "'" + searchQuery + "' 관련 카페 보기"
                 : "내 주변 카페 보기"}
             </div>
-            <select className="search_sort_box">
-              <option>정확도 순</option>
-              <option>가까운 순</option>
-              <option>가나다 순</option>
+            <select
+              className="search_sort_box"
+              onChange={handleChangeSelect}
+              value={sortValue}
+            >
+              {selectList.map((item) => {
+                return (
+                  <option value={item.value} key={item.value}>
+                    {item.name}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div id="placesList" className="search_box_results">

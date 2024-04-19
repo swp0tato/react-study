@@ -87,6 +87,8 @@
 .search_box_results {
   height: 70%;
   overflow: auto;
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
 }
 .search_map_spinner {
   position: absolute;

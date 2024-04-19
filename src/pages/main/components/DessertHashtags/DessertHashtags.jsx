@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./DessertHashtags.style.css";
+import { useNavigate } from "react-router-dom";
 
 const DessertHashtags = () => {
+  const navigate = useNavigate();
+  const [keyword, setKeyword] = useState("");
+
   const dessertData = [
     {
       type: "소금빵",
@@ -47,6 +51,11 @@ const DessertHashtags = () => {
     },
   ];
 
+  const moveSearchMap = (keyword) => {
+    navigate(`/search?q=${keyword}`);
+    setKeyword("");
+  };
+
   return (
     <div className="dessert_hashtags_section">
       <div className="dessert_hashtag">
@@ -55,7 +64,7 @@ const DessertHashtags = () => {
       </div>
       <div className="dessert_button">
         {dessertData.map((item, index) => (
-          <button key={index}>
+          <button key={index} onClick={() => moveSearchMap(item.type)}>
             {item.icon && <img src={item.icon} alt="dessert-icon" />}
           </button>
         ))}

@@ -7,22 +7,27 @@ const MainPage = () => {
     lat: null,
     lon: null,
   });
-  const getCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      // console.log("현재위치", lat, lon);
-      setLocation({ lat, lon });
-    });
-  };
+
   useEffect(() => {
+    const getCurrentLocation = () => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        setLocation({ lat, lon });
+      });
+    };
+
     getCurrentLocation();
   }, []);
 
   return (
     <div>
-      <CloseDessertSlide lat={location.lat} lon={location.lon} />
-      <WeatherDessertSlide lat={location.lat} lon={location.lon} />
+      {location.lat !== null && location.lon !== null && (
+        <CloseDessertSlide lat={location.lat} lon={location.lon} />
+      )}
+      {location.lat !== null && location.lon !== null && (
+        <WeatherDessertSlide lat={location.lat} lon={location.lon} />
+      )}
     </div>
   );
 };

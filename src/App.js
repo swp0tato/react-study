@@ -10,12 +10,12 @@ import BoardDetail from './pages/board/pages/BoardDetail/BoardDetail';
 import Authenticate from './pages/Authenticate/Authenticate/Authenticate';
 import SignUpPage from './pages/Authenticate/SignUp/SignUpPage';
 import { useEffect } from 'react';
-
 import { login } from './redux/reducer/authenciate/authenciateSlice';
 import { useDispatch } from 'react-redux';
 import ForgotPasswordPage from './pages/Authenticate/ForgotPasswordPage/ForgotPasswordPage';
 import MyInformation from './pages/Authenticate/MyInformation/MyInformation';
 import UpdateMyInformation from './pages/Authenticate/UpdateMyInformation/UpdateMyInformation';
+import BoardUpdate from './pages/board/pages/BoardUpdate/BoardUpdate';
 
 function App() {
   /**

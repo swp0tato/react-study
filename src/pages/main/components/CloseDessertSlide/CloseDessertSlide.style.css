@@ -28,4 +28,12 @@
   font-family: "TTLaundryGothicB";
   font-size: 1.8em;
   margin: 1em 0 0.5em 0;
+  word-break: keep-all;
+}
+
+@media screen and (max-width: 464px) {
+  .close_dessert_wrapper h2 {
+    font-size: 1.5em;
+    text-align: center;
+  }
 }

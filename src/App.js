@@ -10,9 +10,12 @@ import BoardDetail from './pages/board/pages/BoardDetail/BoardDetail';
 import Authenticate from './pages/Authenticate/Authenticate/Authenticate';
 import SignUpPage from './pages/Authenticate/SignUp/SignUpPage';
 import { useEffect } from 'react';
-
 import { login } from './redux/reducer/authenciate/authenciateSlice';
 import { useDispatch } from 'react-redux';
+import ForgotPasswordPage from './pages/Authenticate/ForgotPasswordPage/ForgotPasswordPage';
+import MyInformation from './pages/Authenticate/MyInformation/MyInformation';
+import UpdateMyInformation from './pages/Authenticate/UpdateMyInformation/UpdateMyInformation';
+import BoardUpdate from './pages/board/pages/BoardUpdate/BoardUpdate';
 
 function App() {
   /**
@@ -41,6 +44,11 @@ function App() {
           <Route path="auth">
             <Route index element={<Authenticate />} />
             <Route path="signup" element={<SignUpPage />} />
+            <Route path="password" element={<ForgotPasswordPage />} />
+            <Route path="myinfo">
+              <Route index element={<MyInformation />} />
+              <Route path="update" element={<UpdateMyInformation />} />
+            </Route>
           </Route>
           <Route path="search" element={<SearchPage />} />
           <Route path="search/:id" element={<Detail />} />
@@ -48,6 +56,7 @@ function App() {
             <Route index element={<Board />} />
             <Route path="write" element={<BoardWrite />} />
             <Route path="detail/:id" element={<BoardDetail />} />
+            <Route path="edit/:id" element={<BoardUpdate />} />
           </Route>
         </Route>
       </Routes>

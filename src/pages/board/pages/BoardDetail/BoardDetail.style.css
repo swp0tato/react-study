@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 .board-detail-wrap {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   width: 1100px;
   margin: 4rem auto;
 }
@@ -34,9 +34,31 @@
   font-weight: 600;
 }
 
+.detail-user-box {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+.detail-user-box > img {
+  width: 40px;
+  margin-right: 0.5rem;
+  border: 2px solid rgb(170, 158, 136);
+  border-radius: 100%;
+}
+
 .board-content-box > h3 {
   margin-top: 1rem;
   margin-bottom: 0.4rem;
+}
+
+.board-review-content {
+  margin-bottom: 1rem;
+}
+
+.board-detail-hashtags > span {
+  display: inline-block;
+  color: #8a6826;
+  margin-right: 0.5rem;
 }
 
 .board-content-box .position-box {
@@ -58,6 +80,7 @@
   background: transparent;
   border: 2px solid #ded0b6;
   border-radius: 6px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 .modify-btn-box > button:hover {
@@ -84,6 +107,14 @@
   font-weight: 600;
   border-bottom: 1px solid #bbab8c;
   padding-bottom: 8px;
+}
+
+.cafe-title {
+  font-size: 15px;
+  color: #bbab8c;
+}
+.cafe-title-text {
+  color: #4b4436;
 }
 
 .comment-user-img-box > img {
@@ -156,8 +187,8 @@
     width: 100%;
   }
 
-  .board-review-content {
-    margin-bottom: 4rem;
+  .board-detail-hashtags {
+    margin-bottom: 3rem;
   }
 
   .comment-textarea-box {

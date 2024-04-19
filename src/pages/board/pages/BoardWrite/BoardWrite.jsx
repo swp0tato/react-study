@@ -54,46 +54,61 @@ const BoardWrite = () => {
       setContent('');
       setHashtags('');
       setImage(null);
-      alert('게시물이 성공적으로 추가되었습니다.');
+      alert('피드가 성공적으로 추가되었습니다.');
 
       navigate('/board');
     } catch (error) {
-      console.error('게시물 추가 오류:', error);
-      alert('게시물을 추가하는 중에 오류가 발생했습니다.');
+      console.error('피드 추가 오류:', error);
+      alert('피드를 추가하는 중에 오류가 발생했습니다.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={user}
-        onChange={(e) => setUser(e.target.value)}
-        placeholder="사용자"
-        required
-      />
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="제목"
-        required
-      />
-      <textarea
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="내용"
-        required
-      />
-      <input
-        type="text"
-        value={hashtags}
-        onChange={(e) => setHashtags(e.target.value)}
-        placeholder="해시태그 (쉼표로 구분)"
-      />
-      <input type="file" onChange={handleImageChange} required />
-      <button type="submit">게시물 추가</button>
-    </form>
+    <div className="board-write-wrap">
+      <div className="write-top-box">
+        <img width={100} src="/images/cafe_icon.png" alt="카페 아이콘" />
+        <p>나만 알기 아쉬운 카페를 추천해 주세요!</p>
+      </div>
+      <div className="write-form-wrap">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+            placeholder="사용자"
+            required
+          />
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="제목"
+            required
+          />
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="내용을 입력해 주세요."
+            required
+          />
+          <input
+            type="text"
+            value={hashtags}
+            onChange={(e) => setHashtags(e.target.value)}
+            placeholder="해시태그 (쉼표로 구분)"
+          />
+          <input
+            type="file"
+            className="write-input-file"
+            onChange={handleImageChange}
+            required
+          />
+          <button type="submit" className="write-submit-btn">
+            피드 등록
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 export default BoardWrite;

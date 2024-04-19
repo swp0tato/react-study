@@ -13,6 +13,7 @@ const Comment = ({ cmt }) => {
       <div className="comment-content">
         <h4>user</h4>
         <p>{cmt}</p>
+        <button className="comment-delete-btn">삭제</button>
       </div>
     </div>
   );

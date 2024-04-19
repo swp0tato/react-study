@@ -4,20 +4,20 @@ import searchMapApi from "../utils/searchMapApi";
 import { currentLocation } from "../redux/reducer/search/searchMapSlice";
 import { useDispatch } from "react-redux";
 
-const fetchSearchMap = ({ location, searchQuery, sortValue }) => {
+const fetchSearchMap = ({ location, searchQuery, sortValue, searchPage }) => {
   const { latitude, longitude } = location;
   let url = "";
 
   if (searchQuery) {
-    url = `/keyword.json?query=${searchQuery}&category_group_code=CE7&x=${longitude}&y=${latitude}&page=1&size=15&sort=${sortValue}`;
+    url = `/keyword.json?query=${searchQuery}&category_group_code=CE7&x=${longitude}&y=${latitude}&page=${searchPage}&size=15&sort=${sortValue}`;
   } else {
-    url = `/category.json?category_group_code=CE7&x=${longitude}&y=${latitude}&page=1&size=15&sort=${sortValue}`;
+    url = `/category.json?category_group_code=CE7&x=${longitude}&y=${latitude}&page=${searchPage}&size=15&sort=${sortValue}`;
   }
 
   return searchMapApi.get(url);
 };
 
-export const useSearchMapQuery = ({ searchQuery, sortValue }) => {
+export const useSearchMapQuery = ({ searchQuery, sortValue, searchPage }) => {
   const dispatch = useDispatch();
   const [location, setLocation] = useState(null);
 
@@ -42,8 +42,9 @@ export const useSearchMapQuery = ({ searchQuery, sortValue }) => {
   }, []);
 
   return useQuery({
-    queryKey: ["search-map", { location, searchQuery, sortValue }],
-    queryFn: () => fetchSearchMap({ location, searchQuery, sortValue }),
+    queryKey: ["search-map", { location, searchQuery, sortValue, searchPage }],
+    queryFn: () =>
+      fetchSearchMap({ location, searchQuery, sortValue, searchPage }),
     select: (result) => result.data.documents,
   });
 };

@@ -9,6 +9,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import ReactPaginate from "react-paginate";
 
 const selectList = [
   { value: "accuracy", name: "정확도 순" },
@@ -26,12 +27,15 @@ const SearchPage = () => {
   const [keyword, setKeyword] = useState("");
   const [btnActive, setBtnActive] = useState(false);
   const [sortValue, setSortValue] = useState("accuracy");
+  const [searchPage, setSearchPage] = useState(1);
   const { data, isLoading, isError, error } = useSearchMapQuery({
     searchQuery,
     sortValue,
+    searchPage,
   });
   // console.log("data!!", data);
   // console.log("searchQuery", searchQuery);
+  // console.log("searchpage", searchPage);
 
   const searchBarProps = {
     width: "90%",
@@ -251,6 +255,10 @@ const SearchPage = () => {
     }
   };
 
+  const handlePageClick = ({ selected }) => {
+    setSearchPage(selected + 1);
+  };
+
   useEffect(() => {
     if (data) {
       kakao.maps.load(() => displayMarker(data));
@@ -308,10 +316,24 @@ const SearchPage = () => {
               })}
             </select>
           </div>
-          <div id="placesList" className="search_box_results">
-            {data.length === 0 && (
-              <div className="search_results_empty">검색 결과가 없습니다.</div>
-            )}
+          <div className="search_results_area">
+            <div id="placesList" className="search_box_results">
+              {data.length === 0 && (
+                <div className="search_results_empty">
+                  검색 결과가 없습니다.
+                </div>
+              )}
+            </div>
+            <ReactPaginate
+              previousLabel={"이전"}
+              nextLabel={"다음"}
+              pageCount={3}
+              onPageChange={handlePageClick}
+              containerClassName="search_pagination"
+              pageLinkClassName="search_pagination_link"
+              activeLinkClassName="search_pagination_link_active"
+              forcePage={searchPage - 1}
+            />
           </div>
         </div>
       </section>

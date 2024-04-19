@@ -1,5 +1,5 @@
 .search_page_area {
-  height: 100vh;
+  height: calc(100vh - 75px);
   position: relative;
 }
 .search_map_section {
@@ -85,9 +85,11 @@
   border-radius: 4px;
   align-self: flex-end;
 }
-.search_box_results {
+.search_results_area {
   height: 72%;
   overflow: auto;
+}
+.search_box_results {
   border-left: 1px solid #dbdbdb;
   border-right: 1px solid #dbdbdb;
 }
@@ -131,11 +133,11 @@
   text-shadow: 1px 1px rgba(250, 250, 250, 0.3);
 }
 .search_card_box {
-  margin: 1rem;
+  margin: 0 1rem;
   border-bottom: 1px solid #dbdbdb;
   padding: 1rem;
-  padding-top: 0.5rem;
   cursor: pointer;
+  margin-top: 0;
 }
 .search_card_title {
   margin-bottom: 10px;
@@ -233,6 +235,24 @@
 }
 .infowindow_info .infowindow_link {
   color: #5085bb;
+}
+.search_pagination {
+  margin: 1.5rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  list-style: none;
+  cursor: pointer;
+}
+.search_pagination_link {
+  transition: all 0.25s;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.3rem;
+}
+.search_pagination_link_active {
+  background-color: #dbdbdb;
+  color: #fefefe;
 }
 @media (max-width: 767px) {
   .search_toggle_button.active {

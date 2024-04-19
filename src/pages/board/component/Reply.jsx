@@ -21,7 +21,6 @@ const Reply = ({ boardId }) => {
       };
 
       await addDoc(collection(db, 'reply'), commentData);
-      //   console.log('댓글이 성공적으로 추가되었습니다!');
       alert('댓글이 추가되었습니다!');
 
       // 입력 필드 초기화
@@ -40,7 +39,7 @@ const Reply = ({ boardId }) => {
         placeholder="댓글을 작성해보아요 : )"
       />
       <button className="reply-btn" onClick={handleSubmitComment}>
-        댓글 작성
+        등록
       </button>
     </div>
   );

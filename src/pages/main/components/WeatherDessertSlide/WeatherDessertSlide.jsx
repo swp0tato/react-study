@@ -17,6 +17,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
   });
 
   let newDessert = [];
+  let icon = "";
   let backgroundClass = "clear"; // 기본값 설정
 
   if (data) {
@@ -24,22 +25,27 @@ const WeatherDessertSlide = ({ lat, lon }) => {
       case 2:
         backgroundClass = "thunderstorm";
         newDessert = ["핫초코", "쿠키", "스콘", "뱅쇼"];
+        icon = "&#127785;";
         break;
       case 3:
         backgroundClass = "drizzle";
         newDessert = ["라떼", "쿠키", "스콘", "브라우니"];
+        icon = "&#127778;";
         break;
       case 5:
         backgroundClass = "rain";
         newDessert = ["라떼", "쿠키", "스콘", "브라우니"];
+        icon = "&#127783;";
         break;
       case 6:
         backgroundClass = "snow";
         newDessert = ["핫초코", "쿠키", "스콘", "뱅쇼"];
+        icon = "&#127784;";
         break;
       case 7:
         backgroundClass = "atmosphere";
         newDessert = ["타르트", "브라우니", "라떼", "주스"];
+        icon = "&#127778;";
         break;
       case 8:
         if (data.id === 800) {
@@ -55,9 +61,11 @@ const WeatherDessertSlide = ({ lat, lon }) => {
             "아인슈페너",
             "샌드위치",
           ];
+          icon = "&#127774;";
         } else {
           backgroundClass = "clouds";
           newDessert = ["브라우니", "아이스크림", "빙수", "크로플"];
+          icon = "&#127781;";
         }
         break;
       default:
@@ -103,7 +111,10 @@ const WeatherDessertSlide = ({ lat, lon }) => {
     <div className={`weather_dessert_section ${backgroundClass}`}>
       <div className="weather_dessert_wrapper">
         <div className="weather_dessert_title">
-          <h2>지금 날씨엔 이 디저트 어떠세요? ({data.main})</h2>
+          <h2>
+            지금 날씨엔 이 디저트 어떠세요?&nbsp;
+            <span dangerouslySetInnerHTML={{ __html: icon }}></span>
+          </h2>
           <button onClick={refetch}>
             <FontAwesomeIcon icon={faRotateRight} />
           </button>

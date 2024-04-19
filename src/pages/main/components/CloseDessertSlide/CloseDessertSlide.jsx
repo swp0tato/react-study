@@ -13,11 +13,11 @@ const CloseDessertSlide = ({ lat, lon }) => {
     lon,
   });
 
-  let placeNames = [];
+  // let placeNames = [];
 
-  if (data) {
-    placeNames = data.map((item) => item.place_name);
-  }
+  // if (data) {
+  //   placeNames = data.map((item) => item.place_name);
+  // }
 
   // console.log("placeNames? : ", placeNames);
 
@@ -50,7 +50,7 @@ const CloseDessertSlide = ({ lat, lon }) => {
   return (
     <div className="close_dessert_section">
       <div className="close_dessert_wrapper">
-        <h2>가까운 디저트 맛집 Top5</h2>
+        <h2>가까운 디저트 맛집 &#127942; Top5</h2>
         <Slider cafe={newDataSlice} responsive={responsive} />
       </div>
     </div>

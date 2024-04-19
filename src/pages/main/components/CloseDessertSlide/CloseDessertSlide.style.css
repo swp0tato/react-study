@@ -12,6 +12,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 600px;
 }
 
@@ -26,6 +27,19 @@
   font-size: 1.8em;
   margin: 1em 0 0.5em 0;
   word-break: keep-all;
+}
+
+.close_dessert_wrapper .loading-spinner {
+  text-align: center;
+  font-size: 30px;
+  color: #918369;
+  font-family: "TTLaundryGothicB";
+  margin-bottom: 1em;
+}
+
+.close_dessert_wrapper .error_message {
+  font-size: 20px;
+  text-align: center;
 }
 
 @media screen and (max-width: 464px) {

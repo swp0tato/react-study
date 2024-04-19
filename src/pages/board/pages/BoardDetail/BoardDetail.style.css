@@ -87,6 +87,7 @@
 .modify-btn-box > button:hover {
   background-color: #ded0b6;
   font-weight: 600;
+  color: #000;
 }
 
 .modify-btn-box > .delete-btn {
@@ -116,6 +117,19 @@
 }
 .cafe-title-text {
   color: #4b4436;
+}
+
+.board-reply-wrap {
+  display: flex;
+  flex-direction: column;
+  margin: 15px auto;
+}
+.board-reply-content {
+  margin: 10px 0;
+  background-color: #c9bca2;
+  padding: 4px;
+  border-radius: 6px;
+  font-size: 15px;
 }
 
 .comment-user-img-box > img {

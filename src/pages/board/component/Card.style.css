@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
 .board-card {
-  margin: 15px 15px;
   width: 240px;
   height: 220px;
+  margin-bottom: 8px;
   border-radius: 6px;
   cursor: pointer;
   transition: 0.5s;
@@ -28,11 +28,11 @@
 }
 
 .card-wrap {
-  width: 100%;
+  width: 1280px;
+  margin: 0 auto;
   margin-bottom: 4rem;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-column-gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 2rem;
 }
 
@@ -42,9 +42,7 @@
 }
 
 .card-area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 auto;
 }
 
 .card-user-info {
@@ -63,32 +61,20 @@
   font-size: 16px;
 }
 
-@media screen and (max-width: 1790px) {
+@media screen and (max-width: 1300px) {
   .card-wrap {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media screen and (max-width: 1480px) {
-  .card-wrap {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media screen and (max-width: 1180px) {
-  .card-wrap {
+    width: 80%;
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 1000px) {
   .card-wrap {
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 0;
   }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 660px) {
   .card-wrap {
     grid-template-columns: repeat(1, 1fr);
   }

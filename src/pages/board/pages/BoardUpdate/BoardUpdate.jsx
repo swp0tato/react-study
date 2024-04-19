@@ -63,45 +63,58 @@ const BoardUpdate = () => {
   };
 
   return (
-    <div>
-      <h2>게시물 수정</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">제목</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="content">내용</label>
-          <textarea
-            id="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="hashtags">해시태그</label>
-          <input
-            type="text"
-            id="hashtags"
-            value={hashtags}
-            onChange={(e) => setHashtags(e.target.value)}
-          />
-        </div>
-        <div>
-          <p>작성자: {user}</p>
-          <p>작성일자: {date}</p>
-          <img src={profileImg} alt="프로필 이미지" />
-        </div>
-        <button type="submit">수정</button>
-        <button type="button" onClick={handleCancel}>
-          취소
-        </button>
-      </form>
+    <div className="board-write-wrap">
+      <div className="write-top-box">
+        <img width={100} src="/images/cafe_icon.png" alt="카페 아이콘" />
+        <p>나만 알기 아쉬운 카페를 추천해 주세요!</p>
+      </div>
+      <div className="write-form-wrap">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="title">제목</label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="content">내용</label>
+            <textarea
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="hashtags">해시태그</label>
+            <input
+              type="text"
+              id="hashtags"
+              value={hashtags}
+              onChange={(e) => setHashtags(e.target.value)}
+            />
+          </div>
+          <div>
+            <div className="write-user-box">
+              <img src={profileImg} alt="프로필 이미지" />
+              <p>{user}</p>
+            </div>
+            <p className="write-date">작성일자 {date}</p>
+          </div>
+          <button type="submit" className="write-submit-btn">
+            게시물 수정
+          </button>
+          <button
+            type="button"
+            className="write-cancel-btn"
+            onClick={handleCancel}
+          >
+            취소
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

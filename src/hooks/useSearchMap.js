@@ -1,17 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import searchMapApi from "../utils/searchMapApi";
-import { currentLocation } from "../redux/reducer/searchMapSlice";
+import { currentLocation } from "../redux/reducer/search/searchMapSlice";
 import { useDispatch } from "react-redux";
 
-const fetchSearchMap = ({ location }) => {
+const fetchSearchMap = ({ location, searchQuery }) => {
   const { latitude, longitude } = location;
-  let url = `/category.json?category_group_code=CE7&page=1&size=15&sort=accuracy&x=${longitude}&y=${latitude}`;
+  let url = "";
+
+  if (searchQuery) {
+    url = `/keyword.json?page=1&size=15&sort=accuracy&query=${searchQuery}&category_group_code=CE7`;
+  } else {
+    url = `/category.json?category_group_code=CE7&page=1&size=15&sort=accuracy&x=${longitude}&y=${latitude}`;
+  }
 
   return searchMapApi.get(url);
 };
 
-export const useSearchMapQuery = () => {
+export const useSearchMapQuery = ({ searchQuery }) => {
   const dispatch = useDispatch();
   const [location, setLocation] = useState(null);
 
@@ -36,8 +42,8 @@ export const useSearchMapQuery = () => {
   }, []);
 
   return useQuery({
-    queryKey: ["search-map", { location }],
-    queryFn: () => fetchSearchMap({ location }),
+    queryKey: ["search-map", { location, searchQuery }],
+    queryFn: () => fetchSearchMap({ location, searchQuery }),
     select: (result) => result.data.documents,
   });
 };

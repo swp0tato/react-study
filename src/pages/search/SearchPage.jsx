@@ -1,17 +1,50 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchMapQuery } from "../../hooks/useSearchMap";
 import { useSelector } from "react-redux";
 import SearchBar from "../../common/SearchBar/SearchBar";
 import "./SearchPage.style.css";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const SearchPage = () => {
   const { kakao } = window;
   const { latitude, longitude } = useSelector(
     (state) => state.search?.location
   );
-  const { data, isLoading, isError, error } = useSearchMapQuery();
+  const navigate = useNavigate();
+  const [query, setQuery] = useSearchParams();
+  const searchQuery = query.get("q") || "";
+  const [keyword, setKeyword] = useState("");
+  const [btnActive, setBtnActive] = useState(false);
+  const { data, isLoading, isError, error } = useSearchMapQuery({
+    searchQuery,
+  });
   // console.log("data!!", data);
-  const searchBarProps = { width: "500px", height: "50px" };
+  // console.log("searchQuery", searchQuery);
+
+  const searchBarProps = {
+    width: "90%",
+    height: "50px",
+    keyword,
+    onchange: (event) => setKeyword(event),
+    onsubmit: (event) => {
+      event.preventDefault();
+      moveSearchMap();
+    },
+    onkeydown: (event) => {
+      event.preventDefault();
+      moveSearchMap();
+    },
+  };
+
+  const moveSearchMap = () => {
+    navigate(`/search?q=${keyword}`);
+    setKeyword("");
+  };
 
   const displayMarker = (data) => {
     let markers = [];
@@ -40,15 +73,14 @@ const SearchPage = () => {
     const bounds = new kakao.maps.LatLngBounds();
     bounds.extend(markerPosition);
 
-    let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-
-    displayPlaces(data);
+    if (data.length > 0) {
+      displayPlaces(data);
+    }
 
     function displayPlaces(places) {
       let listEl = document.getElementById("placesList"),
         fragment = document.createDocumentFragment(),
-        bounds = new kakao.maps.LatLngBounds(),
-        listStr = "";
+        bounds = new kakao.maps.LatLngBounds();
 
       removeMarker();
 
@@ -59,23 +91,27 @@ const SearchPage = () => {
 
         bounds.extend(placePosition);
 
-        (function (marker, title, position) {
-          kakao.maps.event.addListener(marker, "mouseover", function () {
-            displayInfowindow(marker, title);
-          });
+        (function (marker, position, place) {
+          let overlay;
 
-          kakao.maps.event.addListener(marker, "mouseout", function () {
-            infowindow.close();
+          kakao.maps.event.addListener(marker, "click", function () {
+            displayInfowindow(marker, place, position);
           });
 
           itemEl.onmouseover = function () {
-            displayInfowindow(marker, title, position);
+            return (overlay = displayInfowindow(marker, place, position));
           };
 
           itemEl.onmouseout = function () {
-            infowindow.close();
+            overlay.setMap(null);
           };
-        })(marker, places[i].place_name, placePosition);
+
+          itemEl.onclick = function () {
+            navigate(`/search/${place.place_name}`, {
+              state: { address: places.road_address_name },
+            });
+          };
+        })(marker, placePosition, places[i]);
 
         fragment.appendChild(itemEl);
       }
@@ -86,7 +122,7 @@ const SearchPage = () => {
     }
 
     function getListItem(index, cafe) {
-      var el = document.createElement("div"),
+      let el = document.createElement("div"),
         itemStr = `
         <h3 class="search_card_title">${cafe.place_name}</h3>
         <div class="search_card_phone">${cafe.phone}</div>
@@ -97,10 +133,13 @@ const SearchPage = () => {
         <div class="search_card_address">
           <span>지번</span>
           ${cafe.address_name}
-        </div>
-        <div class="search_card_distance">
-          ${cafe.distance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} m
         </div>`;
+
+      if (cafe.distance !== "") {
+        itemStr += `<div class="search_card_distance">
+          ${cafe.distance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} m
+          </div>`;
+      }
 
       el.innerHTML = itemStr;
       el.className = "search_card_box";
@@ -122,22 +161,77 @@ const SearchPage = () => {
     }
 
     function removeMarker() {
-      for (var i = 0; i < markers.length; i++) {
+      for (let i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
       }
       markers = [];
     }
 
-    function displayInfowindow(marker, title, position) {
-      var content =
-        '<div style="width:150px;text-align:center;padding:6px 0;">' +
-        title +
-        "</div>";
+    function displayInfowindow(marker, place, position) {
+      const overlay = new kakao.maps.CustomOverlay({
+        position: marker.getPosition(),
+        clickable: true,
+      });
 
-      infowindow.setContent(content);
-      infowindow.open(map, marker);
+      const infowindowWrap = document.createElement("div");
+      infowindowWrap.className = "infowindow_wrap";
+
+      const infowindowInfo = document.createElement("div");
+      infowindowInfo.className = "infowindow_info";
+
+      const infowindowTitle = document.createElement("div");
+      infowindowTitle.className = "infowindow_title";
+      infowindowTitle.innerHTML = place.place_name;
+      const infowindowClose = document.createElement("div");
+      infowindowClose.className = "infowindow_close";
+
+      const infowindowBody = document.createElement("div");
+      infowindowBody.className = "infowindow_body";
+
+      const infowindowDesc = document.createElement("div");
+      infowindowDesc.className = "infowindow_desc";
+
+      const infowindowRoadAddress = document.createElement("div");
+      infowindowRoadAddress.innerHTML = "(도로명) " + place.road_address_name;
+      const infowindowAddress = document.createElement("div");
+      infowindowAddress.innerHTML = "(지번) " + place.address_name;
+      const infowindowPhone = document.createElement("div");
+      infowindowPhone.innerHTML = place.phone;
+
+      const infowindowLinkDiv = document.createElement("div");
+      const infowindowLink = document.createElement("a");
+      infowindowLink.className = "infowindow_link";
+      infowindowLink.href = place.place_url;
+      infowindowLink.innerHTML = "홈페이지";
+      infowindowLink.target = "_blank";
+
+      infowindowWrap.append(infowindowInfo);
+      infowindowInfo.append(infowindowTitle, infowindowBody);
+      infowindowTitle.append(infowindowClose);
+      infowindowBody.append(infowindowDesc);
+      infowindowDesc.append(
+        infowindowRoadAddress,
+        infowindowAddress,
+        infowindowPhone,
+        infowindowLinkDiv
+      );
+      infowindowLinkDiv.append(infowindowLink);
+
+      overlay.setContent(infowindowWrap);
+
+      overlay.setMap(map);
 
       if (position) map.panTo(position);
+
+      infowindowClose.addEventListener("click", () => {
+        overlay.setMap(null);
+      });
+
+      kakao.maps.event.addListener(map, "click", function () {
+        overlay.setMap(null);
+      });
+
+      return overlay;
     }
   };
 
@@ -160,24 +254,42 @@ const SearchPage = () => {
 
   return (
     <div className="search_page_area">
-      <section className="search_box_section">
+      <section className="search_map_section">
+        <div id="map" className="search_map"></div>
+        <button
+          className={`search-toggle-button ${btnActive ? "active" : ""}`}
+          onClick={() => setBtnActive(!btnActive)}
+        >
+          {btnActive ? (
+            <FontAwesomeIcon icon={faChevronLeft} />
+          ) : (
+            <FontAwesomeIcon icon={faChevronRight} />
+          )}
+        </button>
+      </section>
+      <section className={`search_box_section ${btnActive ? "active" : ""}`}>
         <div className="search_box_area">
           <div className="search_box_area_bar">
             <SearchBar searchBarProps={searchBarProps} />
           </div>
           <div className="search_info_area">
-            <div className="search_info_title">내 주변 카페 보기</div>
+            <div className="search_info_title">
+              {searchQuery
+                ? "'" + searchQuery + "' 관련 카페 보기"
+                : "내 주변 카페 보기"}
+            </div>
             <select className="search_sort_box">
               <option>정확도 순</option>
               <option>가까운 순</option>
               <option>가나다 순</option>
             </select>
           </div>
-          <div id="placesList" className="search_box_results"></div>
+          <div id="placesList" className="search_box_results">
+            {data.length === 0 && (
+              <div className="search_results_empty">검색 결과가 없습니다.</div>
+            )}
+          </div>
         </div>
-      </section>
-      <section className="search_map_section">
-        <div id="map" className="search_map"></div>
       </section>
     </div>
   );

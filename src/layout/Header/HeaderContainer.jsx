@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import "./Header.style.css";
-import MenuBar from "../../components/Header/menubar/MenuBar";
-import SideBar from "../../components/Header/sidebar/SideBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import Dropdown from "../../components/Header/Dropdown/Dropdown";
-import { getAuth, signOut } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/reducer/authenciate/authenciateSlice";
+import React, { useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import './Header.style.css';
+import MenuBar from '../../components/Header/menubar/MenuBar';
+import SideBar from '../../components/Header/sidebar/SideBar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import Dropdown from '../../components/Header/Dropdown/Dropdown';
+import { getAuth, signOut } from 'firebase/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../redux/reducer/authenciate/authenciateSlice';
 
 const HeaderContainer = () => {
   const imgPath = process.env.REACT_APP_IMGPATH;
@@ -25,15 +25,15 @@ const HeaderContainer = () => {
   };
 
   const handleLogout = () => {
-    if (window.confirm("로그아웃 하시겠습니까?")) {
+    if (window.confirm('로그아웃 하시겠습니까?')) {
       signOut(auth)
         .then(() => {
-          console.log("성공");
+          console.log('성공');
           dispatch(logout());
           setIsDropdown(false);
         })
         .catch((error) => {
-          console.log("실패", error.message);
+          console.log('실패', error.message);
         });
     }
   };
@@ -43,7 +43,7 @@ const HeaderContainer = () => {
       navigate(`/auth`);
       setIsDropdown(false);
     } else {
-      navigate("/auth/myinfo");
+      navigate('/auth/myinfo');
       setIsDropdown(false);
     }
   };
@@ -64,7 +64,7 @@ const HeaderContainer = () => {
             <FontAwesomeIcon icon={faBars} className="hamburger_icon" />
           </div>
           <img
-            src={`${imgPath}/Logo.png`}
+            src="yum2수정.png"
             alt="로고이미지"
             className="logo_img"
             onClick={navigateToMain}

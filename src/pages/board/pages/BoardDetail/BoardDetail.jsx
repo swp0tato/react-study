@@ -1,46 +1,66 @@
-import React, { useState, useEffect } from "react";
-import "./BoardDetail.style.css";
-import Comment from "./component/Comment";
-import { useParams } from "react-router-dom";
-import { db } from "../../../../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import React, { useState, useEffect } from 'react';
+import './BoardDetail.style.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import { db, storage } from '../../../../firebase';
+import { doc, getDoc, deleteDoc } from 'firebase/firestore';
+import { ref, deleteObject } from 'firebase/storage';
 
 const BoardDetail = () => {
-  let [isValid, setIsValid] = useState(false);
-
-  const savedCmts = JSON.parse(localStorage.getItem("cmts")) || [];
-  const [cmts, setCmts] = useState(savedCmts);
-  const [newCmt, setNewCmt] = useState("");
-
-  useEffect(() => {
-    localStorage.setItem("cmts", JSON.stringify(cmts));
-  }, [cmts]);
-
-  const addCmt = () => {
-    setCmts([...cmts, newCmt]);
-    setNewCmt("");
-    localStorage.setItem("cmts", JSON.stringify([...cmts, newCmt]));
-  };
-
   const { id } = useParams();
   const [board, setBoard] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBoard = async () => {
-      const docRef = doc(db, "items", id);
+      const docRef = doc(db, 'items', id);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        setBoard({ id: docSnap.id, ...docSnap.data() });
+        const boardData = docSnap.data();
+        const timestamp = boardData.date;
+        const date = new Date(timestamp.seconds * 1000);
+        const formattedDate = `${date.getFullYear()}-${String(
+          date.getMonth() + 1,
+        ).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+        setBoard({ ...boardData, date: formattedDate });
       } else {
-        console.log("게시물이 존재하지 않습니다.");
+        console.log('게시물이 존재하지 않습니다.');
       }
     };
     fetchBoard();
   }, [id]);
 
+  const handleDelete = async () => {
+    try {
+      // 이미지 삭제
+      if (board.imageUrl) {
+        const imageRef = ref(storage, board.imageUrl);
+        await deleteObject(imageRef);
+        // console.log('이미지가 삭제되었습니다.');
+      }
+      // 게시물 삭제
+      await deleteDoc(doc(db, 'items', id));
+      // console.log('게시물이 삭제되었습니다.');
+      alert('게시물이 삭제되었습니다!');
+      navigate('/board');
+    } catch (error) {
+      console.error('게시물 삭제 중 오류가 발생했습니다:', error);
+    }
+  };
+
   if (!board) {
     return <div>Loading...</div>;
   }
+
+  const confirmDelete = () => {
+    const result = window.confirm('정말 삭제하시겠습니까?');
+    if (result) {
+      handleDelete();
+    }
+  };
+
+  const goToUpdatePage = () => {
+    navigate(`/board/edit/${id}`);
+  };
 
   return (
     <div className="board-detail-wrap">
@@ -51,13 +71,20 @@ const BoardDetail = () => {
         <div className="board-content-box">
           <p>게시물</p>
           <div className="detail-user-box">
-            <img
-              src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png"
-              alt="사용자 이미지"
-            />
+            {board.profileImg ? (
+              <img src={board.profileImg} alt="사용자 이미지" />
+            ) : (
+              <img
+                src="https://i.pinimg.com/736x/e9/ce/91/e9ce91bbb0d18e5555b1bbd3745a0fef.jpg"
+                alt="사용자 이미지"
+              />
+            )}
             <p>{board?.user}</p>
           </div>
-          <h3>{board?.title}</h3>
+          <h3>
+            <span className="cafe-title">카페명</span>{' '}
+            <span className="cafe-title-text">{board?.title}</span>
+          </h3>
           <p className="board-review-content">{board?.content}</p>
 
           <div className="board-detail-hashtags">
@@ -67,52 +94,14 @@ const BoardDetail = () => {
           </div>
 
           <div className="position-box">
-            <div className="board-date-box">작성일 2024-04-17</div>
+            <div className="board-date-box">{board?.date}</div>
             <div className="modify-btn-box">
-              <button>수정</button>
-              <button className="delete-btn">삭제</button>
+              <button onClick={goToUpdatePage}>수정</button>
+              <button className="delete-btn" onClick={confirmDelete}>
+                삭제
+              </button>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="board-comment-area">
-        <p>댓글</p>
-        <div className="comment-textarea-box">
-          <div className="comment-user-img-box">
-            <img
-              src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png"
-              alt="사용자 이미지"
-            />
-          </div>
-          <textarea
-            type="text"
-            className="comment-textarea"
-            placeholder="내용을 입력해 주세요."
-            value={newCmt}
-            onChange={(e) => {
-              setNewCmt(e.target.value);
-            }}
-            onKeyUp={(e) => {
-              e.target.value.length > 0 ? setIsValid(true) : setIsValid(false);
-            }}
-          />
-        </div>
-        <div className="comment-btn-box">
-          <button
-            type="button"
-            className={
-              newCmt.length > 0 ? "commentBtnActive" : "commentBtnInactive"
-            }
-            onClick={addCmt}
-            disabled={isValid ? false : true}
-          >
-            등록
-          </button>
-        </div>
-        <div>
-          {cmts.map((cmt, index) => (
-            <Comment key={index} cmt={cmt} />
-          ))}
         </div>
       </div>
     </div>

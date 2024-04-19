@@ -23,7 +23,7 @@ const BoardDetail = () => {
         ).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
         setBoard({ ...boardData, date: formattedDate });
       } else {
-        console.log('게시물이 존재하지 않습니다.');
+        console.log('피드가 존재하지 않습니다.');
       }
     };
     fetchBoard();
@@ -35,15 +35,13 @@ const BoardDetail = () => {
       if (board.imageUrl) {
         const imageRef = ref(storage, board.imageUrl);
         await deleteObject(imageRef);
-        // console.log('이미지가 삭제되었습니다.');
       }
-      // 게시물 삭제
+
       await deleteDoc(doc(db, 'items', id));
-      // console.log('게시물이 삭제되었습니다.');
-      alert('게시물이 삭제되었습니다!');
+      alert('피드가 삭제되었습니다!');
       navigate('/board');
     } catch (error) {
-      console.error('게시물 삭제 중 오류가 발생했습니다:', error);
+      console.error('피드 삭제 중 오류가 발생했습니다:', error);
     }
   };
 
@@ -69,7 +67,7 @@ const BoardDetail = () => {
           <img src={board?.imageUrl} alt="리뷰 이미지" />
         </div>
         <div className="board-content-box">
-          <p>게시물</p>
+          <p>Board</p>
           <div className="detail-user-box">
             {board.profileImg ? (
               <img src={board.profileImg} alt="사용자 이미지" />

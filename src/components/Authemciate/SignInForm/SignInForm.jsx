@@ -3,34 +3,29 @@ import "./SignInForm.style.css";
 import AuthInput from "../../../common/Authenticate/AuthInput/AuthInput";
 import { useNavigate } from "react-router-dom";
 import AuthTextBtn from "../../../common/Authenticate/AuthTextBtn/AuthTextBtn";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { updateEmail } from "firebase/auth";
-const SignInForm = () => {
+
+const SignInForm = ({ setEmail, email, setPassword, password }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const initialEmail = useSelector((state) => state.email);
-  console.log("z,", initialEmail);
 
   const naviateToSignUP = () => {
     navigate(`/auth/signup`);
   };
-
-  const handleEmailChange = (e) => {
-    console.log("z");
-    dispatch(updateEmail(e.target.value));
+  const navigateToPassword = () => {
+    navigate(`/auth/password`);
   };
 
   const emailProps = {
     type: "email",
     placeholder: "이메일",
-    // handleSetValue: (e) => handleEmailChange(e),
-    // value: initialEmail,
+    handleSetValue: (e) => setEmail(e.target.value),
+    isValue: email,
   };
 
   const passwordProps = {
     type: "password",
     placeholder: "비밀번호",
+    handleSetValue: (e) => setPassword(e.target.value),
+    isValue: password,
   };
 
   return (
@@ -42,11 +37,8 @@ const SignInForm = () => {
         style={{ display: "flex", justifyContent: "center" }}
       >
         <AuthTextBtn onClick={naviateToSignUP}>회원가입</AuthTextBtn>
-
         <div>|</div>
-        <AuthTextBtn>아이디 찾기</AuthTextBtn>
-        <div>|</div>
-        <AuthTextBtn>비밀번호 재발급</AuthTextBtn>
+        <AuthTextBtn onClick={navigateToPassword}>비밀번호 재발급</AuthTextBtn>
       </div>
     </div>
   );

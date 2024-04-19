@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 .board-detail-wrap {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   width: 1100px;
   margin: 4rem auto;
 }
@@ -81,7 +81,7 @@
   background: transparent;
   border: 2px solid #ded0b6;
   border-radius: 6px;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 .modify-btn-box > button:hover {
@@ -126,10 +126,10 @@
 }
 .board-reply-content {
   margin: 10px 0;
-  background-color: #c9bca2;
   padding: 4px;
-  border-radius: 6px;
-  font-size: 15px;
+  font-size: 17px;
+  border-bottom: 2px solid lightgray;
+  padding-bottom: 10px;
 }
 
 .comment-user-img-box > img {

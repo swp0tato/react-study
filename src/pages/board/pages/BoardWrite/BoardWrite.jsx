@@ -58,7 +58,7 @@ const BoardWrite = () => {
 
       navigate('/board');
     } catch (error) {
-      console.error('게시물 추가 오류:', error);
+      console.error('피드 추가 오류:', error);
       alert('피드를 추가하는 중에 오류가 발생했습니다.');
     }
   };

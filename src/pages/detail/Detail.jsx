@@ -7,16 +7,14 @@ import InfiniteScroll from 'react-infinite-scroller';
 const Detail = () => {
   const [number, setNumber] = useState(1);
   const { id } = useParams();
-  console.log('검색어 페이지 주소 : ', id);
   const { data: blogData, isLoading, isError, error } = useDetail(id, number);
-  console.log('검색 데이터', blogData);
   const blogs = blogData?.documents;
 
   const location = useLocation();
   const address = location.state?.address;
 
   if (isLoading) {
-    // return <isLoading />;
+    return <div>Loading..</div>;
   }
   if (isError) {
     return <alert variant="danger">{error.message}</alert>;
@@ -30,7 +28,6 @@ const Detail = () => {
 
   return (
     <div className="detail-page">
-      {/* <div className="detail-subject">영주시 디저트 카페</div> */}
       <h1 className="detail-title">{id}</h1>
       <p className="detail-address">{address ? address : '주소없음'}</p>
 

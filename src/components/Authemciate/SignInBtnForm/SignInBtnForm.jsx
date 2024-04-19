@@ -1,14 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  authWithEmailandPassword,
-  authWithGoogleAndPersistSession,
-} from "../../../utils/authService/authServie";
+import { authWithGoogleAndPersistSession } from "../../../utils/authService/authServie";
 import "./SignInBtnForm.style.css";
 import AuthBtn from "../../../common/Authenticate/AuthBtn/AuthBtn";
 
-const SignInBtnForm = () => {
+const SignInBtnForm = ({ handleAuthWithEmail }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -17,13 +14,6 @@ const SignInBtnForm = () => {
     e.preventDefault();
 
     authWithGoogleAndPersistSession(dispatch, navigate);
-  };
-
-  const handleAuthWithEmail = (e) => {
-    //이메일 로그인
-    e.preventDefault();
-
-    // authWithEmailandPassword();
   };
 
   const loginBtn = {

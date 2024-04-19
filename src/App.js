@@ -1,18 +1,21 @@
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import HeaderContainer from './layout/Header/HeaderContainer';
-import MainPage from './pages/main/MainPage';
-import SearchPage from './pages/search/SearchPage';
-import Detail from './pages/detail/Detail';
-import Board from './pages/board/Board';
-import BoardWrite from './pages/board/pages/BoardWrite/BoardWrite';
-import BoardDetail from './pages/board/pages/BoardDetail/BoardDetail';
-import Authenticate from './pages/Authenticate/Authenticate/Authenticate';
-import SignUpPage from './pages/Authenticate/SignUp/SignUpPage';
-import { useEffect } from 'react';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import HeaderContainer from "./layout/Header/HeaderContainer";
+import MainPage from "./pages/main/MainPage";
+import SearchPage from "./pages/search/SearchPage";
+import Detail from "./pages/detail/Detail";
+import Board from "./pages/board/Board";
+import BoardWrite from "./pages/board/pages/BoardWrite/BoardWrite";
+import BoardDetail from "./pages/board/pages/BoardDetail/BoardDetail";
+import Authenticate from "./pages/Authenticate/Authenticate/Authenticate";
+import SignUpPage from "./pages/Authenticate/SignUp/SignUpPage";
+import { useEffect } from "react";
 
-import { login } from './redux/reducer/authenciate/authenciateSlice';
-import { useDispatch } from 'react-redux';
+import { login } from "./redux/reducer/authenciate/authenciateSlice";
+import { useDispatch } from "react-redux";
+import ForgotPasswordPage from "./pages/Authenticate/ForgotPasswordPage/ForgotPasswordPage";
+import MyInformation from "./pages/Authenticate/MyInformation/MyInformation";
+import UpdateMyInformation from "./pages/Authenticate/UpdateMyInformation/UpdateMyInformation";
 
 function App() {
   /**
@@ -21,13 +24,13 @@ function App() {
    */
 
   const apikey = process.env.REACT_APP_FIREBASE_API_KEY;
-  const appName = '[DEFAULT]';
+  const appName = "[DEFAULT]";
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getSessionStorageValue = JSON.parse(
-      sessionStorage.getItem(`firebase:authUser:${apikey}:${appName}`),
+      sessionStorage.getItem(`firebase:authUser:${apikey}:${appName}`)
     );
 
     dispatch(login(getSessionStorageValue));
@@ -41,6 +44,11 @@ function App() {
           <Route path="auth">
             <Route index element={<Authenticate />} />
             <Route path="signup" element={<SignUpPage />} />
+            <Route path="password" element={<ForgotPasswordPage />} />
+            <Route path="myinfo">
+              <Route index element={<MyInformation />} />
+              <Route path="update" element={<UpdateMyInformation />} />
+            </Route>
           </Route>
           <Route path="search" element={<SearchPage />} />
           <Route path="search/:id" element={<Detail />} />

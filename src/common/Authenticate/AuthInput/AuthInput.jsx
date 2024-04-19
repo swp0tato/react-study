@@ -7,15 +7,20 @@ const AuthInput = ({
   handleSetValue,
   isValue,
   readOnly,
+  inputEl,
+  id,
 }) => {
   return (
-    <label style={{ width: width }}>
+    <label className="auth_input_label" style={{ width: width }}>
       <input
+        id={id}
+        className="auth_input"
         value={isValue}
         onChange={handleSetValue}
         type={type}
         placeholder={placeholder}
         readOnly={readOnly && "readOnly"}
+        ref={inputEl}
       />
     </label>
   );

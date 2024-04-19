@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ForgotPasswordPage.style.css";
-import PageWrapper from "../../../components/Authemciate/PageWrapper/PageWrapper";
+import PageWrapper from "../../../components/Authenticate/PageWrapper/PageWrapper";
 import AuthInput from "../../../common/Authenticate/AuthInput/AuthInput";
 import AuthBtn from "../../../common/Authenticate/AuthBtn/AuthBtn";
 import { authWithSendPasswordResetEmail } from "../../../utils/authService/authServie";

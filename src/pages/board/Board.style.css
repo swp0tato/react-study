@@ -1,22 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
 @font-face {
-  font-family: 'TTLaundryGothicB';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2')
-    format('woff2');
+  font-family: "TTLaundryGothicB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: normal;
 }
 
 .board-wrap {
-  font-family: 'Noto Sans KR', sans-serif;
-  height: 100vh;
+  font-family: "Noto Sans KR", sans-serif;
+  /* height: 100vh; */
 }
 
 .board-title {
   text-align: center;
   margin-top: 40px;
-  font-family: 'TTLaundryGothicB';
+  font-family: "TTLaundryGothicB";
   font-size: 30px;
   color: #33312c;
   letter-spacing: 3px;
@@ -32,7 +32,7 @@
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   padding: 15px 35px;
   background-color: #ded0b6;
   font-weight: bold;
@@ -57,6 +57,6 @@
   z-index: 1000;
   font-size: 30px;
   color: #918369;
-  font-family: 'TTLaundryGothicB';
+  font-family: "TTLaundryGothicB";
   margin-top: 50px;
 }

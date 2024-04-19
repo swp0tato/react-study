@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+@font-face {
+  font-family: "TTLaundryGothicB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
 .weather_dessert_section {
   width: 100%;
   height: 640px;
@@ -49,7 +59,7 @@
 
 .weather_dessert_wrapper {
   width: 80%;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   display: flex;
   justify-content: center;
@@ -66,6 +76,9 @@
 }
 
 .weather_dessert_wrapper h2 {
+  font-family: "TTLaundryGothicB";
+  font-size: 1.8em;
+  word-break: keep-all;
   margin: 0 0.4em 0.4em 0;
 }
 
@@ -88,12 +101,34 @@
 
 .weather_dessert_wrapper .carousel-container {
   position: absolute;
-  /* top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-
   top: 55%;
   transform: translateY(-50%);
   width: 100%;
   margin-bottom: 2em;
+}
+
+@media screen and (max-width: 464px) {
+  .weather_dessert_title {
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .weather_dessert_wrapper h2 {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .weather_dessert_title button {
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .weather_dessert_title button .svg-inline--fa {
+    font-size: 30px;
+    color: #ffffff;
+  }
 }

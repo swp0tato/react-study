@@ -145,13 +145,11 @@ const SearchPage = () => {
         <div class="search_card_address">
           <span>지번</span>
           ${cafe.address_name}
-        </div>`;
-
-      if (cafe.distance !== "") {
-        itemStr += `<div class="search_card_distance">
+        </div>
+        <div class="search_card_distance">
           ${cafe.distance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} m
-          </div>`;
-      }
+        </div>
+        `;
 
       el.innerHTML = itemStr;
       el.className = "search_card_box";

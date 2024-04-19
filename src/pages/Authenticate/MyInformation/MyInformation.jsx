@@ -1,6 +1,6 @@
 import React from "react";
 import "./Myinformation.style.css";
-import PageWrapper from "../../../components/Authemciate/PageWrapper/PageWrapper";
+import PageWrapper from "../../../components/Authenticate/PageWrapper/PageWrapper";
 import { useSelector } from "react-redux";
 import AuthInput from "./../../../common/Authenticate/AuthInput/AuthInput";
 import AuthBtn from "./../../../common/Authenticate/AuthBtn/AuthBtn";

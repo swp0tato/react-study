@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./BoardDetail.style.css";
-import Comment from "./componenet/Comment";
+import Comment from "./component/Comment";
 import { useParams } from "react-router-dom";
 import { db } from "../../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -20,11 +20,6 @@ const BoardDetail = () => {
     setCmts([...cmts, newCmt]);
     setNewCmt("");
     localStorage.setItem("cmts", JSON.stringify([...cmts, newCmt]));
-  };
-
-  const romoveCmt = () => {
-    setCmts([...cmts, newCmt]);
-    localStorage.removeItem("cmts", JSON.stringify([...cmts, newCmt]));
   };
 
   const { id } = useParams();

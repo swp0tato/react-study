@@ -63,44 +63,52 @@ const BoardUpdate = () => {
 
   return (
     <div>
-      <h2>피드 수정</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">제목</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+      <h3 className="board-title">피드 수정 🧀</h3>
+      <div className="board-update-wrap">
+        <div className="not-update-area">
+          <p>
+            user{' '}
+            <img className="profile-img" src={profileImg} alt="프로필 이미지" />{' '}
+            {user}
+          </p>
+          <p>작성일 {date}</p>
         </div>
-        <div>
-          <label htmlFor="content">내용</label>
-          <textarea
-            id="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="hashtags">해시태그</label>
-          <input
-            type="text"
-            id="hashtags"
-            value={hashtags}
-            onChange={(e) => setHashtags(e.target.value)}
-          />
-        </div>
-        <div>
-          <p>작성자: {user}</p>
-          <p>작성일자: {date}</p>
-          <img src={profileImg} alt="프로필 이미지" />
-        </div>
-        <button type="submit">수정</button>
-        <button type="button" onClick={handleCancel}>
-          취소
-        </button>
-      </form>
+        <form onSubmit={handleSubmit} className="board-update-form">
+          <div>
+            <label htmlFor="title">제목</label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="content">내용</label>
+            <textarea
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="hashtags">해시태그</label>
+            <input
+              type="text"
+              id="hashtags"
+              value={hashtags}
+              onChange={(e) => setHashtags(e.target.value)}
+            />
+          </div>
+
+          <button type="submit" className="board-update-btn">
+            수정
+          </button>
+          <button type="button" onClick={handleCancel}>
+            취소
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

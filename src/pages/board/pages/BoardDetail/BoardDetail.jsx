@@ -4,12 +4,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { db, storage } from '../../../../firebase';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
+import Reply from '../../component/Reply';
+import ReplyList from '../../component/ReplyList';
 
 const BoardDetail = () => {
   const { id } = useParams();
   const [board, setBoard] = useState(null);
-  const navigate = useNavigate();
+  const [comments, setComments] = useState([]);
 
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchBoard = async () => {
       const docRef = doc(db, 'items', id);
@@ -102,6 +105,14 @@ const BoardDetail = () => {
           </div>
         </div>
       </div>
+      <Reply boardId={id} />
+      <ReplyList comments={comments} />
+      {/* <div>
+        댓글 ({board?.reply.length})
+        {board?.reply.map((re, index) => (
+          <p key={index}>{re}</p>
+        ))}
+      </div> */}
     </div>
   );
 };

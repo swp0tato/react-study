@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import "./Header.style.css";
-import MenuBar from "../../components/Header/menubar/MenuBar";
-import SideBar from "../../components/Header/sidebar/SideBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import UserIsAuthticate from "../../components/Header/userIsAuthticate/UserIsAuthticate";
+import React, { useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import './Header.style.css';
+import MenuBar from '../../components/Header/menubar/MenuBar';
+import SideBar from '../../components/Header/sidebar/SideBar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import UserIsAuthticate from '../../components/Header/userIsAuthticate/UserIsAuthticate';
 
 const HeaderContainer = () => {
   const imgPath = process.env.REACT_APP_IMGPATH;
@@ -15,7 +15,7 @@ const HeaderContainer = () => {
   const [isMenuBar, setIsMenuBar] = useState(false);
 
   const toggleMenuBar = () => {
-    console.log("클릭");
+    console.log('클릭');
     setIsMenuBar(!isMenuBar);
   };
 
@@ -31,7 +31,7 @@ const HeaderContainer = () => {
             <FontAwesomeIcon icon={faBars} className="hamburger_icon" />
           </div>
           <img
-            src={`${imgPath}/Logo.png`}
+            src="yum2수정.png"
             alt="로고이미지"
             className="logo_img"
             onClick={navigateToMain}

@@ -1,19 +1,20 @@
 .carousel-container {
   max-width: 1920px;
   height: 500px;
-  border: 1px solid red;
+  position: relative;
 }
 
-.react-multi-carousel-track {
+.react-multiple-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
 }
 
 .carousel-item {
   margin-right: 20px !important;
-  /* width: 100% !important; */
-  width: calc(
-    100% / 5
-  ) !important; /* 데스크탑에서 5개의 아이템이 옆으로 나란히 표시되도록 너비 조절 */
-  border: 1px solid blueviolet;
+  width: calc(100% / 5) !important;
 }
 
 .carousel-item:last-child {

@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import Slider from "../../../../common/Slider/Slider";
 import { responsive } from "./../../../../constans/responsive";
 import "react-multi-carousel/lib/styles.css";
+import "./../../../../common/Slider/Slider.style.css";
 import "./CloseDessertSlide.style.css";
 import { useSearchCloseDessertQuery } from "../../../../hooks/useSearchCloseDessert";
 import { useSearchImageQueries } from "../../../../hooks/useSearchImage";

@@ -4,6 +4,7 @@ import { responsive } from "./../../../../constans/responsive";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "react-multi-carousel/lib/styles.css";
+import "./../../../../common/Slider/Slider.style.css";
 import "./WeatherDessertSlide.style.css";
 import { useCurrentWeatherQuery } from "../../../../hooks/useCurrentWeather";
 import { useSearchWeatherDessertQuery } from "../../../../hooks/useSearchWeatherDessert";

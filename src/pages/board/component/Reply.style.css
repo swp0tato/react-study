@@ -17,6 +17,7 @@
   width: 80px;
   height: 36px;
   font-family: 'Noto Sans KR', sans-serif;
+  margin: 7px auto;
 }
 
 .reply-btn:hover {

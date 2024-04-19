@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import './Detail.style.css';
 import { useDetail } from '../../hooks/useDetail';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -11,6 +11,9 @@ const Detail = () => {
   const { data: blogData, isLoading, isError, error } = useDetail(id, number);
   console.log('검색 데이터', blogData);
   const blogs = blogData?.documents;
+
+  const location = useLocation();
+  const address = location.state?.address;
 
   if (isLoading) {
     // return <isLoading />;
@@ -29,7 +32,7 @@ const Detail = () => {
     <div className="detail-page">
       {/* <div className="detail-subject">영주시 디저트 카페</div> */}
       <h1 className="detail-title">{id}</h1>
-      <p className="detail-address">경기 양주시 광사로 145 1,2층 (우)11494</p>
+      <p className="detail-address">{address ? address : '주소없음'}</p>
 
       <InfiniteScroll
         pageStart={0}

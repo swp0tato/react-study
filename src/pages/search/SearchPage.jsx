@@ -108,7 +108,7 @@ const SearchPage = () => {
 
           itemEl.onclick = function () {
             navigate(`/search/${place.place_name}`, {
-              state: { address: places.road_address_name },
+              state: { address: place.road_address_name },
             });
           };
         })(marker, placePosition, places[i]);

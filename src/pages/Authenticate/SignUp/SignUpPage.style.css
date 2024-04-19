@@ -1,21 +1,33 @@
 .top {
   width: 100%;
   height: 80%;
-  border: 1px solid blue;
+}
+.sign_up_page_title {
+  height: 100px;
 }
 
-.email_check {
+.sign_up_item_wrapper {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-bottom: 1.5rem;
 }
 
-.email_check > button {
-  width: 15%;
-}
-
-p {
+.title {
   font-weight: bold;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  word-break: keep-all;
+}
+
+.duplicate_check {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
 }
 
 .sign_up_btn {

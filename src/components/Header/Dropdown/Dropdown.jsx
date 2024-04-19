@@ -16,8 +16,6 @@ const Dropdown = ({
   setIsDropdown,
   navigateToAuth,
 }) => {
-  const isAuthenticated = useSelector((state) => state.auth?.isAuthenticated);
-
   const user = useSelector((state) => state.auth.user);
 
   const toggleDropdown = () => {
@@ -42,7 +40,7 @@ const Dropdown = ({
             <div className="user_information" onClick={naviagetToInformation}>
               내 정보 보기
             </div>
-            {isAuthenticated ? (
+            {user !== null ? (
               <div className="user_isAuthticate" onClick={handleLogout}>
                 <div>로그아웃</div>
                 <FontAwesomeIcon

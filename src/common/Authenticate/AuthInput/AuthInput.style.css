@@ -1,27 +1,32 @@
-/* inpu label 이름 다 수정할것 */
-
-label {
+.auth_input_label {
   width: 100%;
-  min-height: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 3px solid var(--skin-deep-color);
   background-color: var(--skin-color);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
-input {
-  width: 85%;
+.auth_input {
+  width: 100%;
   height: 100%;
-  font-size: 1.25rem;
+  font-size: 1rem;
   border: none;
   outline: none;
   display: flex;
   align-items: center;
   background-color: var(--skin-color);
+  padding-left: 1.5rem;
 }
 
-input::placeholder {
-  text-align: center;
+.auth_input::placeholder {
+  /* text-align: center; */
   font-size: 1rem;
   font-weight: bold;
+}
+
+.auth_input:focus {
+  background-color: var(--ivory-color);
 }

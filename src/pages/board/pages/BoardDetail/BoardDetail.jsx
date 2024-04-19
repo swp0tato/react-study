@@ -5,13 +5,11 @@ import { db, storage } from '../../../../firebase';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
 import Reply from '../../component/Reply';
-import ReplyList from '../../component/ReplyList';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+// import ReplyList from '../../component/ReplyList';
 const BoardDetail = () => {
   const { id } = useParams();
   const [board, setBoard] = useState(null);
-  const [comments, setComments] = useState([]);
+  // const [comments, setComments] = useState([]);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -107,12 +105,18 @@ const BoardDetail = () => {
         </div>
       </div>
       <Reply boardId={id} />
-      <ReplyList comments={comments} />
+      {/* <ReplyList comments={comments} /> */}
       <div className="board-reply-wrap">
         댓글 ({board?.reply?.length || 0})
         {board?.reply?.map((re, index) => (
           <span key={index} className="board-reply-content">
-            <FontAwesomeIcon icon={faUser} color="#ede9e1" /> &nbsp;
+            <img
+              className="reply-profile-img"
+              width={30}
+              height={30}
+              src="https://i.pinimg.com/736x/e9/ce/91/e9ce91bbb0d18e5555b1bbd3745a0fef.jpg"
+              alt="사용자 이미지"
+            />{' '}
             {re}
           </span>
         ))}

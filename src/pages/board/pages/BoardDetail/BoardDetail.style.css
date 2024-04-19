@@ -128,8 +128,15 @@
   margin: 10px 0;
   padding: 4px;
   font-size: 17px;
-  border-bottom: 2px solid lightgray;
+  border-bottom: 2px solid rgba(236, 224, 220, 0.8);
   padding-bottom: 10px;
+}
+
+.reply-profile-img {
+  border: 2px solid #f0efee;
+  border-radius: 100%;
+  position: relative;
+  top: 7px;
 }
 
 .comment-user-img-box > img {

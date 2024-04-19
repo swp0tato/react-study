@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import "./BoardWrite.style.css";
-import { storage, db } from "../../../../firebase";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import './BoardWrite.style.css';
+import { storage, db } from '../../../../firebase';
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom';
 
 const BoardWrite = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState("");
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [hashtags, setHashtags] = useState("");
+  const [user, setUser] = useState('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [hashtags, setHashtags] = useState('');
   const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
@@ -23,7 +23,7 @@ const BoardWrite = () => {
     e.preventDefault();
 
     if (!user || !title || !content || !image) {
-      alert("사용자, 제목, 내용, 이미지를 모두 입력해주세요.");
+      alert('사용자, 제목, 내용, 이미지를 모두 입력해주세요.');
       return;
     }
 
@@ -36,10 +36,10 @@ const BoardWrite = () => {
       const imageUrl = await getDownloadURL(storageRef);
 
       // 해시태그를 배열로 분할
-      const hashtagsArray = hashtags.split(",");
+      const hashtagsArray = hashtags.split(',');
 
       // Firestore에 게시물 추가
-      await addDoc(collection(db, "items"), {
+      await addDoc(collection(db, 'items'), {
         user,
         title,
         content,
@@ -49,17 +49,17 @@ const BoardWrite = () => {
       });
 
       // 폼 초기화
-      setUser("");
-      setTitle("");
-      setContent("");
-      setHashtags("");
+      setUser('');
+      setTitle('');
+      setContent('');
+      setHashtags('');
       setImage(null);
-      alert("게시물이 성공적으로 추가되었습니다.");
+      alert('피드가 성공적으로 추가되었습니다.');
 
-      navigate("/board");
+      navigate('/board');
     } catch (error) {
-      console.error("게시물 추가 오류:", error);
-      alert("게시물을 추가하는 중에 오류가 발생했습니다.");
+      console.error('게시물 추가 오류:', error);
+      alert('피드를 추가하는 중에 오류가 발생했습니다.');
     }
   };
 
@@ -104,7 +104,7 @@ const BoardWrite = () => {
             required
           />
           <button type="submit" className="write-submit-btn">
-            게시물 등록
+            피드 등록
           </button>
         </form>
       </div>

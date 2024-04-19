@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+@font-face {
+  font-family: "TTLaundryGothicB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
 .close_dessert_section {
   width: 100%;
   display: flex;
@@ -6,10 +16,21 @@
 }
 
 .close_dessert_wrapper {
-  width: 1920px;
+  width: 80%;
   overflow: hidden;
+  position: relative;
 }
 
 .close_dessert_wrapper h2 {
+  font-family: "TTLaundryGothicB";
+  font-size: 1.8em;
   margin: 1em 0 0.5em 0;
+  word-break: keep-all;
+}
+
+@media screen and (max-width: 464px) {
+  .close_dessert_wrapper h2 {
+    font-size: 1.5em;
+    text-align: center;
+  }
 }

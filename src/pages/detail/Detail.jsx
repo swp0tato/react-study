@@ -33,7 +33,6 @@ const Detail = () => {
       {/* <div className="detail-subject">영주시 디저트 카페</div> */}
       <h1 className="detail-title">{id}</h1>
       <p className="detail-address">{address ? address : '주소없음'}</p>
-      <p className="detail-address">{address}</p>
 
       <InfiniteScroll
         pageStart={0}

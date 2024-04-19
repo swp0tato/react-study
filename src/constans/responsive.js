@@ -5,7 +5,7 @@ export const responsive = {
     slidesToSlide: 1,
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 2000, min: 464 },
     items: 3,
     slidesToSlide: 1,
   },

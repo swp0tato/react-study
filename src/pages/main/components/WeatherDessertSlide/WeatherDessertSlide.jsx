@@ -96,10 +96,22 @@ const WeatherDessertSlide = ({ lat, lon }) => {
   }, [weatherDessert, imageUrlData]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="weather_dessert_section">
+        <div className="weather_dessert_wrapper">
+          <div className="loading-spinner">Loading...</div>
+        </div>
+      </div>
+    );
   }
   if (isError) {
-    return <div>{error.message}</div>;
+    return (
+      <div className="weather_dessert_section">
+        <div className="weather_dessert_wrapper">
+          <div className="error_message">{error.message}</div>
+        </div>
+      </div>
+    );
   }
 
   return (

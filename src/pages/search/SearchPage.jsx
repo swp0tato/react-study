@@ -273,7 +273,7 @@ const SearchPage = () => {
       <section className="search_map_section">
         <div id="map" className="search_map"></div>
         <button
-          className={`search-toggle-button ${btnActive ? "active" : ""}`}
+          className={`search_toggle_button ${btnActive ? "active" : ""}`}
           onClick={() => setBtnActive(!btnActive)}
         >
           {btnActive ? (

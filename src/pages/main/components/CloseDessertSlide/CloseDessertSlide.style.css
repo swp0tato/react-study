@@ -19,9 +19,6 @@
   width: 80%;
   overflow: hidden;
   position: relative;
-  /* display: flex;
-  justify-content: center;
-  flex-direction: column; */
 }
 
 .close_dessert_wrapper h2 {

@@ -13,14 +13,6 @@ const CloseDessertSlide = ({ lat, lon }) => {
     lon,
   });
 
-  // let placeNames = [];
-
-  // if (data) {
-  //   placeNames = data.map((item) => item.place_name);
-  // }
-
-  // console.log("placeNames? : ", placeNames);
-
   const { imageUrlData } = useSearchImageQueries(
     data?.map((item) => item.place_name) || []
   );
@@ -36,7 +28,7 @@ const CloseDessertSlide = ({ lat, lon }) => {
     );
   }, [data, imageUrlData]);
 
-  const newDataSlice = newData.slice(0, 5); // 처음 5개 요소만 가져오기
+  const newDataSlice = newData.slice(0, 5);
 
   // console.log("New Data: ", newData);
 

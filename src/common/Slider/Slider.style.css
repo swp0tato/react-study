@@ -72,17 +72,13 @@
 }
 
 @media screen and (min-width: 464px) and (max-width: 1024px) {
-  /* 태블릿 화면 크기에 대한 스타일 */
   .carousel-item {
-    width: calc(
-      100% / 3
-    ) !important; /* 태블릿에서 3개의 아이템이 옆으로 나란히 표시되도록 너비 조절 */
+    width: calc(100% / 3) !important;
   }
 }
 
 @media screen and (max-width: 464px) {
-  /* 모바일 화면 크기에 대한 스타일 */
   .carousel-item {
-    width: 100% !important; /* 모바일에서는 한 번에 하나의 아이템만 표시되도록 전체 너비를 차지하도록 설정 */
+    width: 100% !important;
   }
 }

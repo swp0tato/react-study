@@ -21,6 +21,7 @@
   margin: 5px;
   background: white;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .dessert_button button img {

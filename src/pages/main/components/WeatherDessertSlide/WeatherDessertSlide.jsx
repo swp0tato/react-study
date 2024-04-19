@@ -18,7 +18,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
 
   let newDessert = [];
   let icon = "";
-  let backgroundClass = "clear"; // 기본값 설정
+  let backgroundClass = "clear";
 
   if (data) {
     switch (Math.floor(data.id / 100)) {
@@ -69,19 +69,16 @@ const WeatherDessertSlide = ({ lat, lon }) => {
         }
         break;
       default:
-        backgroundClass = "clear"; // 기본값
+        backgroundClass = "clear";
     }
   }
 
-  // console.log("newDessert", newDessert);
   const { data: weatherDessert, refetch } = useSearchWeatherDessertQuery({
     lat,
     lon,
     newDessert,
   });
   // console.log("weatherDessert", weatherDessert);
-
-  // console.log("placeNames? : ", placeNames);
 
   const { imageUrlData } = useSearchImageQueries(
     weatherDessert?.map((item) => item.place_name) || []
@@ -97,8 +94,6 @@ const WeatherDessertSlide = ({ lat, lon }) => {
       imageUrl: imageUrlData[index] || null,
     }));
   }, [weatherDessert, imageUrlData]);
-
-  // console.log("New Data: ", newData);
 
   if (isLoading) {
     return <div>Loading...</div>;

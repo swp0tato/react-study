@@ -1,4 +1,5 @@
 .search_page_area {
+  font-family: "Noto Sans KR", sans-serif;
   height: calc(100vh - 75px);
   position: relative;
 }
@@ -13,22 +14,25 @@
 }
 .search_toggle_button {
   position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 1.4rem;
+  top: 15px;
+  left: 10px;
+  font-size: 1.5rem;
   z-index: 1;
-  width: 50px;
-  height: 13%;
-  border-radius: 0px 5px 5px 0px;
+  width: 130px;
+  height: 45px;
+  border-radius: 30px;
   cursor: pointer;
-  border: 1px solid #dbdbdb;
-  background-color: var(--ivory-color);
+  background-color: var(--skin-color);
+  box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
 }
 .search_toggle_button:hover {
-  color: #000;
+  background-color: var(--skin-deep-color);
+  color: #fff;
 }
 .search_toggle_button.active {
-  left: 400px;
+  left: 410px;
+  width: 45px;
+  height: 130px;
 }
 .search_box_section {
   display: none;
@@ -51,8 +55,9 @@
   justify-content: center;
   align-items: center;
   background-color: var(--ivory-color);
-  height: 13%;
   border: 1px solid #dbdbdb;
+  height: 13%;
+  min-height: 80px;
 }
 .search_box_area_bar input {
   height: 48px;
@@ -71,6 +76,7 @@
   flex-direction: column;
   gap: 10px;
   height: 15%;
+  min-height: 120px;
 }
 .search_info_title {
   font-size: 1.5rem;
@@ -88,7 +94,7 @@
   text-decoration: none;
   border: 1px solid #dbdbdb;
   border-radius: 5px;
-  padding: 0 3px;
+  padding: 0 8px;
   height: 30px;
   line-height: 30px;
   font-size: 0.9rem;
@@ -153,16 +159,23 @@
 .search_card_box {
   margin: 0 1rem;
   border-bottom: 1px solid #dbdbdb;
-  padding: 1rem;
+  padding-top: 1rem;
   cursor: pointer;
   margin-top: 0;
 }
+.search_card_box > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 .search_card_box:hover .search_card_title {
   background-color: var(--ivory-color);
+  border-radius: 10px;
 }
 .search_card_title {
   margin-bottom: 10px;
   font-size: 1.5rem;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 .search_card_phone {
   margin-bottom: 10px;
@@ -180,6 +193,7 @@
 }
 .search_card_distance {
   text-align: right;
+  margin-bottom: 1.15rem;
 }
 .search_results_empty {
   text-align: center;
@@ -268,16 +282,16 @@
 }
 .search_pagination_link {
   transition: all 0.25s;
-  padding: 0.2rem 0.6rem;
-  border-radius: 0.3rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 50px;
 }
 .search_pagination_link_active {
-  background-color: #dbdbdb;
-  color: #fefefe;
+  color: #fff;
+  background-color: var(--skin-deep-color);
 }
 @media (max-width: 767px) {
   .search_toggle_button.active {
-    left: 330px;
+    left: 340px;
   }
   .search_box_section.active {
     width: 330px;
@@ -306,7 +320,7 @@
 }
 @media (max-width: 464px) {
   .search_toggle_button.active {
-    left: 250px;
+    left: 260px;
   }
   .search_box_section.active {
     width: 250px;

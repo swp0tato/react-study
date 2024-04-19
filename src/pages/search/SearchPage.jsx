@@ -3,7 +3,7 @@ import { useSearchMapQuery } from "../../hooks/useSearchMap";
 import { useSelector } from "react-redux";
 import SearchBar from "../../common/SearchBar/SearchBar";
 import "./SearchPage.style.css";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -302,19 +302,24 @@ const SearchPage = () => {
                 ? "'" + searchQuery + "' 관련 카페 보기"
                 : "내 주변 카페 보기"}
             </div>
-            <select
-              className="search_sort_box"
-              onChange={handleChangeSelect}
-              value={sortValue}
-            >
-              {selectList.map((item) => {
-                return (
-                  <option value={item.value} key={item.value}>
-                    {item.name}
-                  </option>
-                );
-              })}
-            </select>
+            <div className="search_info_group">
+              <Link to="/search" className="search_link_button">
+                현재위치
+              </Link>
+              <select
+                className="search_sort_box"
+                onChange={handleChangeSelect}
+                value={sortValue}
+              >
+                {selectList.map((item) => {
+                  return (
+                    <option value={item.value} key={item.value}>
+                      {item.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
           </div>
           <div className="search_results_area">
             <div id="placesList" className="search_box_results">

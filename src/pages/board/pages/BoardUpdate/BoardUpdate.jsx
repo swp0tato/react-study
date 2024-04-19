@@ -38,7 +38,7 @@ const BoardUpdate = () => {
         setProfileImg(boardData.profileImg || defaultProfileImgUrl);
         setBoard(boardData);
       } else {
-        console.log('게시물이 존재하지 않습니다.');
+        console.log('피드가 존재하지 않습니다.');
       }
     };
     fetchBoard();
@@ -46,14 +46,14 @@ const BoardUpdate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // 게시물 업데이트
+
     const boardRef = doc(db, 'items', id);
     await updateDoc(boardRef, {
       title,
       content,
       hashtags: hashtags.split(',').map((tag) => tag.trim()),
     });
-    alert('게시물이 업데이트 되었습니다!');
+    alert('피드가 업데이트 되었습니다!');
     navigate(`/board/detail/${id}`);
   };
 
@@ -63,7 +63,7 @@ const BoardUpdate = () => {
 
   return (
     <div>
-      <h2>게시물 수정</h2>
+      <h2>피드 수정</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">제목</label>

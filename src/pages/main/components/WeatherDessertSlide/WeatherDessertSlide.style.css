@@ -48,9 +48,12 @@
 }
 
 .weather_dessert_wrapper {
-  width: 1920px;
-  position: relative;
+  width: 80%;
   overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .weather_dessert_title {
@@ -72,20 +75,25 @@
   background: none;
   border: none;
   cursor: pointer;
+  transition: all 0.3s;
 }
 .weather_dessert_title button .svg-inline--fa {
   font-size: 40px;
   color: #ffffff;
 }
 
+.weather_dessert_title button:hover {
+  transform: rotate(60deg);
+}
+
 .weather_dessert_wrapper .carousel-container {
   position: absolute;
-  top: 55%;
+  /* top: 55%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1920px;
-  display: flex;
-  justify-content: space-around;
-  overflow: hidden;
+  transform: translate(-50%, -50%); */
+
+  top: 55%;
+  transform: translateY(-50%);
+  width: 100%;
   margin-bottom: 2em;
 }

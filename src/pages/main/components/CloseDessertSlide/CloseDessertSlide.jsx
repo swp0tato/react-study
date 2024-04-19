@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import Slider from "../../../../common/Slider/Slider";
 import { responsive } from "./../../../../constans/responsive";
 import "react-multi-carousel/lib/styles.css";
+import "./../../../../common/Slider/Slider.style.css";
 import "./CloseDessertSlide.style.css";
 import { useSearchCloseDessertQuery } from "../../../../hooks/useSearchCloseDessert";
-import { useSearchImageQuery } from "../../../../hooks/useSearchImage";
+import { useSearchImageQueries } from "../../../../hooks/useSearchImage";
 
 const CloseDessertSlide = ({ lat, lon }) => {
   const { data, isLoading, isError, error } = useSearchCloseDessertQuery({
@@ -12,18 +13,32 @@ const CloseDessertSlide = ({ lat, lon }) => {
     lon,
   });
 
-  // console.log("close-data", data);
-  const [imageKeyword, setImageKeyword] = useState("");
+  let placeNames = [];
 
-  useEffect(() => {
-    if (data && data.length > 0 && data[0].place_name) {
-      setImageKeyword(data[0].place_name);
-    }
-  }, [data]);
+  if (data) {
+    placeNames = data.map((item) => item.place_name);
+  }
 
-  const { data: keywordImage } = useSearchImageQuery(imageKeyword);
-  // console.log("imageKeyword?? ", imageKeyword);
-  // console.log("keywordImage?? ", keywordImage);
+  // console.log("placeNames? : ", placeNames);
+
+  const { imageUrlData } = useSearchImageQueries(
+    data?.map((item) => item.place_name) || []
+  );
+  // console.log("imageUrlData-close?? ", imageUrlData);
+
+  const newData = useMemo(() => {
+    return (
+      data?.map((item, index) => ({
+        place_name: item.place_name,
+        address_name: item.address_name,
+        imageUrl: imageUrlData[index] || null,
+      })) || []
+    );
+  }, [data, imageUrlData]);
+
+  const newDataSlice = newData.slice(0, 5); // 처음 5개 요소만 가져오기
+
+  // console.log("New Data: ", newData);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -36,7 +51,7 @@ const CloseDessertSlide = ({ lat, lon }) => {
     <div className="close_dessert_section">
       <div className="close_dessert_wrapper">
         <h2>가까운 디저트 맛집 Top5</h2>
-        <Slider cafe={data} image={keywordImage} responsive={responsive} />
+        <Slider cafe={newDataSlice} responsive={responsive} />
       </div>
     </div>
   );

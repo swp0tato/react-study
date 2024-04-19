@@ -1,5 +1,5 @@
 import React from "react";
-// import "./Authenticate.style.css";
+import "./Authenticate.style.css";
 import PageWrapper from "../../../components/Authemciate/PageWrapper/PageWrapper";
 import SignInBtnForm from "../../../components/Authemciate/SignInBtnForm/SignInBtnForm";
 import SignInForm from "../../../components/Authemciate/SignInForm/SignInForm";

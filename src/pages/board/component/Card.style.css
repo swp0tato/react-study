@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
 .board-card {
   margin: 15px 15px;
@@ -33,7 +33,7 @@
 }
 
 .card-wrap > div {
-  flex: 1 0 calc(25% - 10px);
+  flex: 1 0 calc(17% - 10px);
   margin-bottom: 20px;
   box-sizing: border-box;
 }

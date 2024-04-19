@@ -55,7 +55,7 @@ function App() {
           <Route path="board">
             <Route index element={<Board />} />
             <Route path="write" element={<BoardWrite />} />
-            <Route path="detail" element={<BoardDetail />} />
+            <Route path="detail/:id" element={<BoardDetail />} />
           </Route>
         </Route>
       </Routes>

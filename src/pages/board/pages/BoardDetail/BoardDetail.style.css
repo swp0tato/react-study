@@ -34,9 +34,29 @@
   font-weight: 600;
 }
 
+.detail-user-box {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+.detail-user-box > img {
+  width: 36px;
+  margin-right: 0.5rem;
+}
+
 .board-content-box > h3 {
   margin-top: 1rem;
   margin-bottom: 0.4rem;
+}
+
+.board-review-content {
+  margin-bottom: 1rem;
+}
+
+.board-detail-hashtags > span {
+  display: inline-block;
+  color: #8a6826;
+  margin-right: 0.5rem;
 }
 
 .board-content-box .position-box {
@@ -156,8 +176,8 @@
     width: 100%;
   }
 
-  .board-review-content {
-    margin-bottom: 4rem;
+  .board-detail-hashtags {
+    margin-bottom: 3rem;
   }
 
   .comment-textarea-box {

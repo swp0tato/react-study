@@ -30,7 +30,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
       case 3:
         backgroundClass = "drizzle";
         newDessert = ["라떼", "쿠키", "스콘", "브라우니"];
-        icon = "&#127778;";
+        icon = "&#128167;";
         break;
       case 5:
         backgroundClass = "rain";
@@ -45,7 +45,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
       case 7:
         backgroundClass = "atmosphere";
         newDessert = ["타르트", "브라우니", "라떼", "주스"];
-        icon = "&#127778;";
+        icon = "&#128167;";
         break;
       case 8:
         if (data.id === 800) {
@@ -65,7 +65,7 @@ const WeatherDessertSlide = ({ lat, lon }) => {
         } else {
           backgroundClass = "clouds";
           newDessert = ["브라우니", "아이스크림", "빙수", "크로플"];
-          icon = "&#127781;";
+          icon = "&#127780;";
         }
         break;
       default:

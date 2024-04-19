@@ -109,8 +109,8 @@ const BoardDetail = () => {
       <Reply boardId={id} />
       <ReplyList comments={comments} />
       <div className="board-reply-wrap">
-        댓글 ({board?.reply.length})
-        {board?.reply.map((re, index) => (
+        댓글 ({board?.reply?.length || 0})
+        {board?.reply?.map((re, index) => (
           <span key={index} className="board-reply-content">
             <FontAwesomeIcon icon={faUser} color="#ede9e1" /> {re}
           </span>

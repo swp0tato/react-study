@@ -1,0 +1,46 @@
+.write-form-wrap label {
+  background-color: transparent !important;
+}
+
+.write-cancel-btn {
+  width: 80px;
+  height: 36px;
+  margin-left: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.write-cancel-btn:hover {
+  font-weight: bold;
+  background: #bbab8c;
+  color: #fff;
+}
+
+.write-user-box img {
+  width: 42px;
+  height: 42px;
+  border: 3px solid #fff;
+  border-radius: 25px;
+  margin-right: 8px;
+}
+
+.write-user-box {
+  display: flex;
+  align-items: center;
+}
+
+.write-date {
+  font-weight: normal;
+  margin: 12px 0;
+}
+
+@media (max-width: 1100px) {
+  .write-cancel-btn {
+    width: 100%;
+    margin-top: 12px;
+    margin-left: 0;
+  }
+}

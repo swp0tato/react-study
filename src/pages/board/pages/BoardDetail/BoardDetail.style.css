@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
 .board-detail-wrap {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   width: 1100px;
   margin: 4rem auto;
 }
@@ -41,6 +41,7 @@
 }
 .detail-user-box > img {
   width: 40px;
+  height: 40px;
   margin-right: 0.5rem;
   border: 2px solid rgb(170, 158, 136);
   border-radius: 100%;
@@ -80,12 +81,13 @@
   background: transparent;
   border: 2px solid #ded0b6;
   border-radius: 6px;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .modify-btn-box > button:hover {
   background-color: #ded0b6;
   font-weight: 600;
+  color: #000;
 }
 
 .modify-btn-box > .delete-btn {
@@ -115,6 +117,19 @@
 }
 .cafe-title-text {
   color: #4b4436;
+}
+
+.board-reply-wrap {
+  display: flex;
+  flex-direction: column;
+  margin: 15px auto;
+}
+.board-reply-content {
+  margin: 10px 0;
+  background-color: #c9bca2;
+  padding: 4px;
+  border-radius: 6px;
+  font-size: 15px;
 }
 
 .comment-user-img-box > img {

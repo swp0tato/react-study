@@ -28,14 +28,17 @@
 }
 
 .card-wrap {
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
 }
 
 .card-wrap > div {
-  flex: 1 0 calc(17% - 10px);
-  margin-bottom: 20px;
   box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .card-area {
@@ -60,14 +63,33 @@
   font-size: 16px;
 }
 
-@media screen and (max-width: 768px) {
-  .card-wrap > div {
-    flex: 1 0 calc(50% - 10px);
+@media screen and (max-width: 1790px) {
+  .card-wrap {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
-@media screen and (max-width: 520px) {
-  .card-wrap > div {
-    flex: 1 0 calc(100% - 10px);
+@media screen and (max-width: 1480px) {
+  .card-wrap {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .card-wrap {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .card-wrap {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 0;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .card-wrap {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

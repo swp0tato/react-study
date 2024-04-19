@@ -11,7 +11,6 @@ import {
 
 const SideBar = ({ handleLogout, naviagetToInformation, navigateToAuth }) => {
   const user = useSelector((state) => state.auth.user); // store 에 해당하는 값 가져오는거
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const menuBarStyle = {
     width: "100%",
@@ -29,7 +28,7 @@ const SideBar = ({ handleLogout, naviagetToInformation, navigateToAuth }) => {
       <div className="side_bar">
         <div className="user_info_wrapper">
           <div className="user_info_center_box">
-            {isAuthenticated && user && (
+            {user && (
               <>
                 <img src={user?.photoURL} alt="" className="user_photo" />
 
@@ -52,7 +51,7 @@ const SideBar = ({ handleLogout, naviagetToInformation, navigateToAuth }) => {
             <div>내 정보 보기</div>
             <FontAwesomeIcon icon={faFile} />
           </div>
-          {isAuthenticated ? (
+          {user ? (
             <div className="side_bar_user_isAuthticate" onClick={handleLogout}>
               <div>로그아웃</div>
               <FontAwesomeIcon

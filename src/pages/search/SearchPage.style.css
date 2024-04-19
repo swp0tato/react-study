@@ -197,6 +197,8 @@
 }
 .search_results_empty {
   text-align: center;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 1rem 0;
 }
 .infowindow_wrap {
   position: absolute;

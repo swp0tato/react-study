@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
 .board-card {
-  width: 240px;
-  height: 220px;
+  width: 260px;
+  height: 240px;
   margin-bottom: 8px;
   border-radius: 6px;
   cursor: pointer;
@@ -63,13 +63,14 @@
 
 @media screen and (max-width: 1300px) {
   .card-wrap {
-    width: 80%;
+    width: 85%;
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media screen and (max-width: 1000px) {
   .card-wrap {
+    width: 80%;
     grid-template-columns: repeat(2, 1fr);
   }
 }

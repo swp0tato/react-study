@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import PageWrapper from "../../../components/Authemciate/PageWrapper/PageWrapper";
+import React, { useRef, useState } from "react";
+import PageWrapper from "../../../components/Authenticate/PageWrapper/PageWrapper";
 import "./SignUpPage.style.css";
 import AuthInput from "../../../common/Authenticate/AuthInput/AuthInput";
 import AuthBtn from "./../../../common/Authenticate/AuthBtn/AuthBtn";
@@ -12,39 +12,75 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  // const [formProps, setFormProps] = useState({
+  //   id: "",
+  //   placeholder: "",
+  //   handleSetValue: "",
+  //   isValue: "",
+  //   type: "",
+  //   width: "",
+  //   inputEl: "",
+  // });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const refEl = useRef(null);
+
+  // const handleTarget = (e) => {
+  //   console.log(e);
+  // };
+
+  /**
+   * Props를 동적인값과 정적인값으로 나눠서 관리
+   */
 
   const signUpNameProps = {
+    id: "name",
     placeholder: "이름",
     handleSetValue: (e) => setName(e.target.value),
+    // handleSetValue: (e) => handleTarget(e),
     isValue: name,
     type: "text",
+    width: "80%",
+    inputEl: refEl,
   };
 
   const signUpEmailProps = {
+    id: "email",
     placeholder: "이메일 주소",
     handleSetValue: (e) => setEmail(e.target.value),
+    // handleSetValue: (e) => handleTarget(e),
     isValue: email,
     type: "email",
+    width: "80%",
+    inputEl: refEl,
   };
 
   const signUpPasswordProps = {
+    id: "password",
     placeholder: "비밀번호",
     handleSetValue: (e) => setPassword(e.target.value),
     isValue: password,
     type: "password",
+    width: "80%",
+    inputEl: refEl,
   };
 
   const signUpPasswordConfirmProps = {
+    id: "password_check",
     placeholder: "비밀번호 확인",
     handleSetValue: (e) => setPasswordConfirm(e.target.value),
     isValue: passwordConfirm,
     type: "password",
+    width: "80%",
+    inputEl: refEl,
   };
 
   const handleCreateUser = (e) => {
     e.preventDefault();
+    console.log("잇어", refEl.current.focus);
+    if (refEl.current.value !== null) {
+      refEl.current.focus();
+    }
 
     const isValidName = (name) => {
       return /^[a-zA-Z가-힣]{3,5}$/.test(name);
@@ -71,20 +107,29 @@ const SignUpPage = () => {
   return (
     <PageWrapper justifyConetent="center" alignItem="center">
       <div className="top">
-        <div>
+        <div className="sign_up_page_title">
           <h1>회원가입</h1>
         </div>
-        <p>이름</p>
-        {/* 이름 유효성 검사 필히 */}
-        <AuthInput {...signUpNameProps} />
-        <p>이메일</p>
-        <div className="email_check">
+        <div className="sign_up_item_wrapper">
+          <p className="title">이름</p>
+          {/* 이름 유효성 검사 필히 */}
+          <AuthInput {...signUpNameProps} />
+        </div>
+        <div className="sign_up_item_wrapper">
+          <p className="title">이메일</p>
           <AuthInput {...signUpEmailProps} />
         </div>
-        <p>비밀번호</p>
-        <AuthInput {...signUpPasswordProps} />
-        <p>비밀번호 확인</p>
-        <AuthInput {...signUpPasswordConfirmProps} />
+        <div className="sign_up_item_wrapper">
+          <p className="title">비밀번호</p>
+          <AuthInput {...signUpPasswordProps} />
+        </div>
+        <div className="sign_up_item_wrapper">
+          <p className="title">비밀번호 확인</p>
+          <AuthInput {...signUpPasswordConfirmProps} />
+        </div>
+        <div className="duplicate_check">
+          <div>경고메세지!!</div>
+        </div>
         <div className="sign_up_btn">
           <AuthBtn {...signUpProps}>가입하기</AuthBtn>
         </div>

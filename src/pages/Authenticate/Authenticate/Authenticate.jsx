@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Authenticate.style.css";
-import PageWrapper from "../../../components/Authemciate/PageWrapper/PageWrapper";
-import SignInBtnForm from "../../../components/Authemciate/SignInBtnForm/SignInBtnForm";
-import SignInForm from "../../../components/Authemciate/SignInForm/SignInForm";
+import PageWrapper from "../../../components/Authenticate/PageWrapper/PageWrapper";
+import SignInBtnForm from "../../../components/Authenticate/SignInBtnForm/SignInBtnForm";
+import SignInForm from "../../../components/Authenticate/SignInForm/SignInForm";
 import { authWithEmailandPassword } from "../../../utils/authService/authServie";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";

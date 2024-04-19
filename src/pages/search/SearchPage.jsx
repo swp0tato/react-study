@@ -100,6 +100,9 @@ const SearchPage = () => {
       removeMarker();
       removeList(listEl);
 
+      let overlay;
+      let clickedOverlay;
+
       for (let i = 0; i < places.length; i++) {
         let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
           marker = addMarker(placePosition, i),
@@ -108,14 +111,15 @@ const SearchPage = () => {
         bounds.extend(placePosition);
 
         (function (marker, position, place) {
-          let overlay;
-
           kakao.maps.event.addListener(marker, "click", function () {
-            displayInfowindow(marker, place, position);
+            if (clickedOverlay) {
+              clickedOverlay.setMap(null);
+            }
+            clickedOverlay = displayInfowindow(marker, place, position);
           });
 
           itemEl.onmouseover = function () {
-            return (overlay = displayInfowindow(marker, place, position));
+            overlay = displayInfowindow(marker, place, position);
           };
 
           itemEl.onmouseout = function () {
@@ -241,8 +245,6 @@ const SearchPage = () => {
 
       overlay.setMap(map);
 
-      if (position) map.panTo(position);
-
       infowindowClose.addEventListener("click", () => {
         overlay.setMap(null);
       });
@@ -250,6 +252,8 @@ const SearchPage = () => {
       kakao.maps.event.addListener(map, "click", function () {
         overlay.setMap(null);
       });
+
+      if (position) map.panTo(position);
 
       return overlay;
     }

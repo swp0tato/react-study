@@ -8,6 +8,7 @@ const Detail = () => {
   const [number, setNumber] = useState(1);
   const { id } = useParams();
   const { data: blogData, isLoading, isError, error } = useDetail(id, number);
+  console.log(blogData);
   const blogs = blogData?.documents;
 
   const location = useLocation();
@@ -50,7 +51,7 @@ const Detail = () => {
                 <img
                   className="blog-img"
                   src="https://adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg"
-                  alt="no image"
+                  alt="이미지 없음"
                 />
               )}
               <div className="blog-right">

@@ -5,13 +5,9 @@
 }
 
 .detail-page {
-  margin-left: 73px;
-}
-
-.detail-subject {
-  margin-top: 51px;
-
-  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .detail-title {
@@ -33,13 +29,14 @@
   margin-bottom: 106px;
   margin-right: 94px;
   display: flex;
+  width: 813px;
 }
 
 .blog-img {
   margin-right: 32px;
   border-radius: 6px;
-  width: 300px;
-  min-width: 300px;
+  width: 154px;
+  height: 154px;
 }
 
 .blog-right {
@@ -53,7 +50,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 56px;
+  margin-bottom: 20px;
   font-size: 32px;
 }
 
@@ -66,65 +63,79 @@
   color: #6d6d73;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 950px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   .detail-page {
-    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .detail-title {
-    margin-top: 65px;
-    margin-bottom: 28px;
-    font-size: 30px;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 28px;
     color: #bbab8c;
   }
 
   .detail-address {
+    font-size: 15px;
     margin-bottom: 40px;
     font-weight: 600;
     color: #a6a1a1;
-    font-size: 15px;
   }
 
   .section {
     color: black;
     text-decoration-line: none;
-    margin-bottom: 106px;
-    margin-right: 94px;
+    margin-bottom: 35px;
+    margin-right: 0;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    width: 360px;
+    padding: 5px;
   }
 
   .blog-img {
-    margin-right: 32px;
-    margin-bottom: 20px;
+    margin-right: 8px;
     border-radius: 6px;
-    width: 300px;
-    min-width: 300px;
+    width: 130px;
+    height: 130px;
   }
 
   .blog-right {
     display: flex;
-    flex-direction: column;
-    align-items: start;
+    width: 360px;
   }
 
   .blog-title {
-    width: 300px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 20px;
-    font-size: 20px;
+    margin-bottom: 6px;
+    font-size: 17px;
+    width: 200px;
   }
 
   .blog-contents {
-    width: 300px;
-    margin-bottom: 13px;
-    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 5px;
+    width: 200px;
+    height: 84px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 
   .blog-info {
-    font-size: 13px;
+    font-size: 12px;
     color: #6d6d73;
   }
 }

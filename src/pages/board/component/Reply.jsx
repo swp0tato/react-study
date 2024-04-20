@@ -11,8 +11,6 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../firebase";
 import "./Reply.style.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Reply = ({ boardId }) => {
   const [commentText, setCommentText] = useState("");
@@ -68,7 +66,6 @@ const Reply = ({ boardId }) => {
   };
 
   const handleDeleteComment = async (commentId) => {
-    console.log("Deleting comment with ID:", commentId);
     try {
       await deleteDoc(doc(db, "reply", commentId));
 

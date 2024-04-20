@@ -33,9 +33,6 @@ const SearchPage = () => {
     sortValue,
     searchPage,
   });
-  // console.log("data!!", data);
-  // console.log("searchQuery", searchQuery);
-  // console.log("searchpage", searchPage);
 
   const searchBarProps = {
     width: "90%",

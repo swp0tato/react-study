@@ -60,7 +60,7 @@ const BoardDetail = () => {
     try {
       const q = query(collection(db, "reply"), where("boardId", "==", boardId));
       const querySnapshot = await getDocs(q);
-      const batch = firestore.batch(); // firestore의 batch 함수를 사용
+      const batch = firestore.batch();
       querySnapshot.forEach((doc) => {
         batch.delete(doc.ref);
       });
@@ -108,7 +108,12 @@ const BoardDetail = () => {
             <span className="cafe-title">카페명</span>{" "}
             <span className="cafe-title-text">{board?.title}</span>
           </h3>
-          <p className="board-review-content">{board?.content}</p>
+          <p
+            className="board-review-content"
+            style={{ whiteSpace: 'pre-wrap' }}
+          >
+            {board?.content}
+          </p>
 
           <div className="board-detail-hashtags">
             {board?.hashtags.map((tag, index) => (

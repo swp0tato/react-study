@@ -12,7 +12,7 @@ import {
 import { db } from '../../../firebase';
 import './Reply.style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Reply = ({ boardId }) => {
   const [commentText, setCommentText] = useState('');
@@ -103,10 +103,10 @@ const Reply = ({ boardId }) => {
               <FontAwesomeIcon icon={faUser} className="reply-user-icon" />{' '}
               {comment.text}
               <button
-                className="delete-comment-btn"
+                className="reply-delete-btn"
                 onClick={() => handleDeleteComment(comment.id)}
               >
-                <FontAwesomeIcon icon={faTimes} className="reply-delete-btn" />
+                삭제
               </button>
             </p>
           </div>

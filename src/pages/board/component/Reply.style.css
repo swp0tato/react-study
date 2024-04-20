@@ -22,7 +22,7 @@
 }
 
 .reply-btn:hover {
-  color: #000;
+  color: #3a3737;
   background-color: #ded0b6;
 }
 
@@ -50,5 +50,23 @@
 }
 
 .reply-delete-btn {
+  border: 2px solid #ded0b6;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 80px;
+  height: 36px;
+  font-family: 'Noto Sans KR', sans-serif;
   margin-left: 20px;
+}
+
+.reply-delete-btn:hover {
+  color: #3a3737;
+  background-color: #ded0b6;
+}
+
+@media (max-width: 428px) {
+  .reply-delete-btn {
+    width: 50px;
+    margin-left: 7px;
+  }
 }

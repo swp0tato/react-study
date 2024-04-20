@@ -33,6 +33,7 @@
 }
 
 .carousel-container .card-image {
+  width: 320px;
   height: 320px;
   padding: 0.5em 1em 1em 1em;
   margin-bottom: 1em;
@@ -40,6 +41,7 @@
 
 .carousel-container .card-image img {
   height: 100%;
+  width: 100%;
   border-radius: 6px;
 }
 

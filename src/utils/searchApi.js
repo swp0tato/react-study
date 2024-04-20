@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = process.env.REACT_APP_SEARCH_API_KEY;
+const API_KEY = process.env.REACT_APP_SEARCH_MAP_REST_KEY;
 
 const searchApi = axios.create({
   baseURL: "https://dapi.kakao.com/v2/local/search",

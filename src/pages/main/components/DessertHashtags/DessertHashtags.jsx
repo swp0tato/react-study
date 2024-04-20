@@ -49,7 +49,7 @@ const DessertHashtags = () => {
 
   return (
     <div className="dessert_hashtags_section">
-      <div>
+      <div className="dessert_hashtag">
         #소금빵 #에그타르트 #쿠키 #아이스크림 #빙수 #크로플 #케이크 #마카롱
         #스콘 #브라우니 #도넛 #샌드위치
       </div>

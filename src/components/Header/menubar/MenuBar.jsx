@@ -31,7 +31,6 @@ const MenuBar = ({ menuBarStyle, menuItemStyle }) => {
           style={menuItemStyle}
           onClick={() => navigateToMenuItem(item.router)}
         >
-          <FontAwesomeIcon icon={item.icon} className="menu_icon" />
           <div className="menu_text">{item.name}</div>
         </div>
       ))}

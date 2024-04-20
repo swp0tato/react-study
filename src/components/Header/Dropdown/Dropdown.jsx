@@ -38,23 +38,23 @@ const Dropdown = ({
         {isDropdown && (
           <div className="dropdown_items">
             <div className="user_information" onClick={naviagetToInformation}>
-              내 정보 보기
+              마이 페이지
             </div>
             {user !== null ? (
               <div className="user_isAuthticate" onClick={handleLogout}>
                 <div>로그아웃</div>
-                <FontAwesomeIcon
+                {/* <FontAwesomeIcon
                   icon={faRightFromBracket}
                   className="user_icon faRightFromBracket"
-                />
+                /> */}
               </div>
             ) : (
               <div className="user_isAuthticate" onClick={navigateToAuth}>
                 <div>로그인</div>
-                <FontAwesomeIcon
+                {/* <FontAwesomeIcon
                   icon={faUserLarge}
                   className="user_icon faUserLarge"
-                />
+                /> */}
               </div>
             )}
           </div>

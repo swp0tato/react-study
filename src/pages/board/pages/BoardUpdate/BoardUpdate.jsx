@@ -79,8 +79,8 @@ const BoardUpdate = () => {
   return (
     <div className="board-write-wrap">
       <div className="write-top-box">
-        <img width={100} src="/images/cafe_icon.png" alt="카페 아이콘" />
-        <p>나만 알기 아쉬운 카페를 추천해 주세요!</p>
+        <img width={100} src="/images/cookie_icon.png" alt="카페 아이콘" />
+        <p>변경 후 게시물 수정 버튼을 눌러주세요!</p>
       </div>
       <div className="write-form-wrap">
         <form onSubmit={handleSubmit}>

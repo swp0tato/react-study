@@ -118,6 +118,13 @@
 .weather_dessert_wrapper .error_message {
   font-size: 20px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather_dessert_wrapper .error_message .error_icon {
+  margin-right: 0.3em;
 }
 
 @media screen and (max-width: 464px) {

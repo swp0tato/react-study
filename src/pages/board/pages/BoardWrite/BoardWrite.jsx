@@ -1,37 +1,32 @@
-import React, { useState } from "react";
-import "./BoardWrite.style.css";
-import { storage, db } from "../../../../firebase";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import './BoardWrite.style.css';
+import { storage, db } from '../../../../firebase';
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom';
 
 const BoardWrite = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState("");
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [hashtags, setHashtags] = useState("");
+  const [user, setUser] = useState('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
-
-  // 해시태그 추가내용 시작 ===================
   const [tags, setTags] = useState([]);
 
   const handleKeyDown = (e) => {
-    if (e.key !== "Enter") return;
-    if (e.key === "Enter") {
-      e.preventDefault();
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    const value = e.target.value.trim();
+    if (value) {
+      setTags([...tags, value]);
+      e.target.value = '';
     }
-    const value = e.target.value;
-    if (!value.trim()) return;
-    setTags([...tags, value]);
-    e.target.value = "";
   };
 
   const removeTag = (index) => {
-    setTags(tags.filter((el, i) => i !== index));
+    // 배열에서 선택된 해시태그 제거
+    setTags(tags.filter((_, i) => i !== index));
   };
-
-  // 해시태그 추가내용 끝 ===================
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
@@ -43,7 +38,7 @@ const BoardWrite = () => {
     e.preventDefault();
 
     if (!user || !title || !content || !image) {
-      alert("사용자, 제목, 내용, 이미지를 모두 입력해주세요.");
+      alert('사용자, 제목, 내용, 이미지를 모두 입력해주세요.');
       return;
     }
 
@@ -53,28 +48,26 @@ const BoardWrite = () => {
 
       const imageUrl = await getDownloadURL(storageRef);
 
-      const hashtagsArray = hashtags.split(",");
-
-      await addDoc(collection(db, "items"), {
+      await addDoc(collection(db, 'items'), {
         user,
         title,
         content,
-        hashtags: hashtagsArray,
+        hashtags: tags, // 수정된 부분: 해시태그 배열 전달
         date: Timestamp.fromDate(new Date()),
         imageUrl,
       });
 
       // 폼 초기화
-      setUser("");
-      setTitle("");
-      setContent("");
-      setHashtags("");
+      setUser('');
+      setTitle('');
+      setContent('');
+      setTags([]); // 수정된 부분: 해시태그 초기화
       setImage(null);
-      alert("게시물이 성공적으로 추가되었습니다!");
+      alert('게시물이 성공적으로 추가되었습니다!');
 
-      navigate("/board");
+      navigate('/board');
     } catch (error) {
-      alert("게시물을 추가하는 중에 오류가 발생했습니다.");
+      alert('게시물을 추가하는 중에 오류가 발생했습니다.');
     }
   };
 
@@ -107,14 +100,6 @@ const BoardWrite = () => {
             required
           />
 
-          {/* 해시태그 추가내용 시작 =================== */}
-
-          {/* <input
-            type="text"
-            value={hashtags}
-            onChange={(e) => setHashtags(e.target.value)}
-            placeholder="해시태그 (쉼표로 구분)"
-          /> */}
           <label htmlFor="hashtags" className="form-label">
             해시태그
           </label>
@@ -134,7 +119,6 @@ const BoardWrite = () => {
               </div>
             ))}
           </div>
-          {/* 해시태그 추가내용 끝 =================== */}
 
           <input
             type="file"

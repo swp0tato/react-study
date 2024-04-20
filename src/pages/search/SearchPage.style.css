@@ -90,6 +90,7 @@
   font-weight: bold;
   background-color: #fff;
   align-self: flex-start;
+  font-family: "TTLaundryGothicB";
 }
 .search_info_group {
   width: 100%;
@@ -184,6 +185,7 @@
   padding-top: 8px;
   padding-bottom: 8px;
   transition: all 0.3s ease-in-out;
+  font-family: "TTLaundryGothicB";
 }
 .search_card_phone {
   margin-bottom: 10px;
@@ -245,6 +247,7 @@
   border-bottom: 1px solid #ddd;
   font-size: 18px;
   font-weight: bold;
+  font-family: "TTLaundryGothicB";
 }
 .infowindow_info .infowindow_close {
   position: absolute;

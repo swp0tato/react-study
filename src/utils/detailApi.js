@@ -6,7 +6,6 @@ const DetailApi = axios.create({
   baseURL: "https://dapi.kakao.com/v2/search",
   headers: {
     Accept: "application/json",
-    // Authorization: `KakaoAK 8bfe478404bfd0536f31fcf5db75a92c`,
     Authorization: `KakaoAK ${API_KEY}`,
   },
 });

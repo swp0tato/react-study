@@ -23,15 +23,7 @@ const authGoogleLoginPopup = (auth, dispatch, navigate) => {
       dispatch(login({ displayName, email, emailVerified, photoURL, uid }));
       navigate(`/`);
     })
-    .catch((error) => {
-      const errorCode = error.code;
-
-      const errorMessage = error.message;
-
-      const email = error.customData?.email;
-
-      const credential = GoogleAuthProvider.credentialFromError(error);
-    });
+    .catch((error) => {});
 };
 
 //추후 네이밍 다시 => user데이터 일부 세션스토리지로 저장

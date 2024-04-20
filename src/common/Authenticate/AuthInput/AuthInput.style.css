@@ -4,9 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 3px solid var(--skin-deep-color); */
-
-  /* border-radius: 8px; */
 }
 .auth_input {
   width: 100%;
@@ -16,7 +13,7 @@
   display: flex;
   align-items: center;
   padding-left: 1.5rem;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   border-radius: 10px;
   border: 2px solid #33312c;
 }
@@ -24,7 +21,3 @@
 .auth_input::placeholder {
   font-size: 1rem;
 }
-
-/* .auth_input:focus {
-  background-color: var(--ivory-color);
-} */

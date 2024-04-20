@@ -46,10 +46,12 @@ const HeaderContainer = () => {
 
   const navigateToAuth = () => {
     navigate(`/auth`);
+    setIsDropdown(false);
   };
 
   const navigateToMain = () => {
     navigate(`/`);
+    setIsDropdown(false);
   };
 
   return (

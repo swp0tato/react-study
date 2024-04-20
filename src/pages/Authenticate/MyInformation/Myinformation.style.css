@@ -1,15 +1,17 @@
 .profile_top {
-  width: 100%;
+  width: 70%;
   /* backgourd 이미지 설정 */
-  background: pink;
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
-  height: 30%;
+  background-position-y: 75px;
+
+  background-size: contain;
+  background-color: transparent;
+  height: 35%;
+  min-height: 300px;
 }
 .profile_bottom {
   width: 100%;
-  height: 70%;
+  height: 65%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,21 +19,27 @@
 }
 .profile_img {
   position: absolute;
-  top: -4rem;
-  width: 7.5rem;
-  height: 7.5rem;
-  border-radius: 100px;
+  top: -8rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 100%;
   background-position: center;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  z-index: 1;
 }
 
 .profile_informatin_wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: end;
   width: 100%;
-  height: 200px;
+  height: 250px;
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+  .profile_informatin_wrapper {
+    margin-top: 1.5rem;
+  }
 }

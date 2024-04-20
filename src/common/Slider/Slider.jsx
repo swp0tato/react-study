@@ -13,7 +13,7 @@ const Slider = ({ cafe, responsive }) => {
       <Carousel
         swipeable={true}
         draggable={true}
-        centerMode={true}
+        partialVisible={true}
         responsive={responsive}
         containerClass="carousel-container"
         itemClass="carousel-item"

@@ -39,7 +39,6 @@ const BoardUpdate = () => {
         setBoard(boardData);
       } else {
         console.log('게시물이 존재하지 않습니다.');
-        console.log('피드가 존재하지 않습니다.');
       }
     };
     fetchBoard();

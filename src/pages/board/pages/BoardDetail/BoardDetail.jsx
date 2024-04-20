@@ -27,7 +27,7 @@ const BoardDetail = () => {
         ).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
         setBoard({ ...boardData, date: formattedDate });
       } else {
-        console.log('피드가 존재하지 않습니다.');
+        console.log('게시물이 존재하지 않습니다.');
       }
     };
     fetchBoard();
@@ -42,10 +42,10 @@ const BoardDetail = () => {
       }
 
       await deleteDoc(doc(db, 'items', id));
-      alert('피드가 삭제되었습니다!');
+      alert('게시물이 삭제되었습니다!');
       navigate('/board');
     } catch (error) {
-      console.error('피드 삭제 중 오류가 발생했습니다:', error);
+      console.error('게시물 삭제 중 오류가 발생했습니다:', error);
     }
   };
 
@@ -71,7 +71,7 @@ const BoardDetail = () => {
           <img src={board?.imageUrl} alt="리뷰 이미지" />
         </div>
         <div className="board-content-box">
-          <p>Board</p>
+          <p>게시물</p>
           <div className="detail-user-box">
             {board.profileImg ? (
               <img src={board.profileImg} alt="사용자 이미지" />
@@ -109,10 +109,11 @@ const BoardDetail = () => {
       <Reply boardId={id} />
       <ReplyList comments={comments} />
       <div className="board-reply-wrap">
-        댓글 ({board?.reply.length})
-        {board?.reply.map((re, index) => (
+        댓글 ({board?.reply?.length || 0})
+        {board?.reply?.map((re, index) => (
           <span key={index} className="board-reply-content">
-            <FontAwesomeIcon icon={faUser} color="#ede9e1" /> {re}
+            <FontAwesomeIcon icon={faUser} color="#ede9e1" /> &nbsp;
+            {re}
           </span>
         ))}
       </div>

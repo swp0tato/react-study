@@ -1,6 +1,6 @@
 .search_page_area {
   font-family: "Noto Sans KR", sans-serif;
-  height: calc(100vh - 75px);
+  height: calc(100vh - 100px);
   position: relative;
 }
 .search_map_section {

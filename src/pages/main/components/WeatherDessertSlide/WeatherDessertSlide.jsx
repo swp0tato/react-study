@@ -81,12 +81,10 @@ const WeatherDessertSlide = ({ lat, lon }) => {
     lon,
     newDessert,
   });
-  // console.log("weatherDessert", weatherDessert);
 
   const { imageUrlData } = useSearchImageQueries(
     weatherDessert?.map((item) => item.place_name) || []
   );
-  // console.log("imageUrlData-weather?? ", imageUrlData);
 
   const newData = useMemo(() => {
     if (!weatherDessert || !imageUrlData) return [];

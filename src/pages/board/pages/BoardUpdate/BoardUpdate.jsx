@@ -53,7 +53,6 @@ const BoardUpdate = () => {
         setProfileImg(boardData.profileImg || defaultProfileImgUrl);
         setBoard(boardData);
       } else {
-        console.log("게시물이 존재하지 않습니다.");
       }
     };
     fetchBoard();

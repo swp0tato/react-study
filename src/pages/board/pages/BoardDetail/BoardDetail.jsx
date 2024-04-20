@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import './BoardDetail.style.css';
-import { useNavigate, useParams } from 'react-router-dom';
-import { db, storage, firestore } from '../../../../firebase';
+import React, { useState, useEffect } from "react";
+import "./BoardDetail.style.css";
+import { useNavigate, useParams } from "react-router-dom";
+import { db, storage, firestore } from "../../../../firebase";
 import {
   doc,
   getDoc,
@@ -10,9 +10,9 @@ import {
   query,
   where,
   getDocs,
-} from 'firebase/firestore';
-import { ref, deleteObject } from 'firebase/storage';
-import Reply from '../../component/Reply';
+} from "firebase/firestore";
+import { ref, deleteObject } from "firebase/storage";
+import Reply from "../../component/Reply";
 const BoardDetail = () => {
   const { id } = useParams();
   const [board, setBoard] = useState(null);
@@ -20,18 +20,17 @@ const BoardDetail = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const fetchBoard = async () => {
-      const docRef = doc(db, 'items', id);
+      const docRef = doc(db, "items", id);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         const boardData = docSnap.data();
         const timestamp = boardData.date;
         const date = new Date(timestamp.seconds * 1000);
         const formattedDate = `${date.getFullYear()}-${String(
-          date.getMonth() + 1,
-        ).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+          date.getMonth() + 1
+        ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
         setBoard({ ...boardData, date: formattedDate });
       } else {
-        console.log('게시물이 존재하지 않습니다.');
       }
     };
     fetchBoard();
@@ -41,7 +40,7 @@ const BoardDetail = () => {
     try {
       // 댓글 삭제
       await deleteComments(id);
-      console.log('deleteComments 호출');
+
       // 이미지 삭제
       if (board.imageUrl) {
         const imageRef = ref(storage, board.imageUrl);
@@ -49,25 +48,25 @@ const BoardDetail = () => {
       }
 
       // 게시물 삭제
-      await deleteDoc(doc(db, 'items', id));
-      alert('게시물이 삭제되었습니다!');
-      navigate('/board');
+      await deleteDoc(doc(db, "items", id));
+      alert("게시물이 삭제되었습니다!");
+      navigate("/board");
     } catch (error) {
-      console.error('게시물 삭제 중 오류가 발생했습니다:', error);
+      console.error("게시물 삭제 중 오류가 발생했습니다:", error);
     }
   };
 
   const deleteComments = async (boardId) => {
     try {
-      const q = query(collection(db, 'reply'), where('boardId', '==', boardId));
+      const q = query(collection(db, "reply"), where("boardId", "==", boardId));
       const querySnapshot = await getDocs(q);
-      const batch = firestore.batch(); // firestore의 batch 함수를 사용
+      const batch = firestore.batch();
       querySnapshot.forEach((doc) => {
         batch.delete(doc.ref);
       });
       await batch.commit();
     } catch (error) {
-      console.error('댓글 삭제 중 오류가 발생했습니다:', error);
+      console.error("댓글 삭제 중 오류가 발생했습니다:", error);
     }
   };
 
@@ -76,7 +75,7 @@ const BoardDetail = () => {
   }
 
   const confirmDelete = () => {
-    const result = window.confirm('정말 삭제하시겠습니까?');
+    const result = window.confirm("정말 삭제하시겠습니까?");
     if (result) {
       handleDelete();
     }
@@ -106,10 +105,15 @@ const BoardDetail = () => {
             <p>{board?.user}</p>
           </div>
           <h3>
-            <span className="cafe-title">카페명</span>{' '}
+            <span className="cafe-title">카페명</span>{" "}
             <span className="cafe-title-text">{board?.title}</span>
           </h3>
-          <p className="board-review-content">{board?.content}</p>
+          <p
+            className="board-review-content"
+            style={{ whiteSpace: 'pre-wrap' }}
+          >
+            {board?.content}
+          </p>
 
           <div className="board-detail-hashtags">
             {board?.hashtags.map((tag, index) => (

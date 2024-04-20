@@ -78,13 +78,15 @@ export const authWithCreateUser = (
       })
         .then(() => {
           dispatch(login(user));
-          console.log("result user", user);
-          console.log("Name Update Success");
+          console.log("Name Update user Success");
         })
         .catch((error) => {
           console.error("Name Update fail", error.code);
         });
       window.alert(`${user.email} 유저의 회원가입이 완료되었습니다. 🎉`);
+
+      // 가입 완료 이후 일부 데이터를 DB 로 전달
+
       navigate("/");
     })
     .catch((error) => {

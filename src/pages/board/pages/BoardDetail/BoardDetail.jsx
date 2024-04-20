@@ -5,11 +5,9 @@ import { db, storage } from '../../../../firebase';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
 import Reply from '../../component/Reply';
-// import ReplyList from '../../component/ReplyList';
 const BoardDetail = () => {
   const { id } = useParams();
   const [board, setBoard] = useState(null);
-  // const [comments, setComments] = useState([]);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -105,8 +103,7 @@ const BoardDetail = () => {
         </div>
       </div>
       <Reply boardId={id} />
-      {/* <ReplyList comments={comments} /> */}
-      <div className="board-reply-wrap">
+      {/* <div className="board-reply-wrap">
         댓글 ({board?.reply?.length || 0})
         {board?.reply?.map((re, index) => (
           <span key={index} className="board-reply-content">
@@ -120,7 +117,7 @@ const BoardDetail = () => {
             {re}
           </span>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

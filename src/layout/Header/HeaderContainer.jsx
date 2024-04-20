@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/reducer/authenciate/authenciateSlice";
 
 const HeaderContainer = () => {
-  const imgPath = process.env.REACT_APP_IMGPATH;
   const [isMenuBar, setIsMenuBar] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
   const auth = getAuth();
@@ -28,13 +27,10 @@ const HeaderContainer = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
       signOut(auth)
         .then(() => {
-          console.log("성공");
           dispatch(logout());
           setIsDropdown(false);
         })
-        .catch((error) => {
-          console.log("실패", error.message);
-        });
+        .catch((error) => {});
     }
   };
 

@@ -18,7 +18,6 @@ const authGoogleLoginPopup = (auth, dispatch, navigate) => {
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-      console.log("이거토큰", token);
 
       const { displayName, email, emailVerified, photoURL, uid } = result.user;
       dispatch(login({ displayName, email, emailVerified, photoURL, uid }));
@@ -26,16 +25,12 @@ const authGoogleLoginPopup = (auth, dispatch, navigate) => {
     })
     .catch((error) => {
       const errorCode = error.code;
-      console.log(errorCode);
+
       const errorMessage = error.message;
 
-      console.log("errorMessage", errorMessage);
       const email = error.customData?.email;
 
-      console.log(email);
       const credential = GoogleAuthProvider.credentialFromError(error);
-
-      console.log(credential);
     });
 };
 
@@ -44,17 +39,14 @@ export const authWithGoogleAndPersistSession = (dispatch, navigate) => {
   const auth = getAuth();
   setPersistence(auth, browserSessionPersistence)
     .then(() => {
-      console.log("브라우저 세션 유지 설정 완료");
-
       return authGoogleLoginPopup(auth, dispatch, navigate);
     })
 
     .catch((error) => {
       // 에러 처리
       const errorCode = error.code;
-      console.log(errorCode);
+
       const errorMessage = error.message;
-      console.log(errorMessage);
     });
 };
 
@@ -69,7 +61,7 @@ export const authWithCreateUser = (
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log("가입성공", user);
+
       // user.email
       updateProfile(user, {
         displayName: name,
@@ -81,11 +73,8 @@ export const authWithCreateUser = (
           const { displayName, email, emailVerified, photoURL, uid } = user;
 
           dispatch(login({ displayName, email, emailVerified, photoURL, uid }));
-          console.log("Name Update user Success");
         })
-        .catch((error) => {
-          console.error("Name Update fail", error.code);
-        });
+        .catch((error) => {});
       window.alert(`${user.email} 유저의 회원가입이 완료되었습니다. 🎉`);
 
       // 가입 완료 이후 일부 데이터를 DB 로 전달
@@ -120,14 +109,14 @@ export const authWithEmailandPassword = (
       // Signed in
       const user = userCredential.user;
       const { displayName, email, emailVerified, photoURL, uid } = user;
-      console.log("로그인성공");
+
       dispatch(login({ displayName, email, emailVerified, photoURL, uid }));
       navigate(`/`);
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
-      console.log(error.message);
+
       if (errorCode === "auth/invalid-credential") {
         window.alert("유효하지 않은 자격입니다.");
       }
@@ -186,7 +175,7 @@ export const authWithUpdateProfile = (name, imgUrl, navigate, dispatch) => {
     .then(() => {
       // Profile updated!
       // ...
-      console.log("update success");
+
       const { displayName, email, emailVerified, photoURL, uid } =
         auth.currentUser;
 
@@ -199,8 +188,6 @@ export const authWithUpdateProfile = (name, imgUrl, navigate, dispatch) => {
     .catch((error) => {
       // An error occurred
       // ...
-
-      console.log(error.message);
     });
 };
 
@@ -213,8 +200,6 @@ export const updateStorageProfileImg = (
   if (preViewImgUrl) {
     uploadBytes(storageRef, preViewImgUrl)
       .then((snapshot) => {
-        console.log("Uploaded a blob or file!");
-
         const reader = new FileReader();
         reader.readAsDataURL(preViewImgUrl);
         reader.onload = () => {

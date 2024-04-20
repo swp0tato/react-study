@@ -15,7 +15,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fdf7e4;
+  background-color: var(--skin-color);
 }
 
 .dessert_hashtag {
@@ -38,7 +38,7 @@
   width: 80px;
   height: 80px;
   margin: 5px;
-  background: white;
+  background: #ffffff;
   border-radius: 6px;
   cursor: pointer;
 }

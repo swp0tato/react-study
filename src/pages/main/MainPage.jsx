@@ -3,23 +3,35 @@ import CloseDessertSlide from "./components/CloseDessertSlide/CloseDessertSlide"
 import WeatherDessertSlide from "./components/WeatherDessertSlide/WeatherDessertSlide";
 import DessertHashtags from "./components/DessertHashtags/DessertHashtags";
 import MainSearch from "./components/MainSearch/MainSearch";
+<<<<<<< HEAD
 // import { db } from "../../../src/firebase";
 // import { useSelector } from "react-redux";
 // import { doc, getDoc, setDoc } from "firebase/firestore";
+=======
+import "./MainPage.style.css";
+>>>>>>> a844f683f753f2102ee18cd13a012a3539918a88
 
 const MainPage = () => {
   const [location, setLocation] = useState({
     lat: null,
     lon: null,
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getCurrentLocation = () => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        setLocation({ lat, lon });
-      });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          setLocation({ lat, lon });
+          setLoading(false);
+        },
+        (error) => {
+          console.error(error);
+          setLoading(false);
+        }
+      );
     };
 
     getCurrentLocation();
@@ -65,13 +77,14 @@ const MainPage = () => {
   return (
     <div>
       <MainSearch />
-      {location.lat !== null && location.lon !== null && (
-        <CloseDessertSlide lat={location.lat} lon={location.lon} />
+      {!loading && (
+        <>
+          <CloseDessertSlide lat={location.lat} lon={location.lon} />
+          <DessertHashtags />
+          <WeatherDessertSlide lat={location.lat} lon={location.lon} />
+        </>
       )}
-      <DessertHashtags />
-      {location.lat !== null && location.lon !== null && (
-        <WeatherDessertSlide lat={location.lat} lon={location.lon} />
-      )}
+      {loading && <div className="loading-spinner">Loading...</div>}
     </div>
   );
 };

@@ -20,7 +20,7 @@ const Board = () => {
 
   return (
     <div className="board-wrap">
-      <h3 className="board-title">오늘의 디저트 🧀</h3>
+      <h3 className="board-title">우리가 사랑한 카페 모음.zip</h3>
       <div className="add-btn-wrap">
         <svg
           xmlns="http://www.w3.org/2000/svg"

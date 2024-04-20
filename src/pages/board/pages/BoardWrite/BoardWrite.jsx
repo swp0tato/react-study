@@ -10,8 +10,23 @@ const BoardWrite = () => {
   const [user, setUser] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [hashtags, setHashtags] = useState('');
   const [image, setImage] = useState(null);
+  const [tags, setTags] = useState([]);
+
+  const handleKeyDown = (e) => {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    const value = e.target.value.trim();
+    if (value) {
+      setTags([...tags, value]);
+      e.target.value = '';
+    }
+  };
+
+  const removeTag = (index) => {
+    // 배열에서 선택된 해시태그 제거
+    setTags(tags.filter((_, i) => i !== index));
+  };
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
@@ -33,13 +48,11 @@ const BoardWrite = () => {
 
       const imageUrl = await getDownloadURL(storageRef);
 
-      const hashtagsArray = hashtags.split(',');
-
       await addDoc(collection(db, 'items'), {
         user,
         title,
         content,
-        hashtags: hashtagsArray,
+        hashtags: tags, // 수정된 부분: 해시태그 배열 전달
         date: Timestamp.fromDate(new Date()),
         imageUrl,
       });
@@ -48,7 +61,7 @@ const BoardWrite = () => {
       setUser('');
       setTitle('');
       setContent('');
-      setHashtags('');
+      setTags([]); // 수정된 부분: 해시태그 초기화
       setImage(null);
       alert('게시물이 성공적으로 추가되었습니다!');
 
@@ -86,12 +99,27 @@ const BoardWrite = () => {
             placeholder="내용을 입력해 주세요."
             required
           />
-          <input
-            type="text"
-            value={hashtags}
-            onChange={(e) => setHashtags(e.target.value)}
-            placeholder="해시태그 (쉼표로 구분)"
-          />
+
+          <label htmlFor="hashtags" className="form-label">
+            해시태그
+          </label>
+          <div className="tags-input-container">
+            <input
+              onKeyDown={handleKeyDown}
+              type="text"
+              className="tags-input"
+              placeholder="입력 후 Enter키를 눌러주세요"
+            />
+            {tags.map((tag, index) => (
+              <div className="tag-item" key={index}>
+                <span className="text">{tag}</span>
+                <span onClick={() => removeTag(index)} className="close">
+                  &times;
+                </span>
+              </div>
+            ))}
+          </div>
+
           <input
             type="file"
             className="write-input-file"

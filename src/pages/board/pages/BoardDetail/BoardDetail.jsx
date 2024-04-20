@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './BoardDetail.style.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { db, storage } from '../../../../firebase';
-import { doc, getDoc, deleteDoc } from 'firebase/firestore';
+import { db, storage, firestore } from '../../../../firebase';
+import {
+  doc,
+  getDoc,
+  deleteDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
 import Reply from '../../component/Reply';
-import ReplyList from '../../component/ReplyList';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 const BoardDetail = () => {
   const { id } = useParams();
   const [board, setBoard] = useState(null);
-  const [comments, setComments] = useState([]);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -35,17 +39,35 @@ const BoardDetail = () => {
 
   const handleDelete = async () => {
     try {
+      // 댓글 삭제
+      await deleteComments(id);
+      console.log('deleteComments 호출');
       // 이미지 삭제
       if (board.imageUrl) {
         const imageRef = ref(storage, board.imageUrl);
         await deleteObject(imageRef);
       }
 
+      // 게시물 삭제
       await deleteDoc(doc(db, 'items', id));
       alert('게시물이 삭제되었습니다!');
       navigate('/board');
     } catch (error) {
       console.error('게시물 삭제 중 오류가 발생했습니다:', error);
+    }
+  };
+
+  const deleteComments = async (boardId) => {
+    try {
+      const q = query(collection(db, 'reply'), where('boardId', '==', boardId));
+      const querySnapshot = await getDocs(q);
+      const batch = firestore.batch(); // firestore의 batch 함수를 사용
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+      await batch.commit();
+    } catch (error) {
+      console.error('댓글 삭제 중 오류가 발생했습니다:', error);
     }
   };
 
@@ -107,16 +129,6 @@ const BoardDetail = () => {
         </div>
       </div>
       <Reply boardId={id} />
-      <ReplyList comments={comments} />
-      <div className="board-reply-wrap">
-        댓글 ({board?.reply?.length || 0})
-        {board?.reply?.map((re, index) => (
-          <span key={index} className="board-reply-content">
-            <FontAwesomeIcon icon={faUser} color="#ede9e1" /> &nbsp;
-            {re}
-          </span>
-        ))}
-      </div>
     </div>
   );
 };

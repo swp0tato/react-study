@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import './Authenticate.style.css';
-import PageWrapper from '../../../components/Authenticate/PageWrapper/PageWrapper';
-import SignInBtnForm from '../../../components/Authenticate/SignInBtnForm/SignInBtnForm';
-import SignInForm from '../../../components/Authenticate/SignInForm/SignInForm';
-import { authWithEmailandPassword } from '../../../utils/authService/authServie';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import "./Authenticate.style.css";
+import PageWrapper from "../../../components/Authenticate/PageWrapper/PageWrapper";
+import SignInBtnForm from "../../../components/Authenticate/SignInBtnForm/SignInBtnForm";
+import SignInForm from "../../../components/Authenticate/SignInForm/SignInForm";
+import { authWithEmailandPassword } from "../../../utils/authService/authServie";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Authenticate = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const authStyle = {
-    justifyConetent: 'center',
-    alignItem: 'center',
+    justifyConetent: "center",
+    alignItem: "center",
   };
 
   const handleAuthWithEmail = (e) => {

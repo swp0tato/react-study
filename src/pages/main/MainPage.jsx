@@ -4,6 +4,7 @@ import WeatherDessertSlide from "./components/WeatherDessertSlide/WeatherDessert
 import DessertHashtags from "./components/DessertHashtags/DessertHashtags";
 import MainSearch from "./components/MainSearch/MainSearch";
 import "./MainPage.style.css";
+import Footer from "../../common/Footer/Footer";
 
 const MainPage = () => {
   const [location, setLocation] = useState({
@@ -42,6 +43,7 @@ const MainPage = () => {
         </>
       )}
       {loading && <div className="loading-spinner">Loading...</div>}
+      <Footer />
     </div>
   );
 };

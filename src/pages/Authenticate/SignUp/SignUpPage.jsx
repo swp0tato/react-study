@@ -54,7 +54,7 @@ const SignUpPage = () => {
 
   const createInputDynamicProps = (key) => {
     return {
-      isValue: formValue[key],
+      defaultValue: formValue[key],
       handleSetValue: (e) => handleChange(e),
     };
   };
@@ -84,54 +84,35 @@ const SignUpPage = () => {
     }
   };
 
-  // useEffect(()=>{
-  // const userDataSubmitDB =async()=>{
-
-  //   try {
-
-  //     const docRef = await addDoc(collection(db, "users"), {
-  //       first: "Ada",
-  //       last: "Lovelace",
-  //       born: 1815
-  //     });
-  //     console.log("Document written with ID: ", docRef.id);
-  //   } catch (e) {
-  //     console.error("Error adding document: ", e);
-  //   }
-  // }
-
-  // userDataSubmitDB()
-
-  // },[])
-
   const signUpProps = {
     type: "submit",
     handle: (e) => handleCreateUser(e),
+    width: "100%",
   };
 
   return (
     <PageWrapper justifyConetent="center" alignItem="center">
       <div className="top">
-        <div className="sign_up_page_title">
+        <div className="wrapper_title">
           <h1>회원가입</h1>
         </div>
-        <div className="sign_up_item_wrapper">
+        <div className="input_wrapper">
           <p className="title">이름</p>
           {/* 이름 유효성 검사 필히 */}
 
           <AuthInput {...nameStaticProps} {...nameDynamicProps} />
         </div>
-        <div className="sign_up_item_wrapper">
+        <div className="input_wrapper">
           <p className="title">이메일</p>
 
           <AuthInput {...emailStaticProps} {...emailDynamicProps} />
         </div>
-        <div className="sign_up_item_wrapper">
+        <div className="input_wrapper">
           <p className="title">비밀번호</p>
 
           <AuthInput {...passwordStaticProps} {...passwordDynamicProps} />
         </div>
-        <div className="sign_up_item_wrapper">
+        <div className="input_wrapper">
           <p className="title">비밀번호 확인</p>
 
           <AuthInput

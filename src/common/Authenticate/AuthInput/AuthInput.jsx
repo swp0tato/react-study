@@ -5,19 +5,17 @@ const AuthInput = ({
   type,
   placeholder,
   handleSetValue,
-  isValue,
+  defaultValue,
   readOnly,
-  // inputEl,
+  // inputEl
   id,
-  ...rest
 }) => {
-  // console.log(id);
   return (
     <label className="auth_input_label" style={{ width: width }}>
       <input
         id={id}
         className="auth_input"
-        value={isValue.isValue}
+        value={defaultValue}
         onChange={handleSetValue}
         type={type}
         placeholder={placeholder}

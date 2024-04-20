@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { login } from "../../redux/reducer/authenciate/authenciateSlice";
+import { uploadBytes } from "firebase/storage";
 
 const authGoogleLoginPopup = (auth, dispatch, navigate) => {
   const provider = new GoogleAuthProvider();
@@ -19,8 +20,8 @@ const authGoogleLoginPopup = (auth, dispatch, navigate) => {
       const token = credential.accessToken;
       console.log("이거토큰", token);
 
-      const { displayName, email, emailVerified, photoURL } = result.user;
-      dispatch(login({ displayName, email, emailVerified, photoURL }));
+      const { displayName, email, emailVerified, photoURL, uid } = result.user;
+      dispatch(login({ displayName, email, emailVerified, photoURL, uid }));
       navigate(`/`);
     })
     .catch((error) => {
@@ -77,7 +78,9 @@ export const authWithCreateUser = (
           "https://cdn.inflearn.com/public/courses/329051/cover/e7e306c8-0947-4240-8b42-0bc537c74d33/%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B5%E1%86%BC%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A7%E1%84%8C%E1%85%AE%E1%84%82%E1%85%B3%E1%86%AB%E1%84%82%E1%85%AE%E1%84%82%E1%85%A1%20%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A2%E1%86%A8%E1%84%90%E1%85%B32.jpg",
       })
         .then(() => {
-          dispatch(login(user));
+          const { displayName, email, emailVerified, photoURL, uid } = user;
+
+          dispatch(login({ displayName, email, emailVerified, photoURL, uid }));
           console.log("Name Update user Success");
         })
         .catch((error) => {
@@ -116,8 +119,9 @@ export const authWithEmailandPassword = (
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log("로그인 성공", user);
-      dispatch(login(user));
+      const { displayName, email, emailVerified, photoURL, uid } = user;
+      console.log("로그인성공");
+      dispatch(login({ displayName, email, emailVerified, photoURL, uid }));
       navigate(`/`);
       // ...
     })
@@ -125,7 +129,7 @@ export const authWithEmailandPassword = (
       const errorCode = error.code;
       console.log(error.message);
       if (errorCode === "auth/invalid-credential") {
-        window.alert("유효하지 않은 자격 증명입니다.");
+        window.alert("유효하지 않은 자격입니다.");
       }
       if (errorCode === "auth/invalid-email") {
         window.alert("유효하지 않은 아이디 입니다.");
@@ -165,4 +169,65 @@ export const authWithSendPasswordResetEmail = (email, navigate) => {
         window.alert("유효한 이메일 주소가 아닙니다.");
       }
     });
+};
+
+// 프로필 업데이트
+export const authWithUpdateProfile = (name, imgUrl, navigate, dispatch) => {
+  const auth = getAuth();
+
+  const currentUser = auth.currentUser;
+  const newDisplayName = name || currentUser.displayName;
+  const newPhotoURL = imgUrl || currentUser.photoURL;
+
+  updateProfile(currentUser, {
+    displayName: newDisplayName,
+    photoURL: newPhotoURL,
+  })
+    .then(() => {
+      // Profile updated!
+      // ...
+      console.log("update success");
+      const { displayName, email, emailVerified, photoURL, uid } =
+        auth.currentUser;
+
+      dispatch(login({ displayName, email, emailVerified, photoURL, uid }));
+
+      window.alert("프로필 변경이 완료되었습니다.");
+      login();
+      navigate("/auth/myinfo");
+    })
+    .catch((error) => {
+      // An error occurred
+      // ...
+
+      console.log(error.message);
+    });
+};
+
+// storage 이미지 저장
+export const updateStorageProfileImg = (
+  storageRef,
+  preViewImgUrl,
+  setProfileImg
+) => {
+  if (preViewImgUrl) {
+    uploadBytes(storageRef, preViewImgUrl)
+      .then((snapshot) => {
+        console.log("Uploaded a blob or file!");
+
+        const reader = new FileReader();
+        reader.readAsDataURL(preViewImgUrl);
+        reader.onload = () => {
+          if (preViewImgUrl !== "" && preViewImgUrl !== undefined) {
+            setProfileImg(reader.result);
+          }
+        };
+      })
+
+      .catch((error) => {
+        console.error("Upload failed:", error);
+      });
+  } else {
+    console.error("preViewImgUrl is undefined or null");
+  }
 };

@@ -7,6 +7,8 @@ import AuthBtn from "./../../../common/Authenticate/AuthBtn/AuthBtn";
 import { useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const MyInformation = () => {
+  const imgPath = process.env.REACT_APP_IMGPATH;
+
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
@@ -29,7 +31,10 @@ const MyInformation = () => {
   }, [user, auth, navigate]);
   return (
     <PageWrapper justifyConetent="center" alignItem="center">
-      <div className="profile_top "></div>
+      <div
+        className="profile_top "
+        style={{ backgroundImage: `url(${imgPath}/logo.svg)` }}
+      ></div>
       <div className="profile_bottom">
         <img src={`${user?.photoURL}`} alt="이미지" className="profile_img" />
         <div className="profile_informatin_wrapper">
@@ -50,7 +55,7 @@ const MyInformation = () => {
             />
           </div>
         </div>
-        <AuthBtn handle={navigateToUpdate} width="100%">
+        <AuthBtn handle={navigateToUpdate} width="80%">
           수정하기
         </AuthBtn>
       </div>

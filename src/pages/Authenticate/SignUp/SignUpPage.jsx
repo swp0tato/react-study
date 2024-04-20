@@ -87,7 +87,7 @@ const SignUpPage = () => {
   const signUpProps = {
     type: "submit",
     handle: (e) => handleCreateUser(e),
-    width: "100%",
+    width: "80%",
   };
 
   return (
@@ -121,7 +121,7 @@ const SignUpPage = () => {
           />
         </div>
         <div className="duplicate_check">
-          <div>경고메세지!!</div>
+          <div></div>
         </div>
         <div className="sign_up_btn">
           <AuthBtn {...signUpProps}>가입하기</AuthBtn>

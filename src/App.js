@@ -16,7 +16,6 @@ import ForgotPasswordPage from "./pages/Authenticate/ForgotPasswordPage/ForgotPa
 import MyInformation from "./pages/Authenticate/MyInformation/MyInformation";
 import UpdateMyInformation from "./pages/Authenticate/UpdateMyInformation/UpdateMyInformation";
 import BoardUpdate from "./pages/board/pages/BoardUpdate/BoardUpdate";
-import Footer from "./common/Footer/Footer";
 
 function App() {
   /**
@@ -65,7 +64,6 @@ function App() {
           </Route>
         </Route>
       </Routes>
-      <Footer />
     </div>
   );
 }

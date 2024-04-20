@@ -15,6 +15,7 @@ import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const UpdateMyInformation = () => {
+  const imgPath = process.env.REACT_APP_IMGPATH;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const [name, setName] = useState("");
@@ -74,7 +75,10 @@ const UpdateMyInformation = () => {
 
   return (
     <PageWrapper justifyConetent="center" alignItem="center">
-      <div className="profile_top "></div>
+      <div
+        className="profile_top "
+        style={{ backgroundImage: `url(${imgPath}/logo.svg)` }}
+      ></div>
       <div className="profile_bottom">
         <img
           src={`${profileImg || user?.photoURL}`}
@@ -109,14 +113,13 @@ const UpdateMyInformation = () => {
               width="80%"
               readOnly
               defaultValue={user ? user.email : ""}
-              // placeholder={}
             />
           </div>
         </div>
         <AuthBtn
           type="submit"
           handle={(e) => onChangeProfile(e, name, dispatch)}
-          width="100%"
+          width="80%"
         >
           수정완료
         </AuthBtn>

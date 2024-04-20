@@ -32,8 +32,10 @@ const ForgotPasswordPage = () => {
       <div className="top">
         <div className="password_wrapper">
           <h1>비밀번호 찾기</h1>
-          <p>이메일</p>
-          <AuthInput {...sendResetPasswordEmailProps} />
+          <div>
+            <p>이메일</p>
+            <AuthInput {...sendResetPasswordEmailProps} />
+          </div>
         </div>
         <div className="password_send_btn">
           <AuthBtn {...sendResetPasswordEmailBtnProps}>비밀번호 전송</AuthBtn>

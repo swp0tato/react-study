@@ -29,14 +29,15 @@
   margin-bottom: 106px;
   margin-right: 94px;
   display: flex;
+  align-items: flex-end;
   width: 813px;
 }
 
 .blog-img {
   margin-right: 32px;
   border-radius: 6px;
-  width: 154px;
-  height: 154px;
+  width: 161px;
+  height: 161px;
 }
 
 .blog-right {
@@ -132,7 +133,7 @@
     font-size: 13px;
     margin-bottom: 5px;
     width: 200px;
-    height: 84px;
+    height: 78px;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
@@ -149,5 +150,6 @@
     font-size: 16px;
     font-weight: 600;
     margin: 3px 0;
+    padding: 5px;
   }
 }

@@ -48,16 +48,11 @@ const SideBar = ({ handleLogout, naviagetToInformation, navigateToAuth }) => {
             className="side_bar_my_information"
             onClick={naviagetToInformation}
           >
-            <div>내 정보 보기</div>
-            <FontAwesomeIcon icon={faFile} />
+            <div>마이 페이지</div>
           </div>
           {user ? (
             <div className="side_bar_user_isAuthticate" onClick={handleLogout}>
               <div>로그아웃</div>
-              <FontAwesomeIcon
-                icon={faRightFromBracket}
-                className="user_icon faRightFromBracket"
-              />
             </div>
           ) : (
             <div
@@ -65,10 +60,6 @@ const SideBar = ({ handleLogout, naviagetToInformation, navigateToAuth }) => {
               onClick={navigateToAuth}
             >
               <div>로그인</div>
-              <FontAwesomeIcon
-                icon={faUserLarge}
-                className="user_icon faUserLarge"
-              />
             </div>
           )}
         </div>

@@ -64,6 +64,10 @@
   margin-bottom: 1.5rem;
 }
 
+.write-top-box p {
+  font-weight: 600;
+}
+
 .write-form-wrap {
   background-color: #ded0b6;
   padding: 2rem;

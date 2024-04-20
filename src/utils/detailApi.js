@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_DETAIL_API_KEY;
 
 const DetailApi = axios.create({
-  baseURL: 'https://dapi.kakao.com/v2/search',
+  baseURL: "https://dapi.kakao.com/v2/search",
   headers: {
-    Accept: 'application/json',
+    Accept: "application/json",
     Authorization: `KakaoAK ${API_KEY}`,
   },
 });

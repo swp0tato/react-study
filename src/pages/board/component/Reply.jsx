@@ -64,7 +64,6 @@ const Reply = ({ boardId }) => {
   };
 
   const handleDeleteComment = async (commentId) => {
-    console.log('Deleting comment with ID:', commentId);
     try {
       await deleteDoc(doc(db, 'reply', commentId));
 

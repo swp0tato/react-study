@@ -18,7 +18,6 @@ const CloseDessertSlide = ({ lat, lon }) => {
   const { imageUrlData } = useSearchImageQueries(
     data?.map((item) => item.place_name) || []
   );
-  // console.log("imageUrlData-close?? ", imageUrlData);
 
   const newData = useMemo(() => {
     return (
@@ -31,8 +30,6 @@ const CloseDessertSlide = ({ lat, lon }) => {
   }, [data, imageUrlData]);
 
   const newDataSlice = newData.slice(0, 5);
-
-  // console.log("New Data: ", newData);
 
   if (isLoading) {
     return (

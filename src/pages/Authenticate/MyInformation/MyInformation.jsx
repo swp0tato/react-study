@@ -27,8 +27,6 @@ const MyInformation = () => {
     };
     userNullRedirect();
   }, [user, auth, navigate]);
-
-  console.log("현재유저", user);
   return (
     <PageWrapper justifyConetent="center" alignItem="center">
       <div className="profile_top "></div>

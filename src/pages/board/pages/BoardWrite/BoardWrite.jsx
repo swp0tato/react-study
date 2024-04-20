@@ -28,17 +28,13 @@ const BoardWrite = () => {
     }
 
     try {
-      // 이미지를 Firebase Storage에 업로드
       const storageRef = ref(storage, `images/${image.name}`);
       await uploadBytes(storageRef, image);
 
-      // 이미지 URL을 가져옴
       const imageUrl = await getDownloadURL(storageRef);
 
-      // 해시태그를 배열로 분할
       const hashtagsArray = hashtags.split(',');
 
-      // Firestore에 게시물 추가
       await addDoc(collection(db, 'items'), {
         user,
         title,
@@ -54,12 +50,11 @@ const BoardWrite = () => {
       setContent('');
       setHashtags('');
       setImage(null);
-      alert('피드가 성공적으로 추가되었습니다.');
+      alert('게시물이 성공적으로 추가되었습니다!');
 
       navigate('/board');
     } catch (error) {
-      console.error('피드 추가 오류:', error);
-      alert('피드를 추가하는 중에 오류가 발생했습니다.');
+      alert('게시물을 추가하는 중에 오류가 발생했습니다.');
     }
   };
 
@@ -104,7 +99,7 @@ const BoardWrite = () => {
             required
           />
           <button type="submit" className="write-submit-btn">
-            피드 등록
+            게시물 등록
           </button>
         </form>
       </div>

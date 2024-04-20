@@ -21,7 +21,6 @@
 .menu_item:hover {
   cursor: pointer;
   font-weight: bold;
-  color: #fff;
 }
 
 .menu_icon {

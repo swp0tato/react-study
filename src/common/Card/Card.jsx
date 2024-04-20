@@ -8,9 +8,14 @@ const Card = ({ cafe }) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(`/search?q=${cafe.place_name}`);
+    navigate(`/search/${cafe.place_name}`, {
+      state: { address: cafe.place_name },
+    });
   };
+  
+ 
 
+  
   const handleImageError = (event) => {
     event.target.src = `${imgPath}/no_image.png`;
   };

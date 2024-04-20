@@ -11,23 +11,16 @@
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  border: 1px solid black;
-  border-radius: 20px;
-  background-color: var(--skin-deep-color);
-  color: var(--ivory-color);
+  border: 2px solid #33312c;
+  border-radius: 10px;
+  color: #33312c;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  transition: 0.2s ease-in;
 }
 
 .login_form_btn:hover {
-  background-color: var(--ivory-color);
-  color: var(--skin-deep-color);
   cursor: pointer;
-}
-
-#general {
-  background-color: var(--deep-color);
-}
-
-#general:hover {
-  color: var(--skin-deep-color);
-  background-color: var(--ivory-color);
+  color: inherit;
+  background-color: #bbb19f;
 }

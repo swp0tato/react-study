@@ -1,7 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
 .menu_bar {
+  font-family: "Noto Sans KR", sans-serif;
   width: 500px;
   height: 100%;
   display: flex;
+}
+
+.menu_text {
+  font-size: 18px;
 }
 
 .menu_item {
@@ -12,8 +19,8 @@
   align-items: center;
 }
 .menu_item:hover {
-  background-color: var(--skin-color);
   cursor: pointer;
+  font-weight: bold;
 }
 
 .menu_icon {

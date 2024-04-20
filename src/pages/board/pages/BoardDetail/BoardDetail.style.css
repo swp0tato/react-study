@@ -57,9 +57,22 @@
 }
 
 .board-detail-hashtags > span {
-  display: inline-block;
-  color: #8a6826;
-  margin-right: 0.5rem;
+  background-color: rgb(238, 228, 206);
+  margin-right: 5px;
+  border-radius: 20px;
+  padding: 3px 8px;
+  font-size: 14px;
+  color: rgb(57, 57, 58);
+}
+
+.hashtag {
+  background-color: rgb(238, 228, 206);
+  margin-right: 5px;
+  border-radius: 20px;
+  padding: 3px 8px;
+  font-size: 14px;
+  color: rgb(57, 57, 58);
+  font-style: italic;
 }
 
 .board-content-box .position-box {

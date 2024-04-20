@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import './Detail.style.css';
-import { useDetail } from '../../hooks/useDetail';
-import InfiniteScroll from 'react-infinite-scroller';
+import React, { useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import "./Detail.style.css";
+import { useDetail } from "../../hooks/useDetail";
+import InfiniteScroll from "react-infinite-scroller";
+import Footer from "../../common/Footer/Footer";
 
 const Detail = () => {
   const [number, setNumber] = useState(1);
@@ -29,7 +30,7 @@ const Detail = () => {
   return (
     <div className="detail-page">
       <h1 className="detail-title">{id}</h1>
-      <p className="detail-address">{address ? address : '주소없음'}</p>
+      <p className="detail-address">{address ? address : "주소없음"}</p>
 
       <InfiniteScroll
         pageStart={0}
@@ -43,9 +44,19 @@ const Detail = () => {
       >
         {blogs ? (
           blogs?.map((blog, index) => (
-            <a className="section" href={blog.url} rel="noreferrer" target="_blank" key={index}>
+            <a
+              className="section"
+              href={blog.url}
+              rel="noreferrer"
+              target="_blank"
+              key={index}
+            >
               {blog.thumbnail ? (
-                <img className="blog-img" src={blog.thumbnail} alt="블로그 대표 이미지" />
+                <img
+                  className="blog-img"
+                  src={blog.thumbnail}
+                  alt="블로그 대표 이미지"
+                />
               ) : (
                 <img
                   className="blog-img"
@@ -54,8 +65,14 @@ const Detail = () => {
                 />
               )}
               <div className="blog-right">
-                <h3 className="blog-title" dangerouslySetInnerHTML={{ __html: blog.title }}></h3>
-                <p className="blog-contents" dangerouslySetInnerHTML={{ __html: blog.contents }}></p>
+                <h3
+                  className="blog-title"
+                  dangerouslySetInnerHTML={{ __html: blog.title }}
+                ></h3>
+                <p
+                  className="blog-contents"
+                  dangerouslySetInnerHTML={{ __html: blog.contents }}
+                ></p>
                 <p className="blog-info">
                   {blog.blogname} | {blog.datetime.substr(0, 10)}
                 </p>
@@ -66,6 +83,7 @@ const Detail = () => {
           <></>
         )}
       </InfiniteScroll>
+      <Footer />
     </div>
   );
 };

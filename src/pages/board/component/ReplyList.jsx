@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase';
-import ReplyItem from './ReplyItem'; // 댓글 아이템 컴포넌트 import
+import ReplyItem from './ReplyItem';
 
 const ReplyList = ({ boardId }) => {
   const [comments, setComments] = useState([]);

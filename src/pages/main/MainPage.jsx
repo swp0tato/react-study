@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CloseDessertSlide from "./components/CloseDessertSlide/CloseDessertSlide";
 import WeatherDessertSlide from "./components/WeatherDessertSlide/WeatherDessertSlide";
 import DessertHashtags from "./components/DessertHashtags/DessertHashtags";
+import MainSearch from "./components/MainSearch/MainSearch";
 
 const MainPage = () => {
   const [location, setLocation] = useState({
@@ -23,6 +24,7 @@ const MainPage = () => {
 
   return (
     <div>
+      <MainSearch />
       {location.lat !== null && location.lon !== null && (
         <CloseDessertSlide lat={location.lat} lon={location.lon} />
       )}

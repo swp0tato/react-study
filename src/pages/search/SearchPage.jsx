@@ -3,12 +3,18 @@ import { useSearchMapQuery } from "../../hooks/useSearchMap";
 import { useSelector } from "react-redux";
 import SearchBar from "../../common/SearchBar/SearchBar";
 import "./SearchPage.style.css";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import ReactPaginate from "react-paginate";
+
+const selectList = [
+  { value: "accuracy", name: "정확도 순" },
+  { value: "distance", name: "가까운 순" },
+];
 
 const SearchPage = () => {
   const { kakao } = window;
@@ -20,11 +26,16 @@ const SearchPage = () => {
   const searchQuery = query.get("q") || "";
   const [keyword, setKeyword] = useState("");
   const [btnActive, setBtnActive] = useState(false);
+  const [sortValue, setSortValue] = useState("accuracy");
+  const [searchPage, setSearchPage] = useState(1);
   const { data, isLoading, isError, error } = useSearchMapQuery({
     searchQuery,
+    sortValue,
+    searchPage,
   });
   // console.log("data!!", data);
   // console.log("searchQuery", searchQuery);
+  // console.log("searchpage", searchPage);
 
   const searchBarProps = {
     width: "90%",
@@ -44,6 +55,10 @@ const SearchPage = () => {
   const moveSearchMap = () => {
     navigate(`/search?q=${keyword}`);
     setKeyword("");
+  };
+
+  const handleChangeSelect = (event) => {
+    setSortValue(event.target.value);
   };
 
   const displayMarker = (data) => {
@@ -83,6 +98,10 @@ const SearchPage = () => {
         bounds = new kakao.maps.LatLngBounds();
 
       removeMarker();
+      removeList(listEl);
+
+      let overlay;
+      let clickedOverlay;
 
       for (let i = 0; i < places.length; i++) {
         let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
@@ -92,14 +111,15 @@ const SearchPage = () => {
         bounds.extend(placePosition);
 
         (function (marker, position, place) {
-          let overlay;
-
           kakao.maps.event.addListener(marker, "click", function () {
-            displayInfowindow(marker, place, position);
+            if (clickedOverlay) {
+              clickedOverlay.setMap(null);
+            }
+            clickedOverlay = displayInfowindow(marker, place, position);
           });
 
           itemEl.onmouseover = function () {
-            return (overlay = displayInfowindow(marker, place, position));
+            overlay = displayInfowindow(marker, place, position);
           };
 
           itemEl.onmouseout = function () {
@@ -133,13 +153,11 @@ const SearchPage = () => {
         <div class="search_card_address">
           <span>지번</span>
           ${cafe.address_name}
-        </div>`;
-
-      if (cafe.distance !== "") {
-        itemStr += `<div class="search_card_distance">
+        </div>
+        <div class="search_card_distance">
           ${cafe.distance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} m
-          </div>`;
-      }
+        </div>
+        `;
 
       el.innerHTML = itemStr;
       el.className = "search_card_box";
@@ -165,6 +183,12 @@ const SearchPage = () => {
         markers[i].setMap(null);
       }
       markers = [];
+    }
+
+    function removeList(listEl) {
+      while (listEl.hasChildNodes()) {
+        listEl.removeChild(listEl.firstChild);
+      }
     }
 
     function displayInfowindow(marker, place, position) {
@@ -221,8 +245,6 @@ const SearchPage = () => {
 
       overlay.setMap(map);
 
-      if (position) map.panTo(position);
-
       infowindowClose.addEventListener("click", () => {
         overlay.setMap(null);
       });
@@ -231,15 +253,21 @@ const SearchPage = () => {
         overlay.setMap(null);
       });
 
+      if (position) map.panTo(position);
+
       return overlay;
     }
+  };
+
+  const handlePageClick = ({ selected }) => {
+    setSearchPage(selected + 1);
   };
 
   useEffect(() => {
     if (data) {
       kakao.maps.load(() => displayMarker(data));
     }
-  }, [data]);
+  }, [data, sortValue]);
 
   if (isLoading) {
     return <div className="search_map_spinner"></div>;
@@ -257,7 +285,7 @@ const SearchPage = () => {
       <section className="search_map_section">
         <div id="map" className="search_map"></div>
         <button
-          className={`search-toggle-button ${btnActive ? "active" : ""}`}
+          className={`search_toggle_button ${btnActive ? "active" : ""}`}
           onClick={() => setBtnActive(!btnActive)}
         >
           {btnActive ? (
@@ -278,16 +306,43 @@ const SearchPage = () => {
                 ? "'" + searchQuery + "' 관련 카페 보기"
                 : "내 주변 카페 보기"}
             </div>
-            <select className="search_sort_box">
-              <option>정확도 순</option>
-              <option>가까운 순</option>
-              <option>가나다 순</option>
-            </select>
+            <div className="search_info_group">
+              <Link to="/search" className="search_link_button">
+                현재위치
+              </Link>
+              <select
+                className="search_sort_box"
+                onChange={handleChangeSelect}
+                value={sortValue}
+              >
+                {selectList.map((item) => {
+                  return (
+                    <option value={item.value} key={item.value}>
+                      {item.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
           </div>
-          <div id="placesList" className="search_box_results">
-            {data.length === 0 && (
-              <div className="search_results_empty">검색 결과가 없습니다.</div>
-            )}
+          <div className="search_results_area">
+            <div id="placesList" className="search_box_results">
+              {data.length === 0 && (
+                <div className="search_results_empty">
+                  검색 결과가 없습니다.
+                </div>
+              )}
+            </div>
+            <ReactPaginate
+              previousLabel={"이전"}
+              nextLabel={"다음"}
+              pageCount={3}
+              onPageChange={handlePageClick}
+              containerClassName="search_pagination"
+              pageLinkClassName="search_pagination_link"
+              activeLinkClassName="search_pagination_link_active"
+              forcePage={searchPage - 1}
+            />
           </div>
         </div>
       </section>

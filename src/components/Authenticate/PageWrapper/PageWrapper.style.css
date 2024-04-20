@@ -1,7 +1,7 @@
 .auth_page_wrapper {
   width: 100%;
   height: calc(100vh - 75px);
-  min-height: 700px;
+  min-height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,14 +11,15 @@
   display: flex;
   width: 500px;
   height: 65vh;
-  min-height: 650px;
+  min-height: 400px;
   flex-direction: column;
+  /* border: 3px solid black; */
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 767px) {
   .auth {
-    width: 350px;
+    width: 300px;
   }
 }

@@ -1,6 +1,6 @@
 .header_wrapper {
   width: 100%;
-  height: 75px;
+  height: 100px;
   background-color: var(--skin-deep-color);
   display: flex;
   justify-content: center;

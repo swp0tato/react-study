@@ -9,23 +9,22 @@
 }
 
 .board-wrap {
-  font-family: 'Noto Sans KR', sans-serif;
-  /* height: 100vh; */
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .board-title {
   text-align: center;
-  margin-top: 40px;
-  font-family: 'TTLaundryGothicB';
+  margin-top: 60px;
+  font-family: "TTLaundryGothicB";
   font-size: 30px;
   color: #33312c;
-  letter-spacing: 5px;
 }
 
 .add-btn-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1.5rem;
 }
 
 .add-btn {
@@ -44,7 +43,8 @@
 .add-btn:hover {
   background-color: #bbab8c;
   transform: scale(1.05);
-  color: rgb(68, 67, 67);
+  /* color: rgb(68, 67, 67); */
+  color: #fff;
 }
 
 .focus-icon {
@@ -59,4 +59,10 @@
   color: #918369;
   font-family: 'TTLaundryGothicB';
   margin-top: 50px;
+}
+
+@media (max-width: 425px) {
+  .board-title {
+    font-size: 24px;
+  }
 }

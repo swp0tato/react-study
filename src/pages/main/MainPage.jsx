@@ -25,13 +25,9 @@ const MainPage = () => {
   return (
     <div>
       <MainSearch />
-      {location.lat !== null && location.lon !== null && (
-        <CloseDessertSlide lat={location.lat} lon={location.lon} />
-      )}
+      <CloseDessertSlide lat={location.lat} lon={location.lon} />
       <DessertHashtags />
-      {location.lat !== null && location.lon !== null && (
-        <WeatherDessertSlide lat={location.lat} lon={location.lon} />
-      )}
+      <WeatherDessertSlide lat={location.lat} lon={location.lon} />
     </div>
   );
 };

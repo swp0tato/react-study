@@ -6,6 +6,8 @@ import "./../../../../common/Slider/Slider.style.css";
 import "./CloseDessertSlide.style.css";
 import { useSearchCloseDessertQuery } from "../../../../hooks/useSearchCloseDessert";
 import { useSearchImageQueries } from "../../../../hooks/useSearchImage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 const CloseDessertSlide = ({ lat, lon }) => {
   const { data, isLoading, isError, error } = useSearchCloseDessertQuery({
@@ -45,7 +47,13 @@ const CloseDessertSlide = ({ lat, lon }) => {
     return (
       <div className="close_dessert_section">
         <div className="close_dessert_wrapper">
-          <div className="error_message">{error.message}</div>
+          <div className="error_message">
+            <FontAwesomeIcon
+              icon={faCircleExclamation}
+              className="error_icon"
+            />
+            {error.message}
+          </div>
         </div>
       </div>
     );

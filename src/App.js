@@ -33,7 +33,11 @@ function App() {
       sessionStorage.getItem(`firebase:authUser:${apikey}:${appName}`)
     );
 
-    dispatch(login(getSessionStorageValue));
+    if (getSessionStorageValue !== null) {
+      const { displayName, email, photoURL, emailVerified, uid } =
+        getSessionStorageValue;
+      dispatch(login({ displayName, email, photoURL, emailVerified, uid }));
+    }
   }, [apikey, dispatch]);
 
   return (

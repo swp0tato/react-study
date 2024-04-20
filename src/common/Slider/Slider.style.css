@@ -14,8 +14,8 @@
 
 .carousel-item {
   margin-right: 20px !important;
-  /* width: calc(100% / 5) !important; */
-  width: 100% !important;
+  width: calc(100% / 5) !important;
+  /* width: 100% !important; */
 }
 
 .carousel-item:last-child {

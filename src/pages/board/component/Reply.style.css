@@ -25,3 +25,22 @@
   color: #000;
   background-color: #ded0b6;
 }
+
+.reply-list {
+  display: flex;
+  flex-direction: column;
+  margin: 15px auto;
+}
+
+.reply-item {
+  margin: 10px 0;
+  padding: 4px;
+  font-size: 17px;
+  border-bottom: 2px solid rgba(68, 67, 67, 0.6);
+  padding-bottom: 10px;
+}
+
+.reply-user-icon {
+  margin-right: 10px;
+  color: rgba(68, 67, 67, 0.6);
+}

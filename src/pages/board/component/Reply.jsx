@@ -9,6 +9,8 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../../firebase';
 import './Reply.style.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Reply = ({ boardId }) => {
   const [commentText, setCommentText] = useState('');
@@ -77,9 +79,13 @@ const Reply = ({ boardId }) => {
       </button>
 
       <div className="reply-list">
+        <div className="comment-count">댓글 ({comments.length})</div>
         {comments.map((comment) => (
           <div key={comment.id} className="reply-item">
-            <p>{comment.text}</p>
+            <p>
+              <FontAwesomeIcon icon={faUser} className="reply-user-icon" />{' '}
+              {comment.text}
+            </p>
             {/* 댓글 작성 시간이나 수정 삭제 넣을거면 버튼 주자 */}
           </div>
         ))}

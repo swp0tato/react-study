@@ -63,6 +63,12 @@
   color: #6d6d73;
 }
 
+.last-page-message {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 6px 0;
+}
+
 @media screen and (max-width: 950px) {
   * {
     margin: 0;
@@ -137,5 +143,11 @@
   .blog-info {
     font-size: 12px;
     color: #6d6d73;
+  }
+
+  .last-page-message {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 3px 0;
   }
 }

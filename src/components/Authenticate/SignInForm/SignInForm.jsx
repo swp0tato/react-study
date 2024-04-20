@@ -18,14 +18,14 @@ const SignInForm = ({ setEmail, email, setPassword, password }) => {
     type: "email",
     placeholder: "이메일",
     handleSetValue: (e) => setEmail(e.target.value),
-    isValue: email,
+    defaultValue: email ? email : "",
   };
 
   const passwordProps = {
     type: "password",
     placeholder: "비밀번호",
     handleSetValue: (e) => setPassword(e.target.value),
-    isValue: password,
+    defaultValue: password ? password : "",
   };
 
   return (

@@ -13,7 +13,7 @@ const ForgotPasswordPage = () => {
   const sendResetPasswordEmailProps = {
     placeholder: "이메일 주소",
     handleSetValue: (e) => setEmail(e.target.value),
-    isValue: email,
+    defaultValue: email ? email : "",
     type: "email",
   };
 

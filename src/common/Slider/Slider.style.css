@@ -14,8 +14,8 @@
 
 .carousel-item {
   margin-right: 20px !important;
-  /* width: calc(100% / 5) !important; */
-  width: 100% !important;
+  width: calc(100% / 5) !important;
+  /* width: 100% !important; */
 }
 
 .carousel-item:last-child {
@@ -72,15 +72,14 @@
   cursor: pointer;
 }
 
-/* @media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .carousel-item {
     width: calc(100% / 3) !important;
-    margin-right: 0 !important; 
   }
 }
 
 @media screen and (max-width: 464px) {
   .carousel-item {
-    width: 100% !important; 
+    width: 100% !important;
   }
-} */
+}

@@ -44,3 +44,11 @@
   margin-right: 10px;
   color: rgba(68, 67, 67, 0.6);
 }
+
+.comment-count {
+  margin-left: 3px;
+}
+
+.reply-delete-btn {
+  margin-left: 20px;
+}

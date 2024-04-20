@@ -6,11 +6,13 @@ import {
   query,
   where,
   getDocs,
+  deleteDoc,
+  doc,
 } from 'firebase/firestore';
 import { db } from '../../../firebase';
 import './Reply.style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const Reply = ({ boardId }) => {
   const [commentText, setCommentText] = useState('');
@@ -54,15 +56,30 @@ const Reply = ({ boardId }) => {
       const docRef = await addDoc(collection(db, 'reply'), commentData);
       const newComment = { id: docRef.id, ...commentData };
 
-      // 상태 업데이트: 기존 댓글에 새로운 댓글 추가
-      setComments((prevComments) => [...prevComments, newComment]);
+      // 상태 업데이트: 최신순이 위로 올라오게 설정
+      setComments((prevComments) => [newComment, ...prevComments]);
 
       alert('댓글이 등록되었습니다!');
 
-      // 입력 필드 초기화
       setCommentText('');
     } catch (error) {
       console.error('댓글을 추가하는 도중 오류가 발생했습니다:', error);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    console.log('Deleting comment with ID:', commentId);
+    try {
+      await deleteDoc(doc(db, 'reply', commentId));
+
+      // 댓글 삭제 후 상태 업데이트
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment.id !== commentId),
+      );
+
+      alert('댓글이 삭제되었습니다!');
+    } catch (error) {
+      console.error('댓글을 삭제하는 도중 오류가 발생했습니다:', error);
     }
   };
 
@@ -85,8 +102,13 @@ const Reply = ({ boardId }) => {
             <p>
               <FontAwesomeIcon icon={faUser} className="reply-user-icon" />{' '}
               {comment.text}
+              <button
+                className="delete-comment-btn"
+                onClick={() => handleDeleteComment(comment.id)}
+              >
+                <FontAwesomeIcon icon={faTimes} className="reply-delete-btn" />
+              </button>
             </p>
-            {/* 댓글 작성 시간이나 수정 삭제 넣을거면 버튼 주자 */}
           </div>
         ))}
       </div>

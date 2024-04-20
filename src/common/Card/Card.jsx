@@ -9,7 +9,7 @@ const Card = ({ cafe }) => {
 
   const handleCardClick = () => {
     navigate(`/search/${cafe.place_name}`, {
-      state: { address: cafe.place_name },
+      state: { address: cafe.address_name },
     });
   };
   

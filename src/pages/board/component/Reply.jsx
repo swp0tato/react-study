@@ -102,8 +102,8 @@ const Reply = ({ boardId }) => {
         {comments.map((comment) => (
           <div key={comment.id} className="reply-item">
             <div className="reply-wrap">
-              <div>
-                <FontAwesomeIcon icon={faUser} className="reply-user-icon" />{" "}
+              <div className="reply-text">
+                {/* <FontAwesomeIcon icon={faUser} className="reply-user-icon" />{" "} */}
                 {comment.text}
               </div>
               <button

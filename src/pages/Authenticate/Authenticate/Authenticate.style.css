@@ -5,7 +5,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  border-bottom: 1px dotted #bbab8c;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: center;
+}
+.auth_title h2 {
+  font-family: 'TTLaundryGothicB';
+  font-size: 30px;
+  letter-spacing: 3px;
+  color: #33312c;
 }
 
 @media screen and (max-width: 767px) {

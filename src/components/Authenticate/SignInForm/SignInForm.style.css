@@ -9,3 +9,11 @@
   margin-right: 1.5rem;
   margin-left: 1.5rem;
 }
+
+.join-text-wrap {
+  display: flex;
+}
+
+.bar-wrap {
+  margin: auto 25px;
+}

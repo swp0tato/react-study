@@ -1,9 +1,9 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { authWithGoogleAndPersistSession } from "../../../utils/authService/authServie";
-import "./SignInBtnForm.style.css";
-import AuthBtn from "../../../common/Authenticate/AuthBtn/AuthBtn";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { authWithGoogleAndPersistSession } from '../../../utils/authService/authServie';
+import './SignInBtnForm.style.css';
+import AuthBtn from '../../../common/Authenticate/AuthBtn/AuthBtn';
 
 const SignInBtnForm = ({ handleAuthWithEmail }) => {
   const dispatch = useDispatch();
@@ -17,13 +17,13 @@ const SignInBtnForm = ({ handleAuthWithEmail }) => {
   };
 
   const loginBtn = {
-    id: "general",
-    type: "submit",
+    id: 'general',
+    type: 'submit',
     handle: (e) => handleAuthWithEmail(e),
   };
 
   const socialLoginBtn = {
-    type: "submit",
+    type: 'submit',
     handle: (e) => handleAuthWithGoogle(e),
   };
 
@@ -32,10 +32,11 @@ const SignInBtnForm = ({ handleAuthWithEmail }) => {
       <AuthBtn {...loginBtn}>로그인</AuthBtn>
       <AuthBtn {...socialLoginBtn}>
         <img
-          src="https://avatars.githubusercontent.com/u/1342004?s=48&v=4"
+          className="google-icon"
+          src="free-icon-google-5968863.png"
           alt="구글아이콘"
         ></img>
-        Log in with Google
+        <span className="google-login-text">로그인</span>
       </AuthBtn>
     </div>
   );

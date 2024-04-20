@@ -110,7 +110,7 @@
 .weather_dessert_wrapper .loading-spinner {
   text-align: center;
   font-size: 30px;
-  color: #918369;
+  color: #94886e;
   font-family: "TTLaundryGothicB";
   margin-bottom: 1em;
 }
@@ -118,9 +118,16 @@
 .weather_dessert_wrapper .error_message {
   font-size: 20px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media screen and (max-width: 464px) {
+.weather_dessert_wrapper .error_message .error_icon {
+  margin-right: 0.3em;
+}
+
+@media screen and (max-width: 600px) {
   .weather_dessert_title {
     left: 50%;
     transform: translateX(-50%);

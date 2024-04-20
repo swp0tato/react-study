@@ -16,6 +16,7 @@ import ForgotPasswordPage from "./pages/Authenticate/ForgotPasswordPage/ForgotPa
 import MyInformation from "./pages/Authenticate/MyInformation/MyInformation";
 import UpdateMyInformation from "./pages/Authenticate/UpdateMyInformation/UpdateMyInformation";
 import BoardUpdate from "./pages/board/pages/BoardUpdate/BoardUpdate";
+import Footer from "./common/Footer/Footer";
 
 function App() {
   /**
@@ -33,7 +34,11 @@ function App() {
       sessionStorage.getItem(`firebase:authUser:${apikey}:${appName}`)
     );
 
-    dispatch(login(getSessionStorageValue));
+    if (getSessionStorageValue !== null) {
+      const { displayName, email, photoURL, emailVerified, uid } =
+        getSessionStorageValue;
+      dispatch(login({ displayName, email, photoURL, emailVerified, uid }));
+    }
   }, [apikey, dispatch]);
 
   return (
@@ -60,6 +65,7 @@ function App() {
           </Route>
         </Route>
       </Routes>
+      <Footer />
     </div>
   );
 }

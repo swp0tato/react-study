@@ -9,7 +9,7 @@ const BoardUpdate = () => {
   const [board, setBoard] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [hashtags, setHashtags] = useState("");
+  const [tags, setTags] = useState([]);
   const [user, setUser] = useState("");
   const [date, setDate] = useState("");
   const [profileImg, setProfileImg] = useState("");
@@ -17,6 +17,21 @@ const BoardUpdate = () => {
     "https://i.pinimg.com/736x/e9/ce/91/e9ce91bbb0d18e5555b1bbd3745a0fef.jpg";
 
   const navigate = useNavigate();
+
+  const handleKeyDown = (e) => {
+    if (e.key !== "Enter") return;
+    e.preventDefault();
+    const value = e.target.value.trim();
+    if (value) {
+      setTags([...tags, value]);
+      e.target.value = "";
+    }
+  };
+
+  const removeTag = (index) => {
+    // 배열에서 선택된 해시태그 제거
+    setTags(tags.filter((_, i) => i !== index));
+  };
 
   useEffect(() => {
     const fetchBoard = async () => {
@@ -26,7 +41,7 @@ const BoardUpdate = () => {
         const boardData = docSnap.data();
         setTitle(boardData.title);
         setContent(boardData.content);
-        setHashtags(boardData.hashtags.join(", "));
+        setTags(boardData.hashtags);
         setUser(boardData.user);
 
         const timestamp = boardData.date;
@@ -38,7 +53,7 @@ const BoardUpdate = () => {
         setProfileImg(boardData.profileImg || defaultProfileImgUrl);
         setBoard(boardData);
       } else {
-        console.log('게시물이 존재하지 않습니다.');
+        console.log("게시물이 존재하지 않습니다.");
       }
     };
     fetchBoard();
@@ -51,7 +66,7 @@ const BoardUpdate = () => {
     await updateDoc(boardRef, {
       title,
       content,
-      hashtags: hashtags.split(",").map((tag) => tag.trim()),
+      hashtags: tags,
     });
     alert("게시물이 업데이트 되었습니다!");
     navigate(`/board/detail/${id}`);
@@ -64,8 +79,8 @@ const BoardUpdate = () => {
   return (
     <div className="board-write-wrap">
       <div className="write-top-box">
-        <img width={100} src="/images/cafe_icon.png" alt="카페 아이콘" />
-        <p>나만 알기 아쉬운 카페를 추천해 주세요!</p>
+        <img width={100} src="/images/cookie_icon.png" alt="카페 아이콘" />
+        <p>변경 후 게시물 수정 버튼을 눌러주세요!</p>
       </div>
       <div className="write-form-wrap">
         <form onSubmit={handleSubmit}>
@@ -87,13 +102,25 @@ const BoardUpdate = () => {
             />
           </div>
           <div>
-            <label htmlFor="hashtags">해시태그</label>
-            <input
-              type="text"
-              id="hashtags"
-              value={hashtags}
-              onChange={(e) => setHashtags(e.target.value)}
-            />
+            <label htmlFor="hashtags" className="form-label">
+              해시태그
+            </label>
+            <div className="tags-input-container">
+              <input
+                onKeyDown={handleKeyDown}
+                type="text"
+                className="tags-input"
+                placeholder="입력 후 Enter키를 눌러주세요"
+              />
+              {tags.map((tag, index) => (
+                <div className="tag-item" key={index}>
+                  <span className="text">{tag}</span>
+                  <span onClick={() => removeTag(index)} className="close">
+                    &times;
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
           <div>
             <div className="write-user-box">

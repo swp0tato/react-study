@@ -1,15 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Card.style.css";
 
 const imgPath = process.env.REACT_APP_IMGPATH;
 
 const Card = ({ cafe }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/search?q=${cafe.place_name}`);
+  };
+
   const handleImageError = (event) => {
     event.target.src = `${imgPath}/no_image.png`;
   };
 
   return (
-    <div className="card-item">
+    <div className="card-item" onClick={handleCardClick}>
       <div className="card-image">
         <img
           src={cafe?.imageUrl ? cafe.imageUrl : `${imgPath}/no_image.png`}

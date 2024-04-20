@@ -5,9 +5,9 @@ const AuthInput = ({
   type,
   placeholder,
   handleSetValue,
-  isValue,
+  defaultValue,
   readOnly,
-  inputEl,
+  // inputEl
   id,
 }) => {
   return (
@@ -15,12 +15,12 @@ const AuthInput = ({
       <input
         id={id}
         className="auth_input"
-        value={isValue}
+        value={defaultValue}
         onChange={handleSetValue}
         type={type}
         placeholder={placeholder}
         readOnly={readOnly && "readOnly"}
-        ref={inputEl}
+        // ref={inputEl}
       />
     </label>
   );

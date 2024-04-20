@@ -1,7 +1,10 @@
 import React, { useMemo } from "react";
 import Slider from "../../../../common/Slider/Slider";
 import { responsive } from "./../../../../constans/responsive";
-import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faRotateRight,
+  faCircleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "react-multi-carousel/lib/styles.css";
 import "./../../../../common/Slider/Slider.style.css";
@@ -108,7 +111,13 @@ const WeatherDessertSlide = ({ lat, lon }) => {
     return (
       <div className="weather_dessert_section">
         <div className="weather_dessert_wrapper">
-          <div className="error_message">{error.message}</div>
+          <div className="error_message">
+            <FontAwesomeIcon
+              icon={faCircleExclamation}
+              className="error_icon"
+            />
+            {error.message}
+          </div>
         </div>
       </div>
     );

@@ -12,12 +12,12 @@
 <br>
 
 ### 👥 멤버 구성 (6명)
-- 신영재 : PO
-- 김민솔 : SM
-- 이하영 :
-- 최연서 :
-- 김재희 :
-- 손지희 : Search(Map) 페이지 - 위치기반 카페정보(현재위치,검색), 데이터 정렬(정확도, 가까운 순)
+- 신영재 : PO Frontend
+- 김민솔 : SM Frontend
+- 이하영 : Frontend
+- 최연서 : Frontend
+- 김재희 : Frontend 
+- 손지희 : Frontend
 
 <br>
 

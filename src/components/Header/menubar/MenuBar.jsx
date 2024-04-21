@@ -3,10 +3,9 @@ import {
   faHome,
   faMapMarkerAlt,
   faClipboardList,
-  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import "./MenuBar.style.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { useNavigate } from "react-router-dom";
 const MenuBar = ({ menuBarStyle, menuItemStyle }) => {
   const navigate = useNavigate();
@@ -15,7 +14,6 @@ const MenuBar = ({ menuBarStyle, menuItemStyle }) => {
     { name: "Main", icon: faHome, router: "/" },
     { name: "Map", icon: faMapMarkerAlt, router: "/search" },
     { name: "Board", icon: faClipboardList, router: "/board" },
-    { name: "Community", icon: faUsers },
   ];
 
   const navigateToMenuItem = (router) => {

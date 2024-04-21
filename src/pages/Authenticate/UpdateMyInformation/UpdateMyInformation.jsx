@@ -23,9 +23,13 @@ const UpdateMyInformation = () => {
   const [preViewImgUrl, setPreViewImgUrl] = useState("");
   const [profileImg, setProfileImg] = useState("");
 
+  const defaultImg = `/no_image.png`;
   const storage = getStorage();
 
-  const storageRef = ref(storage, `profile_images/${preViewImgUrl}`);
+  const storageRef = ref(
+    storage,
+    `profile_images/${preViewImgUrl || defaultImg}`
+  );
 
   useEffect(() => {
     if (preViewImgUrl !== "" && preViewImgUrl !== undefined) {

@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+.board-card {
+  width: 260px;
+  height: 240px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.board-card:hover {
+  transform: scale(1.1);
+}
+
+.hashtag {
+  background-color: rgb(238, 228, 206);
+  margin-right: 5px;
+  border-radius: 20px;
+  padding: 3px 8px;
+  font-size: 14px;
+  color: rgb(57, 57, 58);
+  font-style: italic;
+}
+
+.hashtags {
+  margin-top: 10px;
+}
+
+.card-wrap {
+  width: 1280px;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 2rem;
+}
+
+.card-wrap > div {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.card-area {
+  margin: 0 auto;
+}
+
+.card-user-info {
+  display: flex;
+  align-items: center;
+}
+
+.card-user-info img {
+  border: 2px solid rgb(211, 204, 195);
+  border-radius: 100%;
+}
+
+.card-user-name {
+  color: #524f47;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 1300px) {
+  .card-wrap {
+    width: 85%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .card-wrap {
+    width: 80%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .card-wrap {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

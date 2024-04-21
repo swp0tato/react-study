@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+@font-face {
+  font-family: "TTLaundryGothicB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.main_search_section {
+  width: 100%;
+  height: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: url("https://i.pinimg.com/originals/87/0e/fe/870efe0ec94fad38de54d6fc2dded645.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.main_search_section::before {
+  content: "";
+  background: #22110072;
+  position: absolute;
+  width: 100%;
+  height: 540px;
+  left: 0;
+}
+
+.main_search_title {
+  font-family: "TTLaundryGothicB";
+  font-size: 2.4em;
+  word-break: keep-all;
+  margin: 0.8em;
+  color: #ffffff;
+  z-index: 10;
+}
+
+/* searchBar customize */
+.main_search_section .search-group {
+  border-radius: 100px !important;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.main_search_section .search-group form {
+  width: 94% !important;
+}
+
+.main_search_section .search-input-box {
+  display: block;
+  width: 100% !important;
+  padding-left: 30px !important;
+}
+
+.main_search_section .search-input-box input {
+  width: 100% !important;
+  height: 50px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem !important;
+}
+
+.main_search_section .search-input-box input::placeholder {
+  color: #cecece;
+}
+
+.main_search_section .btn-search {
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: absolute;
+  right: 20px !important;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.main_search_section .search-icon {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+@media screen and (max-width: 1200px) {
+  .main_search_section .search-group {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main_search_title {
+    font-size: 2em;
+  }
+  .search-input-box input {
+    font-size: 1rem !important;
+  }
+  .search-icon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}

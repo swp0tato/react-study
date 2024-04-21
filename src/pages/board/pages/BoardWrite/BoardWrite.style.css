@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+.board-write-area {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #fbf8f0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.board-write-title {
+  margin-top: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.board-cafe-name,
+.board-description,
+.board-location {
+  width: 300px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 5px 10px;
+}
+
+.board-submit-btn {
+  background-color: #bbab8c !important;
+  cursor: pointer;
+  border: 2px solid white !important;
+  margin: 10px 10px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 15px;
+  padding: 10px;
+  width: 60% !important;
+}
+
+.board-badge-icon {
+  margin-top: 5px;
+}
+
+.board-img-add {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 작성폼 반응형 css 작업 */
+.board-write-wrap {
+  font-family: "Noto Sans KR", sans-serif;
+  width: 900px;
+  margin: 4rem auto;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.write-top-box {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.write-top-box p {
+  font-weight: 600;
+}
+
+.write-form-wrap {
+  background-color: #ded0b6;
+  padding: 2rem;
+  border-radius: 24px;
+}
+
+.write-form-wrap > form {
+  width: 100%;
+}
+
+.write-form-wrap input {
+  width: 100%;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  background-color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+  height: 36px;
+}
+
+.write-form-wrap input:focus {
+  outline: none;
+}
+
+.write-form-wrap textarea {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  resize: none;
+  border: none;
+  border-radius: 6px;
+}
+
+.write-form-wrap textarea:focus {
+  outline: none;
+  box-shadow: 0 2px 4px rgba(46, 46, 46, 0.2);
+}
+
+.write-input-file {
+  font-size: 14px !important;
+  text-align: center;
+  padding: 0.5rem !important;
+}
+
+.write-input-file::file-selector-button {
+  border: none;
+  width: 100px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.write-submit-btn {
+  width: 120px;
+  height: 36px;
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.write-submit-btn:hover {
+  font-weight: bold;
+  background: #bbab8c;
+  color: #fff;
+}
+
+.tags-input-container {
+  margin-bottom: 1rem;
+}
+
+.tag-item {
+  background-color: #faeed1;
+  display: inline-block;
+  margin-right: 6px;
+  padding: 0.4em 0.7em;
+  border-radius: 20px;
+  font-size: 15px;
+}
+
+.tag-item .close {
+  height: 20px;
+  width: 20px;
+  border: 1px solid #552f20;
+  color: #552f20;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.5em;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.tags-input {
+  margin-bottom: 8px !important;
+}
+
+.form-label {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1000px) {
+  .write-form-wrap {
+    padding: 1.5rem;
+  }
+
+  .board-write-wrap {
+    width: 90%;
+    margin: 1rem auto;
+  }
+
+  .write-submit-btn {
+    width: 100%;
+  }
+}

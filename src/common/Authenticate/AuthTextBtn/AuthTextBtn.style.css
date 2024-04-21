@@ -1,0 +1,15 @@
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: black;
+  font-weight: bold;
+  color: #383632;
+  word-break: keep-all;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+button:hover {
+  color: #bbb19f;
+  cursor: pointer;
+}

@@ -1,0 +1,245 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+.board-detail-wrap {
+  font-family: "Noto Sans KR", sans-serif;
+  width: 1100px;
+  margin: 4rem auto;
+}
+
+.board-post-area {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.board-img-box {
+  width: 40%;
+}
+
+.board-img-box > img {
+  width: 400px;
+  height: 380px;
+  border-radius: 8px;
+}
+
+.board-content-box {
+  width: 60%;
+  padding-top: 1rem;
+
+  position: relative;
+}
+
+.board-content-box > p:first-child {
+  color: #bbab8c;
+  font-weight: 600;
+}
+
+.detail-user-box {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+.detail-user-box > img {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5rem;
+  border: 2px solid rgb(170, 158, 136);
+  border-radius: 100%;
+}
+
+.board-content-box > h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.board-review-content {
+  margin-bottom: 1rem;
+}
+
+.board-detail-hashtags > span {
+  background-color: rgb(238, 228, 206);
+  margin-right: 5px;
+  border-radius: 20px;
+  padding: 3px 8px;
+  font-size: 14px;
+  color: rgb(57, 57, 58);
+}
+
+.hashtag {
+  background-color: rgb(238, 228, 206);
+  margin-right: 5px;
+  border-radius: 20px;
+  padding: 3px 8px;
+  font-size: 14px;
+  color: rgb(57, 57, 58);
+  font-style: italic;
+}
+
+.board-content-box .position-box {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.modify-btn-box {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.modify-btn-box > button {
+  cursor: pointer;
+  width: 80px;
+  height: 36px;
+  background: transparent;
+  border: 2px solid #ded0b6;
+  border-radius: 6px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.modify-btn-box > button:hover {
+  background-color: #ded0b6;
+  font-weight: 600;
+  color: #000;
+}
+
+.modify-btn-box > .delete-btn {
+  margin-left: 0.6rem;
+  border: 2px solid #ff7676;
+}
+
+.modify-btn-box > .delete-btn:hover {
+  background-color: #fff;
+  color: #f14747;
+  border: 2px solid #ff7676;
+}
+
+.board-comment-area {
+  margin-bottom: 8rem;
+}
+
+.board-comment-area > p:first-child {
+  color: #bbab8c;
+  font-weight: 600;
+  border-bottom: 1px solid #bbab8c;
+  padding-bottom: 8px;
+}
+
+.cafe-title {
+  font-size: 15px;
+  color: #bbab8c;
+}
+.cafe-title-text {
+  color: #4b4436;
+}
+
+.board-reply-wrap {
+  display: flex;
+  flex-direction: column;
+  margin: 15px auto;
+}
+.board-reply-content {
+  margin: 10px 0;
+  padding: 4px;
+  font-size: 17px;
+  border-bottom: 2px solid rgba(236, 224, 220, 0.8);
+  padding-bottom: 10px;
+}
+
+.reply-profile-img {
+  border: 2px solid #f0efee;
+  border-radius: 100%;
+  position: relative;
+  top: 7px;
+}
+
+.comment-user-img-box > img {
+  width: 36px;
+}
+
+.comment-textarea-box {
+  display: flex;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.comment-textarea {
+  width: 100%;
+  height: 70px;
+  border: 1px solid #bbab8c;
+  border-radius: 8px;
+  margin-left: 1rem;
+  padding: 0.5rem;
+  resize: none;
+}
+
+.comment-textarea:focus {
+  outline: none;
+}
+
+.comment-btn-box {
+  margin-top: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-btn-box button {
+  width: 80px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid #ded0b6;
+  border-radius: 6px;
+}
+
+.commentBtnActive {
+  cursor: pointer;
+  border: 2px solid #ded0b6 !important;
+}
+
+.commentBtnActive:hover {
+  background-color: #ded0b6;
+}
+
+@media (max-width: 1100px) {
+  .board-detail-wrap {
+    width: 100%;
+    padding: 0 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 8rem;
+  }
+
+  .board-img-box > img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .board-img-box {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .board-content-box {
+    width: 100%;
+  }
+
+  .board-detail-hashtags {
+    margin-bottom: 3rem;
+  }
+
+  .comment-textarea-box {
+    padding: 0 0 0 1rem;
+  }
+
+  .comment-btn-box {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .modify-btn-box > button {
+    width: 64px;
+    height: 32px;
+  }
+}

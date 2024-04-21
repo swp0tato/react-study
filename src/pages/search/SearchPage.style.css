@@ -1,0 +1,371 @@
+.search_page_area {
+  font-family: "Noto Sans KR", sans-serif;
+  height: calc(100vh - 80px);
+  position: relative;
+}
+.search_map_section {
+  width: 100%;
+  height: 100%;
+}
+.search_map {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.search_toggle_button {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  font-size: 1.5rem;
+  z-index: 1;
+  width: 130px;
+  height: 45px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: var(--skin-deep-color);
+  color: var(--skin-color);
+  box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
+}
+.search_toggle_button:hover {
+  background-color: var(--skin-color);
+  color: var(--skin-deep-color);
+}
+.search_toggle_button.active {
+  left: 410px;
+  width: 45px;
+  height: 130px;
+  background-color: var(--skin-color);
+  color: var(--skin-deep-color);
+}
+.search_toggle_button.active:hover {
+  background-color: var(--skin-deep-color);
+  color: var(--skin-color);
+}
+.search_box_section {
+  display: none;
+}
+.search_box_section.active {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 400px;
+  height: 100%;
+  z-index: 1;
+}
+.search_box_area {
+  height: 100%;
+}
+.search_box_area_bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ivory-color);
+  border: 1px solid #dbdbdb;
+  height: 13%;
+  min-height: 80px;
+}
+.search_box_area_bar input {
+  height: 48px;
+  background-color: #fff;
+}
+.search_box_area_bar input::placeholder {
+  text-align: left;
+}
+.search_info_area {
+  padding: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #dbdbdb;
+  border-top: 0;
+  flex-direction: column;
+  gap: 10px;
+  height: 15%;
+  min-height: 120px;
+}
+.search_info_title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #fff;
+  align-self: flex-start;
+  font-family: "TTLaundryGothicB";
+}
+.search_info_group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.search_link_button {
+  color: black;
+  text-decoration: none;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  padding: 0 8px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 0.9rem;
+}
+.search_link_button:hover {
+  background-color: #dbdbdb;
+  color: #fff;
+}
+.search_sort_box {
+  width: 100px;
+  height: 30px;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+}
+.search_results_area {
+  height: 72%;
+  overflow: auto;
+}
+.search_box_results {
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
+}
+.search_map_spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 5rem;
+  width: 5rem;
+  margin-top: -32px;
+  margin-left: -32px;
+  border-radius: 50%;
+  border-top: none;
+  border-right: none;
+  border: 4px solid #bbab8c;
+  border-top-color: #ded0b6;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.search_map_error_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+.search_map_error_text {
+  background-color: #fce4e4;
+  border: 1px solid #fcc2c3;
+  padding: 20px 30px;
+  color: #cc0033;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
+  text-shadow: 1px 1px rgba(250, 250, 250, 0.3);
+}
+.search_card_box {
+  margin: 0 1rem;
+  border-bottom: 1px solid #dbdbdb;
+  padding-top: 1rem;
+  cursor: pointer;
+  margin-top: 0;
+}
+.search_card_box > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.search_card_box:hover .search_card_title {
+  background-color: var(--ivory-color);
+  border-radius: 10px;
+}
+.search_card_title {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  transition: all 0.3s ease-in-out;
+  font-family: "TTLaundryGothicB";
+}
+.search_card_phone {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+.search_card_address {
+  margin-bottom: 5px;
+}
+.search_card_address span {
+  font-size: 0.7rem;
+  border: 1px solid var(--deep-color);
+  border-radius: 5px;
+  padding: 2px 3px;
+  margin-right: 5px;
+}
+.search_card_distance {
+  text-align: right;
+  margin-bottom: 1.15rem;
+}
+.search_results_empty {
+  text-align: center;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 1rem 0;
+}
+.infowindow_wrap {
+  position: absolute;
+  left: 0;
+  bottom: 40px;
+  width: 288px;
+  height: 132px;
+  margin-left: -144px;
+  text-align: left;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.infowindow_wrap * {
+  padding: 0;
+  margin: 0;
+}
+.infowindow_wrap .infowindow_info {
+  width: 286px;
+  height: 120px;
+  border-radius: 5px;
+  border-bottom: 2px solid #ccc;
+  border-right: 1px solid #ccc;
+  overflow: hidden;
+  background: #fff;
+}
+.infowindow_wrap .infowindow_info:nth-child(1) {
+  border: 0;
+  box-shadow: 0px 1px 2px #888;
+}
+.infowindow_info .infowindow_title {
+  padding-left: 10px;
+  height: 30px;
+  line-height: 30px;
+  background: var(--ivory-color);
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "TTLaundryGothicB";
+}
+.infowindow_info .infowindow_close {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  color: #888;
+  width: 17px;
+  height: 17px;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png");
+}
+.infowindow_info .infowindow_close:hover {
+  cursor: pointer;
+}
+.infowindow_info .infowindow_body {
+  position: relative;
+  overflow: hidden;
+}
+.infowindow_info .infowindow_desc {
+  position: relative;
+  height: 75px;
+  margin-top: 8px;
+  margin-left: 13px;
+}
+.infowindow_info:after {
+  content: "";
+  position: absolute;
+  margin-left: -12px;
+  left: 50%;
+  bottom: 0;
+  width: 22px;
+  height: 12px;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png");
+}
+.infowindow_info .infowindow_link {
+  color: #5085bb;
+}
+.search_pagination {
+  margin: 1.5rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  list-style: none;
+  cursor: pointer;
+}
+.search_pagination_link {
+  transition: all 0.25s;
+  padding: 0.1rem 0.5rem;
+  border-radius: 50px;
+}
+.search_pagination_link_active {
+  color: #fff;
+  background-color: var(--skin-deep-color);
+}
+@media (max-width: 767px) {
+  .search_toggle_button.active {
+    left: 340px;
+  }
+  .search_box_section.active {
+    width: 330px;
+  }
+  .search_info_title {
+    font-size: 1.3rem;
+  }
+  .search_card_title {
+    font-size: 1.4rem;
+  }
+  .search_card_address {
+    font-size: 0.9rem;
+    margin-bottom: 7px;
+  }
+  .search_card_distance {
+    font-size: 0.9rem;
+  }
+  .search_sort_box {
+    width: 90px;
+    height: 28px;
+  }
+  .search_link_button {
+    height: 28px;
+    line-height: 28px;
+  }
+}
+@media (max-width: 464px) {
+  .search_toggle_button.active {
+    left: 260px;
+  }
+  .search_box_section.active {
+    width: 250px;
+  }
+  .search_info_title {
+    font-size: 1.25rem;
+  }
+  .search_card_title {
+    font-size: 1.3rem;
+  }
+  .search_card_phone {
+    font-size: 0.9rem;
+  }
+  .search_card_address {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+  }
+  .search_card_address span {
+    margin-right: 3px;
+    padding: 1px 2px;
+    display: inline-block;
+    margin-bottom: 3px;
+  }
+  .search_card_distance {
+    font-size: 0.8rem;
+  }
+  .search_sort_box {
+    width: 80px;
+    height: 26px;
+  }
+  .search_link_button {
+    height: 26px;
+    line-height: 26px;
+  }
+}

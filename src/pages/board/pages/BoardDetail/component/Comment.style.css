@@ -1,0 +1,21 @@
+.comment {
+  display: flex;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.comment-content {
+  margin-left: 1rem;
+}
+
+.comment-delete-btn {
+  border: none;
+  background: none;
+  color: #808080;
+  cursor: pointer;
+}
+
+.comment-delete-btn:hover {
+  color: red;
+  font-weight: 600;
+}

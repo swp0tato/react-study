@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+@font-face {
+  font-family: "TTLaundryGothicB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.weather_dessert_section {
+  width: 100%;
+  height: 640px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.thunderstorm {
+  background-image: url(https://images.unsplash.com/photo-1576613775061-75e52d6e6b0e?q=80&w=3812&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+}
+
+.drizzle {
+  background-image: url(https://images.unsplash.com/photo-1556485689-33e55ab56127?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+}
+
+.rain {
+  background-image: url(https://images.unsplash.com/photo-1676483489320-534657bdb0f6?q=80&w=2869&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+}
+
+.snow {
+  background-image: url(https://images.unsplash.com/photo-1607585121444-49f10418f533?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+}
+
+.atmosphere {
+  background-image: url(https://images.unsplash.com/photo-1573996636238-5ada5903321a?q=80&w=3914&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+}
+
+.clear {
+  background-image: url(https://images.unsplash.com/photo-1567708233986-87de01b33b62?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+}
+
+.clouds {
+  background-image: url(https://images.unsplash.com/photo-1520858362407-812e1188b1eb?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+}
+
+.weather_dessert_section::before {
+  content: "";
+  background: #0000006b;
+  position: absolute;
+  width: 100%;
+  height: 640px;
+  left: 0;
+}
+
+.weather_dessert_wrapper {
+  width: 80%;
+  /* overflow: hidden; */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.weather_dessert_title {
+  position: absolute;
+  z-index: 100;
+  top: 8%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.weather_dessert_wrapper h2 {
+  font-family: "TTLaundryGothicB";
+  font-size: 1.8em;
+  word-break: keep-all;
+  margin: 0 0.4em 0.4em 0;
+}
+
+.weather_dessert_title button {
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.weather_dessert_title button .svg-inline--fa {
+  font-size: 40px;
+  color: #ffffff;
+}
+
+.weather_dessert_title button:hover {
+  transform: rotate(60deg);
+}
+
+.weather_dessert_wrapper .carousel-container {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.weather_dessert_wrapper .loading-spinner {
+  text-align: center;
+  font-size: 30px;
+  color: #94886e;
+  font-family: "TTLaundryGothicB";
+  margin-bottom: 1em;
+}
+
+.weather_dessert_wrapper .error_message {
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather_dessert_wrapper .error_message .error_icon {
+  margin-right: 0.3em;
+}
+
+@media screen and (max-width: 600px) {
+  .weather_dessert_title {
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .weather_dessert_wrapper h2 {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .weather_dessert_title button {
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .weather_dessert_title button .svg-inline--fa {
+    font-size: 30px;
+    color: #ffffff;
+  }
+}

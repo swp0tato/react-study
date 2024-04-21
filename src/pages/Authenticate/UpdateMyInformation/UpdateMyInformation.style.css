@@ -1,0 +1,19 @@
+#profile_img_file {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  opacity: 0;
+}
+
+.profile_img_file_icon {
+  position: absolute;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  z-index: 3;
+}

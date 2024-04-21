@@ -21,7 +21,7 @@
 - javascript
 - react
 
-### DB
+### Backend
 
 - firebase
 

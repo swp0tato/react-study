@@ -96,11 +96,24 @@ react-study/
 <br>
 
 ### Main
+
+![CPT2404211632-1313x1006-ezgif com-resize](https://github.com/swp0tato/react-study/assets/121777501/866bd10a-15d0-49f8-8138-45a55097d312)
 - 키워드를 검색하면 map 페이지로 연결되어 검색 결과를 보여줍니다.
-- 현재 위치 기반으로 가까운 디저트 맛집을 보여줍니다. 
+  
+<br>
+
+![가까운디저트맛집](https://github.com/swp0tato/react-study/assets/121777501/1ea20237-5149-4a3a-a8d1-2e3432bc2d64)
+- 현재 위치 기반으로 가까운 디저트 맛집을 보여줍니다.
+<br>
+
+![CPT2404211615-1310x1000-ezgif com-resize (1)](https://github.com/swp0tato/react-study/assets/121777501/1f69152e-8384-4503-99d1-c6ab3120f3ca)
 - 디저트 아이콘을 클릭하면 해당 디저트 맛집을 map 페이지에서 확인할 수 있습니다.
+<br>
+
+![CPT2404211630-1312x1002](https://github.com/swp0tato/react-study/assets/121777501/c288fbce-d9c8-46aa-869e-b2318f7b81b4)
 - 현재 위치 기준 날씨에 따라 디저트 맛집을 추천해줍니다.
   - 새로고침 버튼을 클릭하면 다른 디저트 맛집을 볼 수 있습니다.
+<br>
 <br>
 
 ### Search(Map)

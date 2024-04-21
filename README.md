@@ -23,7 +23,7 @@
 
 ### Backend
 
-- firebase
+- Backend (Firebase Services)
 
 ### Communication
   

@@ -134,15 +134,29 @@ react-study/
 - 유저가 작성한 게시물이 최신순으로 보여집니다.
 - 게시물 이미지와 유저 프로필 그리고 해시태그가 표시됩니다.
 
+<br>
+
+[보드 작성 페이지]
+
 ![yummy시연2](https://github.com/swp0tato/react-study/assets/161410250/b8647f48-1ce7-4a99-9cf0-08609312d2d9)
 
 - 상단의 게시물 작성 버튼을 눌러 작성 페이지로 이동합니다.
 - 제목, 내용, 해시태그, 이미지 파일 추가 후 게시물 등록이 가능합니다. 
 
+<br>
+
+
+[보드 수정 페이지]
+
 ![yummy시연3](https://github.com/swp0tato/react-study/assets/161410250/f3eca960-d379-4a19-82ba-afaeff07848a)
 
 - 게시물 상세 페이지에서 수정 버튼을 눌러 수정 페이지로 이동합니다.
 - 수정이 완료되면 해당 게시물 상세 페이지로 이동하여 수정된 내용을 확인할 수 있습니다.
+
+<br>
+
+
+[보드 상세 페이지 및 댓글]
 
 ![yummy시연4](https://github.com/swp0tato/react-study/assets/161410250/ebb4a19d-fb7b-471b-9fab-19274973fb34)
 

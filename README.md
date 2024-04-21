@@ -1,9 +1,10 @@
 
-### 🖥️ 프로젝트 소개  yummy
+# Welcome to 🧀 yummy
 다양한 디저트들 중에서 무엇을 먹을지 결정하지 못하는 우리의 모습을 생각하며 개발되었습니다.<br>
 자동으로 위치 기반 카페를 검색해주는 기능이 있으며, 해당 지역 날씨에 맞춰서 카페를 추천해주고 있습니다.
 <br>
 - 배포 URL : https://yummy-web.netlify.app/
+  
 <br>
 
 ### ⏰ 개발 기간
@@ -21,21 +22,29 @@
 
 <br>
 
-### ⚙️ 개발 환경
+# 🛠️ Stack
+### Frontend
+- Html
+- Css
+- Javascript
+- React
+
+### Backend
+- Firebase Service
+
+### Communication
+- Notion
+- Discord
+- Figma
+
+<br>
+
+# ⚙️ 개발 환경
 - ReactJS, CSS
-- 사용 API : KAKAO API
+- 사용 API : KAKAO API, OpenWeatherMap API
 - 버전 관리 : Github
 - 서비스 배포 환경 : Netlify
   
-<br>
-
-### 📌 주요 기능
-- Main
-- Search(Map)
-- Detail
-- Board
-- Login
-
 <br>
 
 ### 📌 Branches

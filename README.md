@@ -149,3 +149,24 @@ react-study/
 - 유저는 게시물에 댓글을 등록할 수 있습니다.
 - 작성한 댓글의 삭제 버튼을 누르면 해당 댓글은 삭제됩니다.
 
+<br>
+
+### Detail
+
+- 유저는 메인페이지 및 맵페이지에서 클릭한 데이터를 기반으로 블로그 글을 볼 수 있습니다.
+
+<img width="500" alt="스크린샷 2024-04-21 오후 3 36 28" src="https://github.com/swp0tato/react-study/assets/121213522/73ea7449-a26a-4c21-a5ee-df413e68d2b3">
+
+<br/>
+<br/>
+
+- 유저는 블로그 글을 클릭 시에 해당 블로그로 이동할 수 있습니다.
+  
+  ![blog](https://github.com/swp0tato/react-study/assets/121213522/bc88aa58-617a-4d2c-bdd0-d756a43fe51e)
+
+<br/>
+<br/>
+
+- 유저는 블로그글의 데이터를 커서 기반 무한 스크롤로 볼 수 있으며 마지막 페이지에 닿을 시 마지막 페이지라는 안내를 받을 수 있습니다.
+
+  <img width="500" alt="스크린샷 2024-04-21 오후 3 39 39" src="https://github.com/swp0tato/react-study/assets/121213522/848e8e23-b64e-445c-affe-d1fa95e78716">

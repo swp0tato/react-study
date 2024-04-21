@@ -95,7 +95,7 @@ react-study/
 ```
 <br>
 
-### Main
+# Main
 
 ![CPT2404211632-1313x1006-ezgif com-resize](https://github.com/swp0tato/react-study/assets/121777501/866bd10a-15d0-49f8-8138-45a55097d312)
 - 키워드를 검색하면 map 페이지로 연결되어 검색 결과를 보여줍니다.
@@ -116,7 +116,7 @@ react-study/
 <br>
 <br>
 
-### Search(Map)
+# Search(Map)
 - 버튼을 클릭하여 사이드 메뉴(검색,결과 창)를 열고 닫을 수 있습니다.<br>
 <img src="https://github.com/swp0tato/react-study/assets/42454759/e319fd55-dcc4-42ea-92dd-7811e128bb79" width="500" alt='yummy_search_menu'/>
 <br>
@@ -139,16 +139,33 @@ react-study/
 <img src="https://github.com/swp0tato/react-study/assets/42454759/8d11a3cc-e273-4fe3-b00d-0bcb7e26462e" width="500" alt='yummy_search_detail'/>
 <br>
 
-### Login
+# Login
 - 로그인은 소셜로그인 그리고 일반 이메일 가입 로그인으로 운영됩니다.
+
+ ![login수정본](https://github.com/swp0tato/react-study/assets/142131436/40ca13fb-6278-4554-b5b7-00c8188415c4)
+
+ 
 - 회원가입은 이메일 기반으로 양식에 맞춰 가입할 수 있습니다.
+
+  
+![siguup수정본](https://github.com/swp0tato/react-study/assets/142131436/e177d3cd-5e22-4e61-92e7-873f26e2731d)
+
+
 - 비밀번호 재발급은 발송된 이메일을 통한 변경 URL이 전송됩니다.
+
+  
+![password수정본](https://github.com/swp0tato/react-study/assets/142131436/1c960aec-8678-48ed-882d-deb347e87b31)
+
+
 - 로그인 시 마이페이지 기능을 이용할 수 있으며, 마이 페이지에 대한 정보를 이메일을 제외한 수정이 가능합니다.
+
+  
+![update수정본](https://github.com/swp0tato/react-study/assets/142131436/e8e28e43-53fe-4bbf-b724-994da3c7c026)
 
 
 <br>
 
-### Board
+# Board
 
 [보드 페이지]
 
@@ -188,7 +205,7 @@ react-study/
 
 <br>
 
-### Detail
+# Detail
 
 - 유저는 메인페이지 및 맵페이지에서 클릭한 데이터를 기반으로 블로그 글을 볼 수 있습니다.
 

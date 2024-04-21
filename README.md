@@ -115,6 +115,12 @@ react-study/
 - 버튼을 클릭하여 사이드 메뉴(검색,결과 창)를 열고 닫을 수 있습니다.
 - 결과(카페) 데이터 목록을 클릭하면 디테일(상세) 페이지로 이동합니다.
 <br>
+<img src="https://github.com/swp0tato/react-study/assets/42454759/e319fd55-dcc4-42ea-92dd-7811e128bb79" width="500" alt='yummy_search_menu'/>
+<img src="https://github.com/swp0tato/react-study/assets/42454759/06cf7a58-8a83-4fea-ae10-28eff79c2953" width="500" alt='yummy_search_hover'/>
+<br>
+<img src="https://github.com/swp0tato/react-study/assets/42454759/250dea65-7c5f-4acf-aff9-5b1cd56fb944" width="500" alt='yummy_search_sort'/>
+<img src="https://github.com/swp0tato/react-study/assets/42454759/8d11a3cc-e273-4fe3-b00d-0bcb7e26462e" width="500" alt='yummy_search_detail'/>
+<br>
 
 ### Login
 - 로그인은 소셜로그인 그리고 일반 이메일 가입 로그인으로 운영됩니다.

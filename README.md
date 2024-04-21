@@ -12,8 +12,8 @@
 <br>
 
 ### 👥 멤버 구성 (6명)
-- 신영재 : (PO) Frontend
-- 김민솔 : (SM) Frontend
+- 신영재 : Frontend (PO)
+- 김민솔 : Frontend (SM)
 - 이하영 : Frontend
 - 최연서 : Frontend
 - 김재희 : Frontend 

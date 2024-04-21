@@ -116,5 +116,21 @@ react-study/
 - 로그인 시 마이페이지 기능을 이용할 수 있으며, 마이 페이지에 대한 정보를 이메일을 제외한 수정이 가능합니다.
 
 
+<br>
+
+### Board
+
+[보드 페이지]
+- 유저가 작성한 게시물이 최신순으로 보여집니다.
+- 게시물 이미지와 유저 프로필 그리고 해시태그가 표시됩니다.
+
+![yummy시연1](https://github.com/swp0tato/react-study/assets/161410250/23ffa37c-6b53-4655-b81c-cfe5f340f670)
+
+![yummy시연2](https://github.com/swp0tato/react-study/assets/161410250/b8647f48-1ce7-4a99-9cf0-08609312d2d9)
+
+![yummy시연3](https://github.com/swp0tato/react-study/assets/161410250/f3eca960-d379-4a19-82ba-afaeff07848a)
+
+![yummy시연4](https://github.com/swp0tato/react-study/assets/161410250/ebb4a19d-fb7b-471b-9fab-19274973fb34)
+
 
 

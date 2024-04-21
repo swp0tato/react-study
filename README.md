@@ -1,6 +1,43 @@
+## Project
+
+
+
 <br>
 
-### 📌 Branches
+## 🛠️ Stack
+
+### Frontend
+
+- html
+- css
+- javascript
+- react
+
+### DB
+
+- firebase
+
+### Communication
+  
+ - Notion
+ - Discord
+ - Figma
+
+
+
+
+
+<br>
+
+## 🌐 API
+
+- Kakao 지도 API
+- Kakao 검색 API
+- OpenWeatherMap 날씨 API
+
+<br>
+
+## 📌 Branches
 
 - `master` branch : 배포용 브랜치 (절대 터치 ❌)
 - `FE` branch : 개발을 진행할 브랜치
@@ -8,7 +45,7 @@
 
 <br>
 
-### 📁 폴더 구조
+## 📁 폴더 구조
 
 ```
 react-study/
